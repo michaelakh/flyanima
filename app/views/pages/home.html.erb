@@ -1,11 +1,55 @@
 <div class='header-box'>
     <div class='container'>
         <div class='search-box'>
-            <form id='search-form' class='search' role='search'>
-            <div class='form-group'>
-            <input type='text' placeholder='search' >
-                <button type='submit' class='submit' >Search</button>
+            <button class='button-col-xs-10' onclick="responsive_travel_search('Flights')">
+                Flights
+            </button>
+            <button class='button-col-xs-10' onclick="responsive_travel_search('Hotels')">
+                Hotels
+            </button>
+            <button class='button-col-xs-10' onclick="responsive_travel_search('Flights_Hotels')">
+                Flights &amp; Hotels
+            </button>
+            <button class='button-col-xs-10' onclick="responsive_travel_search('Cars')">
+                Cars
+            </button>
+            <button class='button-col-xs-10' onclick="responsive_travel_search('Trains')">
+                Trains
+            </button>
+            <button class='button-col-xs-10' onclick="responsive_travel_search('Activity')">
+                Activity
+            </button>
+            <button class='button-col-xs-10' onclick="responsive_travel_search('All')">
+                All
+            </button>
+            <div id='Flights-search' class='active-search off'>
+            
             </div>
+            <div id='Hotels-search' class='active-search off'>
+            
+            </div>
+            <div id='Flights-Hotels-search' class='active-search off'>
+            
+            </div>
+            <div id='Cars-search' class='active-search off'>
+            
+            </div>
+            <div id='Trains-search' class='active-search off'>
+            
+            </div>
+            <div id='Activity-search' class='active-search off'>
+            
+            </div>
+            <div id='All-search' class='active-search off'>
+            
+            </div>
+            
+            <form id='search-form' class='search' role='search'>
+                <div class='form-group'>
+                <input type='text' placeholder='search' >
+                    <button type='submit' class='submit' >Search</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

@@ -4,12 +4,19 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
+    prepare_meta_tags title: "Blog", description: "Keep up to date with Tinos recent news and updates"
     @posts = Post.all
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
+    prepare_meta_tags(title: @post.title,
+                      description: @post.body,
+
+                      #image: @post.picture.url(:large),
+                      twitter: {card: "summary_large_image"})  
+                      @page_keywords    = @post.keywords
   end
 
   # GET /posts/new
@@ -69,6 +76,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :body, :category)
+      params.require(:post).permit(:title, :body, :category, :keywords)
     end
 end
