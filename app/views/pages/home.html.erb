@@ -1,0 +1,90 @@
+<div class='header-box'>
+    <div class='container'>
+        <div class='search-box'>
+            <form id='search-form' class='search' role='search'>
+            <div class='form-group'>
+            <input type='text' placeholder='search' >
+                <button type='submit' class='submit' >Search</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section>
+     <div class='container-no-bg'>
+    </div>
+</section>
+
+<%= render 'pages/footer'%>
+<footer>
+    
+    <div class='container-no-bg'>
+        
+        <div class='f-content-1'>
+            <h3 class='col-title'>Tino.uk</h3>
+            <ul>
+                <li>
+                    <%= link_to 'Privacy policy', '/pages/legals/privacy_policy' =%>
+                </li>
+                <li>
+                <%= link_to 'Terms of use', '/pages/legals/terms_of_use' =%>
+                </li>
+                <li>
+                <%= link_to 'Contact', '/pages/contact' =%>
+                </li>
+            </ul>
+        </div> 
+        
+        <div class='f-content-1'>
+            <h3 class='col-title'>Travelling With Pets</h3>
+            <ul>
+                <li>
+                    <%= link_to 'Dogs', '#' =%>
+                </li>
+                <li>
+                <%= link_to 'Cats', '#' =%>
+                </li>
+                <li>
+                <%= link_to 'Ferrets', '#' =%>
+                </li>
+                <li>
+                <%= link_to 'Other Animals', '#' =%>
+                </li>
+            </ul>
+        </div> 
+        
+        <div class='f-content-1'>
+            <h3 class='col-title'>Destinations</h3>
+            <ul>
+                <li>
+                <%= link_to 'Hotels', '#' =%>
+                </li>
+                <li>
+                <%= link_to 'Flights', '#' =%>
+                </li>
+                <li>
+                <%= link_to 'Deals', '#' =%>
+                </li>
+            </ul>
+        </div> 
+        
+        <div class='col-xs-4'>
+            <ul>
+                <li>
+                <%= link_to 'Help', '#' %>
+                </li>
+                <li>
+                <%= link_to 'Follow Us', '#' %>
+                </li>
+                <li>
+                <%= link_to 'Contact Us', '#' %>
+                </li>
+            </ul>
+        </div>
+        
+        <div class='col-xs-4'>
+           <span>© Copyright Tino Ltd 2016</span> 
+            <img width="126" height="33" src="//www.paypalobjects.com/webstatic/i/logo/rebrand/ppcom-white.svg" alt="PayPal" class="PayPal">
+        </div>
+    </div>
+</footer>

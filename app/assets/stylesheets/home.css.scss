@@ -1,0 +1,99 @@
+    
+    div.header-box {
+        height:300px;
+        border: solid 1px black;
+        background-image: image-url('IMG_9191-1212.jpg');
+        background-attachment: local;
+        background-repeat: no-repeat;
+        background-size: cover;
+            
+    }
+    
+    div.header-box div.container {
+        background-color: initial;
+    }
+    div.search-box {
+        max-width:1000px;
+        width:90%;
+        margin:20px auto 20px auto;
+        padding:10px;
+        height:225px;
+        border: solid 1px black;
+        background-color:rgba(0, 0, 0, 0.5);
+        transition:padding .5s cubic-bezier(.23,1,.32,1)
+    }
+    
+    section {
+        height: 300px;
+        background-color:white;
+    }
+    
+    footer {
+        height:300px;
+        background-color:#3e3e3e;
+        background:linear-gradient(to bottom, #3e3e3e, #2a2a2a);
+        color:#dcdcdc;
+        background-image: image-url('footer_bg.jpg');
+    }
+    
+    footer a {
+        color: #bdbdbd;
+        transition: color 0.3s;
+        text-decoration:none;
+    }
+    
+    footer a:hover {
+        color: #FFFFFF;
+    }
+    
+    footer div.f-content-1 {
+        width:33%;
+        float:left;
+    }
+    
+    footer h3.col-title {
+        margin:10px 20px 0px 10px;
+        padding:0px 0px 10px 0px;
+        border-bottom: solid 1px #6C6C6C;
+        font-family:'coolvetica';
+        font-weight:lighter;
+        letter-spacing: 1.5px;
+    }
+    
+    footer div.f-content-1 ul {
+        list-style-type:none;
+        margin:0px;
+        padding:0px 10px;
+    }
+    
+    footer div.f-content-1 ul li {
+        display:block;
+        padding:5px 5px 5px 10px;
+    }
+    
+    footer div.f-content-1 a {
+        text-decoration:none;
+        font-size:14px;
+    }
+
+    
+    footer div.col-xs-4 {
+        clear:left;
+        border-top: solid 1px #6C6C6C;
+    }
+    
+    footer div.col-xs-4 ul {
+        list-style-type:none;
+    }
+    
+    footer div.col-xs-4 ul li {
+        display:inline-block;
+        padding:5px;
+    }
+    header div.logo {
+    background-image: image-url('Tino_Image_Logo.jpg');
+    background-position: 2px -20px;
+    background-attachment: center;
+    background-size: 146px 110px;
+    background-repeat: no-repeat;
+    }

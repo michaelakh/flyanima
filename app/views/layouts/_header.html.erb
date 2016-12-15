@@ -1,0 +1,47 @@
+<div class='container'>
+    <header class='top-header'>
+        <div class='logo'>
+            <%= image_tag "Tino_Image_Logo.jpg", size: "200x110", alt: "Tino Logo" %>
+        </div>
+        <div class='header-right'>
+            Announcement or advert or slogan or something
+        </div>
+    </header>
+    <nav class='header-nav clearfix'>
+        <div class='top-nav'>
+            <ul class='top-nav'>
+                <li class='top-li'>
+                    <%= link_to 'Home', '/pages/home' %>
+                </li>
+                <li class='nav-list'>
+                    <%= link_to 'Travel', '#' %>
+                </li>
+                <li class='nav-list'>
+                    <%= link_to 'Blog', posts_path %>
+                </li>
+                <li class='nav-list'>
+                    <%= link_to 'Contact', '/pages/contact' %>
+                </li>
+                
+                <% if user_signed_in? %>
+                <li class='nav-list'>
+                    <%= link_to 'Account', edit_user_registration_path %>
+                </li>
+                <li class='nav-list'>
+                    <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete%>
+                </li>
+                <% else %>
+                <li class='nav-list'>
+                    <%= link_to 'Sign in', user_session_path %>
+                </li>
+                <li class='nav-list'>
+                    <%= link_to 'Sign up', new_user_registration_path %>
+                </li>
+                <% end %>
+                <li class='icon'>
+                    <a href='javascript:void(0)' onclick="responsive_nav()">&#9776</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>

@@ -1,0 +1,79 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+/************************************************************
+*****    Responsive Css Media Queries Reference    **********
+************************************************************/
+
+/* Large Devices, Wide Screens */
+ //   @media only screen and (max-width : 1200px) {
+ //
+ //   }
+ //
+ //   /* Medium Devices, Desktops */
+ //   @media only screen and (max-width : 992px) {
+ //
+ //  }
+ //
+ //   /* Small Devices, Tablets */
+ //   @media only screen and (max-width : 768px) {
+ //
+ //  }
+ //
+ //   /* Extra Small Devices, Phones */ 
+ //  @media only screen and (max-width : 480px) {
+ //
+ //  }
+ //
+ //   /* Custom, iPhone Retina */ 
+ //   @media only screen and (max-width : 320px) {
+ //
+ //   }
+
+// Main Variables
+
+//fonts
+@font-face {
+    font-family: "caviar dreams";
+    src: font-url("caviardreams.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "code";
+    src: font-url("CODE_Bold.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "coolvetica";
+    src: font-url("coolvetica_rg.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "geosans light";
+    src: font-url("GeosansLight.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "vintage avalanche";
+    src: font-url("Vintage_Avalanche.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "lato";
+    src: font-url("Lato-Light.ttf") format("truetype");
+}
+
+
