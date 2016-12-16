@@ -1,5 +1,5 @@
 $font_main: 'lato';
-$main_color: #45106e;
+$primary_color: #45106e;
 $nav_highlight: #8828ab;
 $top-nav_font_color: #BEBEBE;
 $top-nav_font_color_highlight:#FFFFFF;
@@ -48,7 +48,7 @@ div.header-right{
 nav.header-nav {
     max-width:1200px;
     width:100%;
-    background-color: $main_color;
+    background-color: $primary_color;
     padding:0px;
     margin:0 auto;
 }
@@ -56,7 +56,7 @@ nav.header-nav {
 div.top-nav {
     float:left;
     width:100%;
-    background-color:$main_color;
+    background-color:$primary_color;
     position:relative;
 }
 ul.top-nav{
@@ -64,13 +64,13 @@ ul.top-nav{
     padding:0px;
     margin:0px;
     float:left;
-    background-color: $main_color;
+    background-color: $primary_color;
     
 }
 
 ul.top-nav li {
     float:left;
-    background-color: $main_color;
+    background-color: $primary_color;
     border:none;
 }
 
@@ -81,7 +81,7 @@ ul.top-nav li a {
     font-size: 12px;
     color: $top-nav_font_color;
     padding:10px 16px;
-    background-color: $main_color;
+    background-color: $primary_color;
     transition:0.3s;
     border:none;
     &:hover{
@@ -126,7 +126,7 @@ nav.header-nav form.search input, nav.header-nav form.search button{
         
         nav.header-nav form.search {
             display:none;
-            background-color:$main_color;
+            background-color:$primary_color;
             position:absolute;
             top:25px;
             right:0px;
@@ -178,7 +178,7 @@ nav.header-nav form.search input, nav.header-nav form.search button{
         
         nav.header-nav form.search {
             display:none;
-            background-color:$main_color;
+            background-color:$primary_color;
             position:absolute;
             top:107px;
             right:0px;

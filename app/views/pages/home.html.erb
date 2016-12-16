@@ -1,55 +1,238 @@
+<style>
+    div.active-search.off {
+        display:none;
+    }
+    
+    div.active-serach.on {
+        display:block;
+    }
+    
+    form {
+        font-family:'code';
+    }
+    
+    div.search-box button.button-col-xs-10 {
+        display:inline-block;
+        width:13%;
+        padding: 10px 0px 10px 0px;
+        font-size:12px;
+        background:#45106e;
+        background: linear-gradient(to top right,#45106e 0,#8828ab 100%);
+        border:groove 1px #45106e;
+        color:#CFCFCF;
+    }
+    
+    div.search-box button.button-col-xs-10:focus, div.search-box button.button-col-xs-10.on {
+        background:#8828ab;
+        background: linear-gradient(to top right,#5828ab 0,#c828ab 100%);
+        color:#FFFFFF;
+        outline:-webkit-focus-ring-color auto 5px;
+    }
+    
+    form button.submit {
+        display:block;
+        border-color: #d4a900 #aa8700 #aa8700; 
+        border: 1px solid transparent;
+        border-radius:0.2em;
+        background:#ffbe00;
+        background:linear-gradient(to top,#ffbe00 0,#ffcb00 100%);
+        padding:8px;
+        margin: 10px 0px 0px 0px;
+        line-height:1.45;
+        font-size:12px;
+        font-weight:700;
+        cursor:pointer;
+    }
+    
+    form div.form-col-6 {
+        display:inline-block;
+        width:49%;
+    }
+    
+    
+    form div.form-col-3 {
+        display:inline-block;
+        width:21.5%;
+    } 
+    
+    form div.form-col-2 {
+        display:inline-block;
+        width:20%;
+    } 
+    form div.form-col-f{
+        display:inline-block;
+        width:5%;
+    }
+    
+    form div.form-col-xl-full{
+        display:block;
+        width:100%;
+    }
+    
+    form label{
+        display:block;
+        font-size:12px;
+        color: #CFCFCF;
+        padding:10px 0px 3px 0px;
+    }
+    
+    form label.l-small {
+        display:inline-block;
+        font-size:10px;
+        cursor:pointer;
+    }
+    
+    form input {
+        padding:4px 5px;
+        font-size:12px;
+        border: solid 1px transparent;
+        border-color: #45106e #8828ab #45106e;
+        border-radius:4px;
+        width:80%;
+    }
+    
+    form select {
+        padding:4px;
+        width:90%;
+    }
+    
+    
+</style>
 <div class='header-box'>
     <div class='container'>
         <div class='search-box'>
-            <button class='button-col-xs-10' onclick="responsive_travel_search('Flights')">
+            <button class='button-col-xs-10 off' id='Flights-button-search' onclick="responsive_travel_search('Flights')">
                 Flights
             </button>
-            <button class='button-col-xs-10' onclick="responsive_travel_search('Hotels')">
+            <button class='button-col-xs-10 off' id='Hotels-button-search' onclick="responsive_travel_search('Hotels')">
                 Hotels
             </button>
-            <button class='button-col-xs-10' onclick="responsive_travel_search('Flights_Hotels')">
-                Flights &amp; Hotels
-            </button>
-            <button class='button-col-xs-10' onclick="responsive_travel_search('Cars')">
+            <button class='button-col-xs-10 off' id='Cars-button-search' onclick="responsive_travel_search('Cars')">
                 Cars
             </button>
-            <button class='button-col-xs-10' onclick="responsive_travel_search('Trains')">
+            <button class='button-col-xs-10 off' id='Trains-button-search' onclick="responsive_travel_search('Trains')">
                 Trains
             </button>
-            <button class='button-col-xs-10' onclick="responsive_travel_search('Activity')">
+            <button class='button-col-xs-10 off' id='Activity-button-search' onclick="responsive_travel_search('Activity')">
                 Activity
             </button>
-            <button class='button-col-xs-10' onclick="responsive_travel_search('All')">
+            <button class='button-col-xs-10 off' id='All-button-search' onclick="responsive_travel_search('All')">
                 All
             </button>
             <div id='Flights-search' class='active-search off'>
-            
+                <form id='search-form' class='search' role='search'>
+                    <div class='form-group'>
+                        
+                        <div class='form-col-6'>
+                            <label for='coming_from'>
+                                Coming From
+                            </label>
+                            <input type='text' placeholder='city or airport' >
+                        </div>
+                        
+                        <div class='form-col-6'>
+                            <label for='Destination'>
+                                Destination
+                            </label>
+                            <input type='text' placeholder='city or airport' >
+                        </div>
+                        
+                        <div class='form-col-3'>
+                            <label for='Leaving'>
+                                Leaving
+                            </label>
+                            <input type='text' placeholder='dd/mm/yyyy' >
+                        </div>
+                        
+                        <div class='form-col-3'>
+                            <label for='Returning'>
+                                Returning
+                            </label>
+                            <input type='text' placeholder='dd/mm/yyyy' >
+                        </div>
+                        <div class='form-col-f'>
+                        
+                        </div>
+                        <div class='form-col-2'>
+                            <label for='adult'>
+                                Adult (18+)
+                            </label>
+                            <select name='adult'>
+                                <option value='1'>
+                                    1
+                                </option>
+                                <option value='2'>
+                                    2
+                                </option>
+                                <option value='3'>
+                                    3
+                                </option>
+                                <option value='4'>
+                                    4
+                                </option>
+                                <option value='5'>
+                                    5
+                                </option>
+                                <option value='6'>
+                                    6
+                                </option>
+                            </select>
+                        </div>
+                        
+                        <div class='form-col-2'>
+                            <label for='child'>
+                                Child (0-17)
+                            </label>
+                            <select name='child'>
+                                <option value='0'>
+                                    0
+                                </option>
+                                <option value='1'>
+                                    1
+                                </option>
+                                <option value='2'>
+                                    2
+                                </option>
+                                <option value='3'>
+                                    3
+                                </option>
+                                <option value='4'>
+                                    4
+                                </option>
+                                <option value='5'>
+                                    5
+                                </option>
+                                <option value='6'>
+                                    6
+                                </option>
+                            </select>
+                        </div>
+                        <div class='form-col-xl-full'>
+                            <label for='advanced_options' class='l-small'>Advanced Search</label>
+                            <button type='submit' class='submit' >
+                                Search
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
             <div id='Hotels-search' class='active-search off'>
-            
-            </div>
-            <div id='Flights-Hotels-search' class='active-search off'>
-            
+                hotel search is under-construction
             </div>
             <div id='Cars-search' class='active-search off'>
-            
+                Car search is under-construction
             </div>
             <div id='Trains-search' class='active-search off'>
-            
+                Train search is under-construction
             </div>
             <div id='Activity-search' class='active-search off'>
-            
+                Activity search is under-construction
             </div>
             <div id='All-search' class='active-search off'>
-            
+                All search is under-construction
             </div>
             
-            <form id='search-form' class='search' role='search'>
-                <div class='form-group'>
-                <input type='text' placeholder='search' >
-                    <button type='submit' class='submit' >Search</button>
-                </div>
-            </form>
+            
         </div>
     </div>
 </div>
