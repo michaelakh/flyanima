@@ -17,6 +17,9 @@ class PostsController < ApplicationController
                       #image: @post.picture.url(:large),
                       twitter: {card: "summary_large_image"})  
                       @page_keywords    = @post.keywords
+      
+    @reviews = Review.where(post_id: @post.id).order("created_at DESC")
+    @users = User.all
   end
 
   # GET /posts/new
@@ -78,4 +81,5 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:title, :body, :category, :keywords)
     end
+    
 end

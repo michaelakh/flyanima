@@ -1,16 +1,18 @@
 <div class='container'>
-<p id="notice"><%= notice %></p>
+    <p>
+      <strong>Title:</strong>
+      <%= @review.title %>
+    </p>
+    <p>
+      <strong>Body:</strong>
+      <%= @review.body %>
+    </p>
 
-<p>
-  <strong>Rating:</strong>
-  <%= @review.rating %>
-</p>
+    <p>
+      <strong>Category:</strong>
+      <%= @review.category %>
+    </p>
 
-<p>
-  <strong>Comment:</strong>
-  <%= @review.comment %>
-</p>
-
-<%= link_to 'Edit', edit_review_path(@review) %> |
-<%= link_to 'Back', reviews_path %>
+    <%= link_to 'Edit', edit_post_path(@review) %> |
+    <%= link_to 'Back', posts_path %>
 </div>

@@ -1,5 +1,11 @@
 source 'https://rubygems.org'
 
+# Use paperclip to manange user uploaded images
+gem "paperclip", "~> 5.0.0"
+
+# Use for searching the website database for results
+gem 'searchkick'
+
 # Use specific meta tags for pages (SEO)
 gem 'meta-tags'
 
