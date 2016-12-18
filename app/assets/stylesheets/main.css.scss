@@ -96,12 +96,19 @@ ul.top-nav li.icon {
     display:none;
 }
 
-nav.header-nav form.search {
-        float:right;
-        padding:7px;
+nav.header-nav div.avatar-icon {
+    display:inline-block;
+    height:30px;
+    width:30px;
+    float:right;
+    padding:3px 20px 0px 0px;
     }
 
-
+nav.header-nav div.avatar-icon img{
+    height:30px;
+    width:30px;
+    border-radius:1em;
+    }
 nav.header-nav form.search input, nav.header-nav form.search button{
     padding:6px;
     font-size:14px;
@@ -120,7 +127,7 @@ nav.header-nav form.search input, nav.header-nav form.search button{
             display:inline-block;
             position:absolute;
             top:0px;
-            right:0px;
+            left:64px;
                 
         } 
         
@@ -172,6 +179,10 @@ nav.header-nav form.search input, nav.header-nav form.search button{
             right:0px; 
         } 
         
+        ul.top-nav li.icon a {
+            display:inline-block;
+        }
+        
          nav.header-nav form.search.responsive {
             display:block;
         }
@@ -185,18 +196,9 @@ nav.header-nav form.search input, nav.header-nav form.search button{
             
         }
     }
+    
 
-
-    div.movie-container {
-        padding:10px;
-        clear:left;
-    }
-
-    div.movie-image img {
-        width:30%;
-        float:left;
-        padding:10px;
-    }
+  
     
     .clearfix:after {
        content: "."; 
@@ -205,11 +207,4 @@ nav.header-nav form.search input, nav.header-nav form.search button{
        height: 0;
        clear: both;
     }
-
-h1.movie-header {
-
-    text-align:center;
-    padding-top:30px;
-    margin:0px;
-}
 

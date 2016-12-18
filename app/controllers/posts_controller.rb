@@ -1,6 +1,14 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
+    
+  def search
+    if params[:search].present?
+      @posts = Post.search(params[:search])
+    else
+      @posts = Post.all
+    end
+  end
   # GET /posts
   # GET /posts.json
   def index
@@ -20,6 +28,12 @@ class PostsController < ApplicationController
       
     @reviews = Review.where(post_id: @post.id).order("created_at DESC")
     @users = User.all
+      
+    if @reviews.blank?
+      @avg_review = 0
+    else 
+      @avg_review = @reviews.average(:rating).round(2)    
+    end
   end
 
   # GET /posts/new

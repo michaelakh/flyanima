@@ -17,6 +17,15 @@
     <%= link_to "Write Review", new_post_review_path(@post) %>
     </div>
     <div class='reviews'>
+        <div class='review-col-12'>
+            <h4>
+                rating
+            </h4>
+            <em><%= @avg_review %></em>
+        </div>
+        <div class='review-length'>
+            <em><%= @reviews.length %> Reviews</em>
+        </div>
         <% if @reviews.blank? %>
             <h3> Be the first to write a review</h3>
             <%= link_to "write a review", new_post_review_path(@post), class: "rev-button" %>

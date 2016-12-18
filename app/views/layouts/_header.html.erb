@@ -30,18 +30,28 @@
                 <li class='nav-list'>
                     <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete%>
                 </li>
+                
                 <% else %>
+                
                 <li class='nav-list'>
                     <%= link_to 'Sign in', user_session_path %>
                 </li>
                 <li class='nav-list'>
                     <%= link_to 'Sign up', new_user_registration_path %>
                 </li>
+                
                 <% end %>
+                
                 <li class='icon'>
                     <a href='javascript:void(0)' onclick="responsive_nav()">&#9776</a>
                 </li>
             </ul>
+            <% if user_signed_in? %>
+            <div class='avatar-icon'>
+                <%= image_tag current_user.avatar.url(:thumb) %>
+            </div>
+            <% end %>
+            
         </div>
     </nav>
 </div>
