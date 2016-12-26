@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :search]
     
   def search
     if params[:search].present?
@@ -34,6 +34,34 @@ class PostsController < ApplicationController
     else 
       @avg_review = @reviews.average(:rating).round(2)    
     end
+      
+    @response = HTTP.post('https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyCizuMFFkD3mMU1Ng9p6nJ0kaT_7b0_5Dw', :json => {
+  "request": {
+    "slice": [
+      {
+        "origin": "NYC",
+        "destination": "LGA",
+        "date": "2016-12-27"
+      }
+    ],
+    "passengers": {
+      "adultCount": 1,
+      "infantInLapCount": 0,
+      "infantInSeatCount": 0,
+      "childCount": 0,
+      "seniorCount": 0
+    },
+    "solutions": 20,
+    "refundable": false
+  }
+})
+
+      
+      
+      
+      
+      
+      
   end
 
   # GET /posts/new

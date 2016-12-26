@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+gem "http", require:['http']
+
+gem 'google-api-client', '0.9.1', require: ['google/apis/calendar_v3', 'google/apis/plus_v1']
 # Use paperclip to manange user uploaded images
 gem "paperclip", "~> 5.0.0"
 
