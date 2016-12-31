@@ -3,10 +3,10 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_filter :configure_permitted_parameters, if: :devise_controller?   
+  before_action :configure_permitted_parameters, if: :devise_controller?   
     
   #Devise log in/logout redirect filter
-  before_filter :store_current_location, :unless => :devise_controller?
+  before_action :store_current_location, :unless => :devise_controller?
 
   #meta_tags
   before_action :prepare_meta_tags, if: "request.get?"

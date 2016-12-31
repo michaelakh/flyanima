@@ -1,0 +1,8 @@
+<% @split.each do |x| %>
+    <% if x === "USA" %>
+    <%=x.strip%>
+    <% elsif x.length === 3 && x === x.upcase %>
+    ",<br>
+    "<%= x %>" => "<% else %><%=x.strip%>
+    <% end %>
+    <% end %>

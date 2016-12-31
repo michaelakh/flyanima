@@ -1,0 +1,14 @@
+<div class='container'>
+
+    <input type='text' name='city' list='listid'>
+    <datalist id='listid'>
+        <% @cities_code.sort.each do |key, value|%>
+       <option label='<%= key %>' value='<%= value %>'>
+        <% end %>
+           
+       ...
+    </datalist>
+    
+
+
+</div>

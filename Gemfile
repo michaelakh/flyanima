@@ -1,5 +1,9 @@
 source 'https://rubygems.org'
 
+#use for trie algorithm for effective autocomplete
+gem 'fast_trie', '~> 0.5.1'
+
+#Use for http requests from api servers
 gem "http", require:['http']
 
 gem 'google-api-client', '0.9.1', require: ['google/apis/calendar_v3', 'google/apis/plus_v1']
