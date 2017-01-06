@@ -98,10 +98,31 @@
         width:90%;
     }
     
+    #query, .twitter-typeahead {
+        width:80%;
+        max-width:430px;
+        }
+    input#query.tt-input{
+        width:80%;
+    }
+    .tt-open {
+        background-color:white;
+        border:solid 1px black;
+        width:100%;
+    }
+    
+    .tt-suggestion {
+        color: #222;
+    }
+    
+    .tt-suggestion:hover {
+        text-decoration:underline;
+        color: #555;
+    }
     
 </style>
 <div class='header-box'>
-    <div class='container'>
+    <div class='container clearfix'>
         <div class='search-box'>
             <button class='button-col-xs-10 off' id='Flights-button-search' onclick="responsive_travel_search('Flights')">
                 Flights
@@ -122,124 +143,27 @@
                 All
             </button>
             <div id='Flights-search' class='active-search off'>
-                <form id='search-form' class='search' role='search'>
-                    <div class='form-group'>
-                        
-                        <div class='form-col-6'>
-                            <label for='coming_from'>
-                                Coming From
-                            </label>
-                            <input type='text' placeholder='city or airport' >
-                        </div>
-                        
-                        <div class='form-col-6'>
-                            <label for='Destination'>
-                                Destination
-                            </label>
-                            <input type='text' placeholder='city or airport' >
-                        </div>
-                        
-                        <div class='form-col-3'>
-                            <label for='Leaving'>
-                                Leaving
-                            </label>
-                            <input type='text' placeholder='dd/mm/yyyy' >
-                        </div>
-                        
-                        <div class='form-col-3'>
-                            <label for='Returning'>
-                                Returning
-                            </label>
-                            <input type='text' placeholder='dd/mm/yyyy' >
-                        </div>
-                        <div class='form-col-f'>
-                        
-                        </div>
-                        <div class='form-col-2'>
-                            <label for='adult'>
-                                Adult (18+)
-                            </label>
-                            <select name='adult'>
-                                <option value='1'>
-                                    1
-                                </option>
-                                <option value='2'>
-                                    2
-                                </option>
-                                <option value='3'>
-                                    3
-                                </option>
-                                <option value='4'>
-                                    4
-                                </option>
-                                <option value='5'>
-                                    5
-                                </option>
-                                <option value='6'>
-                                    6
-                                </option>
-                            </select>
-                        </div>
-                        
-                        <div class='form-col-2'>
-                            <label for='child'>
-                                Child (0-17)
-                            </label>
-                            <select name='child'>
-                                <option value='0'>
-                                    0
-                                </option>
-                                <option value='1'>
-                                    1
-                                </option>
-                                <option value='2'>
-                                    2
-                                </option>
-                                <option value='3'>
-                                    3
-                                </option>
-                                <option value='4'>
-                                    4
-                                </option>
-                                <option value='5'>
-                                    5
-                                </option>
-                                <option value='6'>
-                                    6
-                                </option>
-                            </select>
-                        </div>
-                        <div class='form-col-xl-full'>
-                            <label for='advanced_options' class='l-small'>Advanced Search</label>
-                            <button type='submit' class='submit' >
-                                Search
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div id='Hotels-search' class='active-search off'>
-                <%= form_tag posts_path, method: :GET, role: "search"  %>
+               <%= form_tag search_path, method: :GET, role: "search"  %>
                     <div class='form-group'>
                         
                         <div class='form-col-6'>
                             <%= label_tag 'coming_from', 'Coming From' %>
-                            <%= text_field_tag 'city', nil, placeholder: 'city or airport' %>
+                            <%= text_field_tag 'city', nil, placeholder: 'city or airport', id: "query", name:"query" %>
                         </div>
                         
                         <div class='form-col-6'>
                             <%= label_tag 'destination', 'Destination' %>
-                            <%= text_field_tag 'city', nil, placeholder: 'city or airport' %>
+                            <%= text_field_tag 'city', nil, placeholder: 'city or airport', id: "query2", name:"query2" %>
                         </div>
                         
                         <div class='form-col-3'>
                             <%= label_tag 'leaving', 'Leaving' %>
-                            <%= date_field_tag(:datetime_ida, Date.today) %>
+                            <%= date_field_tag(:datetime_leave, Date.today) %>
                         </div>
                         
                         <div class='form-col-3'>
                             <%= label_tag 'returing', 'Returning' %>
-                            <%= date_field_tag(:datetime_ida, Date.today) %>
+                            <%= date_field_tag(:datetime_return, Date.today) %>
                         </div>
                         <div class='form-col-f'>
                         
@@ -260,6 +184,9 @@
                     </div>
                 </form>
             </div>
+            <div id='Hotels-search' class='active-search off'>
+                Hotel Search is Underconstruction
+            </div>
             <div id='Cars-search' class='active-search off'>
                 Car search is under-construction
             </div>
@@ -275,84 +202,58 @@
             
             
         </div>
+        <div class='search-box-ad'>
+            ad content
+        </div>
     </div>
 </div>
 
-<section>
-     <div class='container-no-bg'>
-    </div>
-</section>
+<div class='section-container'>
+    <section>
+         <div class='container-no-bg'>
+             Main section content
+             <h3 class='col-m-3'>
+                Recommended Flights
+             </h3>
+             <ul class='col-m-3'>
+                <li class='col-m-3'>
+                 Airlines 1 
+                </li>
+                <li class='col-m-3'>
+                 Airlines 2 
+                </li>
+                <li class='col-m-3'>
+                 Airlines 3
+                </li>
+             </ul>
+
+             <h3 class='col-m-3'>
+               Todays Sales
+             </h3>
+             <ul class='col-m-3'>
+                <li class='col-m-3'>
+                 Sale 1 
+                </li>
+                <li class='col-m-3'>
+                 Sale 2 
+                </li>
+                <li class='col-m-3'>
+                 Sale 3
+                </li>
+             </ul>
+        </div>
+        <div class='section-ad'>
+            EVEN MORE ADSSS!!!
+        </div>
+        <h3 class='col-m-2'>
+            Why Choose Tino?
+        </h3>
+        <div class='section-content-2'>
+        <p>
+            At tino we know that there are people who love to travel. and that there are people who love their pets. We wanted to create a way for pet owners to travel and not leave thier pets behind. We are dedicated to making this dream come true. 
+        </p>
+        </div>
+    </section>
+</div>
 
 <%= render 'pages/footer'%>
-<footer>
-    
-    <div class='container-no-bg'>
-        
-        <div class='f-content-1'>
-            <h3 class='col-title'>Tino.uk</h3>
-            <ul>
-                <li>
-                    <%= link_to 'Privacy policy', '/pages/legals/privacy_policy' =%>
-                </li>
-                <li>
-                <%= link_to 'Terms of use', '/pages/legals/terms_of_use' =%>
-                </li>
-                <li>
-                <%= link_to 'Contact', '/pages/contact' =%>
-                </li>
-            </ul>
-        </div> 
-        
-        <div class='f-content-1'>
-            <h3 class='col-title'>Travelling With Pets</h3>
-            <ul>
-                <li>
-                    <%= link_to 'Dogs', '#' =%>
-                </li>
-                <li>
-                <%= link_to 'Cats', '#' =%>
-                </li>
-                <li>
-                <%= link_to 'Ferrets', '#' =%>
-                </li>
-                <li>
-                <%= link_to 'Other Animals', '#' =%>
-                </li>
-            </ul>
-        </div> 
-        
-        <div class='f-content-1'>
-            <h3 class='col-title'>Destinations</h3>
-            <ul>
-                <li>
-                <%= link_to 'Hotels', '#' =%>
-                </li>
-                <li>
-                <%= link_to 'Flights', '#' =%>
-                </li>
-                <li>
-                <%= link_to 'Deals', '#' =%>
-                </li>
-            </ul>
-        </div> 
-        
-        <div class='col-xs-4'>
-            <ul>
-                <li>
-                <%= link_to 'Help', '#' %>
-                </li>
-                <li>
-                <%= link_to 'Follow Us', '#' %>
-                </li>
-                <li>
-                <%= link_to 'Contact Us', '#' %>
-                </li>
-            </ul>
-        </div>
-        
-        <div class='col-xs-4'>
-           <span>© Copyright Tino Ltd 2016</span> 
-            <img width="126" height="33" src="//www.paypalobjects.com/webstatic/i/logo/rebrand/ppcom-white.svg" alt="PayPal" class="PayPal">
-        </div>
-    </div>
-</footer>

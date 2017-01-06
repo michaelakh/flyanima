@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-    
+
   devise_for :users
     
   resources :posts do
@@ -19,4 +19,15 @@ Rails.application.routes.draw do
   get 'search_flights', to:"searches#new", as: 'search_flights'
   get 'search', to:"searches#show" , as: 'search'
   post 'search_flights', to:"searches#create" 
+    
+  get '/city_airport_ita_codes/autocomplete', to:"city_airport_ita_codes#autocomplete", as:"city_airport_ita_codes/autocomplete"
+    
+  TinoUk::Application.routes.draw do
+  resources :city_airport_ita_codes do
+    collection { post :import }
+  end
+  
+  root to: "city_airport_ita_codes#index"
+  end
+
 end

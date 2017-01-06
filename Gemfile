@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 #use for trie algorithm for effective autocomplete
-gem 'fast_trie', '~> 0.5.1'
+gem 'twitter-typeahead-rails'
 
 #Use for http requests from api servers
 gem "http", require:['http']
@@ -36,6 +36,10 @@ gem 'coffee-rails', '~> 4.2'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+
+# Use jquery-ui with the JavaScript library
+gem 'jquery-ui-rails'
+
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

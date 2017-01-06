@@ -10,13 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161217165839) do
+ActiveRecord::Schema.define(version: 20170102210440) do
 
-  create_table "blogs", force: :cascade do |t|
-    t.string   "title"
-    t.text     "content"
+  create_table "city_airport_ita_codes", force: :cascade do |t|
+    t.string   "code"
+    t.string   "city"
+    t.string   "airport"
+    t.string   "country"
+    t.integer  "searches"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["airport"], name: "index_city_airport_ita_codes_on_airport"
+    t.index ["city"], name: "index_city_airport_ita_codes_on_city"
   end
 
   create_table "posts", force: :cascade do |t|

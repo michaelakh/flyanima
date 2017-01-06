@@ -1,56 +1,155 @@
-    
+
     div.header-box {
-        height:300px;
-        border: solid 1px black;
         background-image: image-url('Millennial-dog-owner-beach.jpg');
         background-attachment: local;
         background-repeat: no-repeat;
         background-size: cover;
-            
     }
-    
+
     div.header-box div.container {
         background-color: initial;
     }
     div.search-box {
-        max-width:1000px;
-        width:90%;
-        margin:20px auto 20px auto;
+        max-width:850px;
+        width:85%;
+        margin:20px auto 20px 30px;
         padding:10px;
         height:225px;
         border: solid 1px black;
         background-color:rgba(0, 0, 0, 0.5);
-        transition:padding .5s cubic-bezier(.23,1,.32,1)
+        transition:padding .5s cubic-bezier(.23,1,.32,1);
+        display:inline-block;
     }
+
+    div.search-box-ad {
+        display:inline-block;
+        max-width:200px;
+        border:solid 1px black;
+        padding:10px;
+        margin:20px 30px 20px 0px;
+        height: 225px;
+        width:15%;
+        background-color: rgba(225, 225, 225, 0.7);
+        float:right;
+    }
+
+    @media only screen and (max-width : 1150px) {
+        div.search-box {
+        max-width:700px;
+        width:85%;
+        margin:20px auto 20px 30px;
+        padding:10px;
+        height:225px;
+        border: solid 1px black;
+        background-color:rgba(0, 0, 0, 0.5);
+        transition:max-width .5s cubic-bezier(.23,1,.32,1);
+        display:inline-block;
+        }
+        
+        div.search-box-ad {
+            display:inline-block;
+            max-width:200px;
+            border:solid 1px black;
+            padding:10px;
+            margin:20px 40px 20px auto;
+            height: 225px;
+            width:15%;
+            background-color: rgba(225, 225, 225, 0.7);
+            float:right;
+            
+        }
+    }
+
     
-    section {
-        height: 300px;
+    
+    @media only screen and (max-width : 992px) {
+        div.search-box-ad {
+            display:block;
+            height:50px;
+            max-width:100%;
+            width:95%;
+            margin:0px auto 20px auto;
+            float:none;
+        }
+    }
+
+    div.section-container{
         background-color:white;
+        width:100%;
+        clear:both;
     }
-    
+    section {
+        background-color:white;
+        margin:20px 20px 30px 20px;
+        max-width:1200px;
+        margin:0 auto;
+        clear:both;
+    }
+
+    section h3.col-m-3 {
+        text-align:center;
+        width:95%;
+    }
+    section h3.col-m-2 {
+        text-align:left;
+        width:90%;
+        margin: 10px auto 10px auto;
+    }
+
+    section ul.col-m-3 {
+        width:100%;
+        list-style-type: none;
+    }
+
+    section ul li.col-m-3 {
+        width:28%;
+        display:inline-block;
+        height:200px;
+        border:solid 1px black;
+        margin:10px;
+    }
+
+    section div.section-ad {
+        height:100px;
+        max-width:1200px;
+        width:90%;
+        border:solid 1px black;
+        margin:10px auto 20px auto;
+    }
+
+    section div.section-content-2 {
+        padding:10px 10px 30px 10px;
+        margin: 10px auto 0px auto;
+    }
+
+    section div.section-content-2 p{
+        width:90%;
+        margin:0px auto 0px auto;
+    }
+
     footer {
-        height:300px;
         background-color:#3e3e3e;
         background:linear-gradient(to bottom, #3e3e3e, #2a2a2a);
         color:#dcdcdc;
         background-image: image-url('footer_bg.jpg');
+        padding:10px 10px 20px 10px;
     }
-    
+
     footer a {
         color: #bdbdbd;
         transition: color 0.3s;
         text-decoration:none;
     }
-    
+
     footer a:hover {
         color: #FFFFFF;
     }
-    
+
     footer div.f-content-1 {
         width:33%;
         float:left;
     }
-    
+
     footer h3.col-title {
         margin:10px 20px 0px 10px;
         padding:0px 0px 10px 0px;
@@ -59,33 +158,35 @@
         font-weight:lighter;
         letter-spacing: 1.5px;
     }
-    
+
     footer div.f-content-1 ul {
         list-style-type:none;
         margin:0px;
         padding:0px 10px;
     }
-    
+
     footer div.f-content-1 ul li {
         display:block;
         padding:5px 5px 5px 10px;
     }
-    
+
     footer div.f-content-1 a {
         text-decoration:none;
         font-size:14px;
     }
 
-    
+
     footer div.col-xs-4 {
         clear:left;
         border-top: solid 1px #6C6C6C;
+        padding:10px;
     }
-    
+
     footer div.col-xs-4 ul {
         list-style-type:none;
+        margin:0px;
     }
-    
+
     footer div.col-xs-4 ul li {
         display:inline-block;
         padding:5px;
