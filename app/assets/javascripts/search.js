@@ -4,7 +4,7 @@
     queryTokenizer: Bloodhound.tokenizers.whitespace,
    
     remote: {
-      url: '/city_airport_ita_codes/autocomplete?query=%QUERY',
+      url: '/airports/autocomplete?query=%QUERY',
       wildcard: '%QUERY',
     }
   });

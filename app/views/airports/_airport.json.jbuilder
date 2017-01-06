@@ -1,0 +1,2 @@
+json.extract! airport, :id, :name, :city, :country, :iata, :icao, :latitude_deg, :longitude_deg, :altitude_feet, :timezone, :DST, :tz_database_timezone, :created_at, :updated_at
+json.url airport_url(airport, format: :json)

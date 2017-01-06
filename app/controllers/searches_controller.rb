@@ -12,8 +12,14 @@ class SearchesController < ApplicationController
         @adult = params[:adult]
         @child = params[:child]
         
-        
-    @response = HTTP.post('https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyCizuMFFkD3mMU1Ng9p6nJ0kaT_7b0_5Dw', :json => {
+        if @depart_city_ita == "), "
+          @depart_city_ita = params[:query].split(/\), /)
+          #After finding empty iata records airport name, search other database for the iata name, update the main database and send it in googles api
+        elsif @arrive_city_ita == "), "
+          @depart_city_ita = params[:query].split(/,/)[0]
+          #After finding empty iata records airport name, search other database for the iata name, update the main database and send it in googles api
+        else
+        @response = HTTP.post('https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyCizuMFFkD3mMU1Ng9p6nJ0kaT_7b0_5Dw', :json => {
       "request": {
         "slice": [
           {
@@ -33,6 +39,9 @@ class SearchesController < ApplicationController
         "refundable": false
       }
     })
+        end
+        
+    
         
         
     end

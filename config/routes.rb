@@ -22,6 +22,15 @@ Rails.application.routes.draw do
     
   get '/city_airport_ita_codes/autocomplete', to:"city_airport_ita_codes#autocomplete", as:"city_airport_ita_codes/autocomplete"
     
+  get 'airports/autocomplete', to:"airports#autocomplete", as:"airports/autocomplete"
+    
+  TinoUk::Application.routes.draw do
+  resources :airports do
+    collection { post :import }
+  end
+    root to: "airports#index"
+  end
+
   TinoUk::Application.routes.draw do
   resources :city_airport_ita_codes do
     collection { post :import }
@@ -29,5 +38,4 @@ Rails.application.routes.draw do
   
   root to: "city_airport_ita_codes#index"
   end
-
 end

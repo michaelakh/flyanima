@@ -1,0 +1,54 @@
+<div class='container'>
+
+<h1>Airports</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>City</th>
+      <th>Country</th>
+      <th>Iata</th>
+      <th>Icao</th>
+      <th>Latitude deg</th>
+      <th>Longitude deg</th>
+      <th>Altitude feet</th>
+      <th>Timezone</th>
+      <th>Dst</th>
+      <th>Tz database timezone</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @airports.each do |airport| %>
+      <tr>
+        <td><%= airport.name %></td>
+        <td><%= airport.city %></td>
+        <td><%= airport.country %></td>
+        <td><%= airport.iata %></td>
+        <td><%= airport.icao %></td>
+        <td><%= airport.latitude_deg %></td>
+        <td><%= airport.longitude_deg %></td>
+        <td><%= airport.altitude_feet %></td>
+        <td><%= airport.timezone %></td>
+        <td><%= airport.DST %></td>
+        <td><%= airport.tz_database_timezone %></td>
+        <td><%= link_to 'Show', airport %></td>
+        <td><%= link_to 'Edit', edit_airport_path(airport) %></td>
+        <td><%= link_to 'Destroy', airport, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div>
+    <h3>Import a CSV File</h3>
+      <%= form_tag import_airports_path, multipart: true do %>
+        <%= file_field_tag :file %><br><br>
+        <%= submit_tag "Import CSV" %>
+      <% end %>
+</div>
+<br>
+
+<%= link_to 'New Airport', new_airport_path %>
+</div>
