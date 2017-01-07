@@ -14,12 +14,133 @@
         width:85%;
         margin:20px auto 20px 30px;
         padding:10px;
-        height:225px;
         border: solid 1px black;
         background-color:rgba(0, 0, 0, 0.5);
         transition:padding .5s cubic-bezier(.23,1,.32,1);
         display:inline-block;
+    } 
+
+ div.active-search.off {
+        display:none;
     }
+    
+    div.active-serach.on {
+        display:block;
+    }
+    
+    form {
+        font-family:'code';
+    }
+    
+    div.search-box button.button-col-xs-10 {
+        display:inline-block;
+        width:13%;
+        padding: 10px 0px 10px 0px;
+        font-size:12px;
+        background:#45106e;
+        background: linear-gradient(to top right,#45106e 0,#8828ab 100%);
+        border:groove 1px #45106e;
+        color:#CFCFCF;
+        transition: 2s;
+    }
+    
+    div.search-box button.button-col-xs-10:focus, div.search-box button.button-col-xs-10.on, div.search-box button.button-col-xs-10:hover {
+        background:#8828ab;
+        background: linear-gradient(to top right,#5828ab 0,#c828ab 100%);
+        color:#FFFFFF;
+        outline:-webkit-focus-ring-color auto 5px;
+    }
+     
+    form .submit {
+        display:block;
+        border-color: #d4a900 #aa8700 #aa8700; 
+        border: 1px solid transparent;
+        border-radius:0.2em;
+        background:#ffbe00;
+        background:linear-gradient(to top,#ffbe00 0,#ffcb00 100%);
+        padding:8px;
+        margin: 10px 0px 0px 0px;
+        line-height:1.45;
+        font-size:12px;
+        font-weight:700;
+        cursor:pointer;
+        width:57px;
+    }
+    
+    form div.form-col-6 {
+        display:inline-block;
+        width:49%;
+    }
+    
+    
+    form div.form-col-3 {
+        display:inline-block;
+        width:21.5%;
+    } 
+    
+    form div.form-col-2 {
+        display:inline-block;
+        width:20%;
+    } 
+    form div.form-col-f{
+        display:inline-block;
+        width:5%;
+    }
+    
+    form div.form-col-xl-full{
+        display:block;
+        width:100%;
+    }
+    
+    form label{
+        display:block;
+        font-size:12px;
+        color: #CFCFCF;
+        padding:10px 0px 3px 0px;
+    }
+    
+    form label.l-small {
+        display:inline-block;
+        font-size:10px;
+        cursor:pointer;
+    }
+    
+    form input {
+        padding:4px 5px;
+        font-size:12px;
+        border: solid 1px transparent;
+        border-color: #45106e #8828ab #45106e;
+        border-radius:4px;
+        width:80%;
+    }
+    
+    form select {
+        padding:4px;
+        width:90%;
+    }
+    
+    #query, .twitter-typeahead {
+        width:80%;
+        max-width:430px;
+        }
+    input#query.tt-input{
+        width:80%;
+    }
+    .tt-open {
+        background-color:white;
+        border:solid 1px black;
+        width:100%;
+    }
+    
+    .tt-suggestion {
+        color: #222;
+    }
+    
+    .tt-suggestion:hover {
+        text-decoration:underline;
+        color: #555;
+    }
+    
 
     div.search-box-ad {
         display:inline-block;
@@ -39,7 +160,6 @@
         width:85%;
         margin:20px auto 20px 30px;
         padding:10px;
-        height:225px;
         border: solid 1px black;
         background-color:rgba(0, 0, 0, 0.5);
         transition:max-width .5s cubic-bezier(.23,1,.32,1);
@@ -192,4 +312,130 @@
     footer div.col-xs-4 ul li {
         display:inline-block;
         padding:5px;
+    }
+
+    /* Extra Small Devices, Phones */
+    @media only screen and (max-width : 480px) {
+        
+        
+        section {
+            background-color:white;
+            margin:5px 5px 5px 5px;
+            max-width:1200px;
+            margin:0 auto;
+            clear:both;
+        }
+     
+    
+    form div.form-group div.form-col-6 {
+        display:inline-block;
+        width:100%;
+    }
+    
+    
+    form div.form-group div.form-col-3 {
+        display:inline-block;
+        width:48.5%;
+    } 
+    
+    form div.form-group div.form-col-2 {
+        display:inline-block;
+        width:48.5%;
+    } 
+    form div.form-group div.form-col-f{
+        display:none;
+        width:0px
+    }
+    
+    form div.form-group div.form-col-xl-full{
+        display:block;
+        width:100%;
+    }
+    
+    form div.form-group label{
+        display:block;
+        font-size:12px;
+        color: #CFCFCF;
+        padding:10px 0px 3px 0px;
+    }
+    
+    form div.form-group label.l-small {
+        display:inline-block;
+        font-size:10px;
+        cursor:pointer;
+    }
+    
+    form input {
+        padding:4px 5px;
+        font-size:12px;
+        border: solid 1px transparent;
+        border-color: #45106e #8828ab #45106e;
+        border-radius:4px;
+        width:80%;
+    }
+    
+    form select {
+        padding:4px;
+        width:90%;
+    }
+    
+    #query, .twitter-typeahead {
+        width:80%;
+        max-width:430px;
+        }
+    input#query.tt-input{
+        width:80%;
+    }
+    .tt-open {
+        background-color:white;
+        border:solid 1px black;
+        width:100%;
+    }
+    
+    .tt-suggestion {
+        color: #222;
+    }
+    
+    .tt-suggestion:hover {
+        text-decoration:underline;
+        color: #555;
+    }
+
+        section ul.col-m-3 {
+            width:100%;
+            list-style-type: none;
+            padding:0px;
+        }
+
+        section ul li.col-m-3 {
+            width:95%;
+            display:block;
+            height:200px;
+            border:solid 1px black;
+            margin:10px;
+        }
+
+
+        footer {
+            background-color:#3e3e3e;
+            background:linear-gradient(to bottom, #3e3e3e, #2a2a2a);
+            color:#dcdcdc;
+            background-image: image-url('footer_bg.jpg');
+            padding:10px 10px 20px 10px;
+        }
+
+        footer a {
+            color: #bdbdbd;
+            transition: color 0.3s;
+            text-decoration:none;
+        }
+
+        footer a:hover {
+            color: #FFFFFF;
+        }
+
+        footer div.f-content-1 {
+            width:100%;
+            float:left;
+        }
     }
