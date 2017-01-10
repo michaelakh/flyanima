@@ -11,8 +11,13 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
-//= require turbolinks
+//= require jquery-ui/widgets/autocomplete
 //= require_tree .
 //= require twitter/typeahead
 //= require twitter/typeahead.min
+
+//= require turbolinks
+
+

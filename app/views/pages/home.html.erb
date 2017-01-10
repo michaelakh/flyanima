@@ -1,126 +1,3 @@
-<style>
-    div.active-search.off {
-        display:none;
-    }
-    
-    div.active-serach.on {
-        display:block;
-    }
-    
-    form {
-        font-family:'code';
-    }
-    
-    div.search-box button.button-col-xs-10 {
-        display:inline-block;
-        width:13%;
-        padding: 10px 0px 10px 0px;
-        font-size:12px;
-        background:#45106e;
-        background: linear-gradient(to top right,#45106e 0,#8828ab 100%);
-        border:groove 1px #45106e;
-        color:#CFCFCF;
-        transition: 2s;
-    }
-    
-    div.search-box button.button-col-xs-10:focus, div.search-box button.button-col-xs-10.on, div.search-box button.button-col-xs-10:hover {
-        background:#8828ab;
-        background: linear-gradient(to top right,#5828ab 0,#c828ab 100%);
-        color:#FFFFFF;
-        outline:-webkit-focus-ring-color auto 5px;
-    }
-     
-    form .submit {
-        display:block;
-        border-color: #d4a900 #aa8700 #aa8700; 
-        border: 1px solid transparent;
-        border-radius:0.2em;
-        background:#ffbe00;
-        background:linear-gradient(to top,#ffbe00 0,#ffcb00 100%);
-        padding:8px;
-        margin: 10px 0px 0px 0px;
-        line-height:1.45;
-        font-size:12px;
-        font-weight:700;
-        cursor:pointer;
-        width:57px;
-    }
-    
-    form div.form-col-6 {
-        display:inline-block;
-        width:49%;
-    }
-    
-    
-    form div.form-col-3 {
-        display:inline-block;
-        width:21.5%;
-    } 
-    
-    form div.form-col-2 {
-        display:inline-block;
-        width:20%;
-    } 
-    form div.form-col-f{
-        display:inline-block;
-        width:5%;
-    }
-    
-    form div.form-col-xl-full{
-        display:block;
-        width:100%;
-    }
-    
-    form label{
-        display:block;
-        font-size:12px;
-        color: #CFCFCF;
-        padding:10px 0px 3px 0px;
-    }
-    
-    form label.l-small {
-        display:inline-block;
-        font-size:10px;
-        cursor:pointer;
-    }
-    
-    form input {
-        padding:4px 5px;
-        font-size:12px;
-        border: solid 1px transparent;
-        border-color: #45106e #8828ab #45106e;
-        border-radius:4px;
-        width:80%;
-    }
-    
-    form select {
-        padding:4px;
-        width:90%;
-    }
-    
-    #query, .twitter-typeahead {
-        width:80%;
-        max-width:430px;
-        }
-    input#query.tt-input{
-        width:80%;
-    }
-    .tt-open {
-        background-color:white;
-        border:solid 1px black;
-        width:100%;
-    }
-    
-    .tt-suggestion {
-        color: #222;
-    }
-    
-    .tt-suggestion:hover {
-        text-decoration:underline;
-        color: #555;
-    }
-    
-</style>
 <div class='header-box'>
     <div class='container clearfix'>
         <div class='search-box'>
@@ -144,7 +21,7 @@
             </button>
             <div id='Flights-search' class='active-search on'>
                <%= form_tag search_path, method: :GET, role: "search"  %>
-                    <div class='form-group'>
+                    <div class='form-group-home'>
                         
                         <div class='form-col-6'>
                             <%= label_tag 'coming_from', 'Coming From' %>
@@ -211,6 +88,20 @@
 <div class='section-container'>
     <section>
          <div class='container-no-bg'>
+             <h3 class='col-m-3'>
+                Tino Stars
+             </h3>
+              <ul class='col-m-3'>
+                <li class='col-m-3'>
+                 Picture of customer with pet 
+                </li>
+                <li class='col-m-3'>
+                 Picture of customer with pet 
+                </li>
+                <li class='col-m-3'>
+                 Picture of customer with pet 
+                </li>
+             </ul>
              <h3 class='col-m-3'>
                 Recommended Flights
              </h3>

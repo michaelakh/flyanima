@@ -1,10 +1,19 @@
-    $( function() {
+//Jquery ui autocomplete
+$(document ).on('turbolinks:load', function() {
+    $( "#test" ).autocomplete({
+      source: "/airports/autocomplete.json",
+      icons: { submenu: "ui-icon-circle-triangle-e" }
+    });
+  } );
+
+//Twitter Typahead autocomplete
+$(document ).on('turbolinks:load', function() {
       var cityAirports = new Bloodhound({
     datumTokenizer: Bloodhound.tokenizers.whitespace,
     queryTokenizer: Bloodhound.tokenizers.whitespace,
    
     remote: {
-      url: '/airports/autocomplete?query=%QUERY',
+      url: '/airports/autocomplete?term=%QUERY',
       wildcard: '%QUERY',
     }
   });

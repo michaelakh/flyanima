@@ -20,7 +20,7 @@
         display:inline-block;
     } 
 
- div.active-search.off {
+    div.active-search.off {
         display:none;
     }
     
@@ -51,7 +51,7 @@
         outline:-webkit-focus-ring-color auto 5px;
     }
      
-    form .submit {
+    form div.form-group-home .submit {
         display:block;
         border-color: #d4a900 #aa8700 #aa8700; 
         border: 1px solid transparent;
@@ -92,20 +92,20 @@
         width:100%;
     }
     
-    form label{
+    form div.form-group-home label{
         display:block;
         font-size:12px;
         color: #CFCFCF;
         padding:10px 0px 3px 0px;
     }
     
-    form label.l-small {
+    form div.form-group-home label.l-small {
         display:inline-block;
         font-size:10px;
         cursor:pointer;
     }
     
-    form input {
+    form div.form-group-home input {
         padding:4px 5px;
         font-size:12px;
         border: solid 1px transparent;
@@ -114,31 +114,65 @@
         width:80%;
     }
     
-    form select {
+    form div.form-group-home select {
         padding:4px;
         width:90%;
+        font-family:serif
     }
     
-    #query, .twitter-typeahead {
-        width:80%;
+    #query, #query2 {
+        width:100%;
         max-width:430px;
-        }
-    input#query.tt-input{
-        width:80%;
+        background-color:transparent;
+        padding:4px 3px;
     }
+
+    .twitter-typeahead {
+        width:85%;
+        max-width:430px;
+        background-color:white;
+        border-radius:3px;
+        padding-right: 4px;
+        
+    }
+
+    .twitter-typeahead input.tt-hint {
+        width:90%;
+    }
+    input#query.tt-input, input#query2.tt-input, {
+        width:100%;
+        padding: 4px 0px 4px 4px;
+    }
+    input#query.tt-input:focus, input#query2.tt-input:focus{
+        outline:purple;
+    }
+
+
+
+    
+    
     .tt-open {
         background-color:white;
         border:solid 1px black;
         width:100%;
+        padding:5px 0px 5px 0px;
     }
     
     .tt-suggestion {
         color: #222;
+        padding: 3px 3px 3px 30px;
+        overflow:hidden;
+        white-space:nowrap;
+        font-size:10px;
+        background-image: url('airplane_icon.gif');
+        background-size:10px;
+        background-repeat: no-repeat;
+        background-position:9px 5px;
     }
     
     .tt-suggestion:hover {
         text-decoration:underline;
-        color: #555;
+        color: purple;
     }
     
 
@@ -327,45 +361,45 @@
         }
      
     
-    form div.form-group div.form-col-6 {
+    form div.form-group-home div.form-col-6 {
         display:inline-block;
         width:100%;
     }
     
     
-    form div.form-group div.form-col-3 {
+    form div.form-group-home div.form-col-3 {
         display:inline-block;
         width:48.5%;
     } 
     
-    form div.form-group div.form-col-2 {
+    form div.form-group-home div.form-col-2 {
         display:inline-block;
         width:48.5%;
     } 
-    form div.form-group div.form-col-f{
+    form div.form-group-home div.form-col-f{
         display:none;
         width:0px
     }
     
-    form div.form-group div.form-col-xl-full{
+    form div.form-group-home div.form-col-xl-full{
         display:block;
         width:100%;
     }
     
-    form div.form-group label{
+    form div.form-group-home label{
         display:block;
         font-size:12px;
         color: #CFCFCF;
         padding:10px 0px 3px 0px;
     }
     
-    form div.form-group label.l-small {
+    form div.form-group-home label.l-small {
         display:inline-block;
         font-size:10px;
         cursor:pointer;
     }
     
-    form input {
+    form div.form-group-home input {
         padding:4px 5px;
         font-size:12px;
         border: solid 1px transparent;
@@ -374,17 +408,17 @@
         width:80%;
     }
     
-    form select {
+    form div.form-group-home select {
         padding:4px;
         width:90%;
     }
     
-    #query, .twitter-typeahead {
+    #query, #query2, .twitter-typeahead {
         width:80%;
         max-width:430px;
         }
     input#query.tt-input{
-        width:80%;
+        width:100%;
     }
     .tt-open {
         background-color:white;
@@ -395,6 +429,7 @@
     .tt-suggestion {
         color: #222;
     }
+    
     
     .tt-suggestion:hover {
         text-decoration:underline;
