@@ -4,14 +4,12 @@
     <pre>
     <% if @response != "" %>
     <%= @response %>
-    <% end %>
+    <% end %> 
+    
+    <% params[:querys][:query1].each do |x, y|%>
+           <%= y %>
+        <% end %>
     </pre>
-    "<%= @arrive_city_ita %>"<br>
-    "<%= @depart_city_ita %>"<br>
-    "<%= @search %>"<br>
-     DB db<%= @database %><br>
-    DB username<%= @username %><br>
-    DB password<%= @password%>
     
     
 </div>

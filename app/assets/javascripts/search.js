@@ -5,10 +5,8 @@ $(document ).on('turbolinks:load', function() {
       icons: { submenu: "ui-icon-circle-triangle-e" }
     });
   } );
-
-//Twitter Typahead autocomplete
-$(document ).on('turbolinks:load', function() {
-      var cityAirports = new Bloodhound({
+function typeahead_initialize() {
+    var cityAirports = new Bloodhound({
     datumTokenizer: Bloodhound.tokenizers.whitespace,
     queryTokenizer: Bloodhound.tokenizers.whitespace,
    
@@ -18,8 +16,15 @@ $(document ).on('turbolinks:load', function() {
     }
   });
     
-  $('#query,#query2').typeahead(null, {
+    $('.query').typeahead(null, {
     source: cityAirports,
        limit: 10
   });
+    console.log("hello");
+}
+//Twitter Typahead autocomplete
+$(document ).on('turbolinks:load', function() {
+    typeahead_initialize();
   });
+
+  

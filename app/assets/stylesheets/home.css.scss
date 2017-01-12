@@ -66,6 +66,22 @@
         cursor:pointer;
         width:57px;
     }
+
+    div#flights_title.off {
+        display:none;
+    }
+
+    div#flights_title.on {
+        display:block;
+    }
+
+    h3.flight-search-title {
+        font-size:12px;
+        color:white;
+        margin:0px;
+        padding:10px 0px 3px 0px;
+        border-bottom: solid 1px #CFCFCF;
+    }
     
     form div.form-col-6 {
         display:inline-block;
@@ -120,7 +136,7 @@
         font-family:serif
     }
     
-    #query, #query2 {
+    .query, .query2 {
         width:100%;
         max-width:430px;
         background-color:transparent;
@@ -139,17 +155,17 @@
     .twitter-typeahead input.tt-hint {
         width:90%;
     }
-    input#query.tt-input, input#query2.tt-input, {
+    input.query.tt-input, input.query2.tt-input, {
         width:100%;
         padding: 4px 0px 4px 4px;
     }
-    input#query.tt-input:focus, input#query2.tt-input:focus{
+    input.query.tt-input:focus, input.query2.tt-input:focus{
         outline:purple;
     }
 
-
-
-    
+    input#query1.query, input#query2.query {
+        background-color:white;
+    }
     
     .tt-open {
         background-color:white;
@@ -413,11 +429,11 @@
         width:90%;
     }
     
-    #query, #query2, .twitter-typeahead {
+    .query, .query2, .twitter-typeahead {
         width:80%;
         max-width:430px;
         }
-    input#query.tt-input{
+    input.query.tt-input{
         width:100%;
     }
     .tt-open {

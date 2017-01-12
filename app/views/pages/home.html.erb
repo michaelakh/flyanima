@@ -22,17 +22,19 @@
             <div id='Flights-search' class='active-search on'>
                <%= form_tag search_path, method: :GET, role: "search"  %>
                     <div class='form-group-home'>
-                        
+                        <div class='form-col-xl-full off' id='flights_title'>
+                            <h3 class='flight-search-title'>Flight 1</h3>
+                        </div>
                         <div class='form-col-6'>
                             <%= label_tag 'coming_from', 'Coming From' %>
-                            <%= text_field_tag 'city', nil, placeholder: 'city or airport', id: "query", name:"query" %>
+                            <%= text_field_tag 'city', nil, placeholder: 'city or airport', class: "query", name:"querys[query1[query1_1]]", id: 'query1' %>
                         </div>
-                        
+
                         <div class='form-col-6'>
-                            <%= label_tag 'destination', 'Destination' %>
-                            <%= text_field_tag 'city', nil, placeholder: 'city or airport', id: "query2", name:"query2" %>
+                            <%= label_tag 'going_to', 'Going To' %>
+                            <%= text_field_tag 'city', nil, placeholder: 'city or airport', class: "query", name:"querys[query1[query1_2]]", id: 'query2' %>
                         </div>
-                        
+
                         <div class='form-col-3'>
                             <%= label_tag 'leaving', 'Leaving' %>
                             <%= date_field_tag(:datetime_leave, Date.today) %>
@@ -53,6 +55,13 @@
                         <div class='form-col-2'>
                             <%= label_tag 'child', 'Child (0-17)' %>             
                             <%= select_tag "child", options_for_select([ 0, 1, 2, 3, 4, 5, 6], "0") %>
+                        </div>
+                        <div id='container'>
+                            <div class='test'>
+                            </div>
+                        </div>
+                        <div class='form-col-xl-full'>
+                            <button type='button' id='button'>Add flight</button>
                         </div>
                         <div class='form-col-xl-full'>
                             <%= label_tag 'advanced_options', 'Advanced Search', class: 'l-small' %>
