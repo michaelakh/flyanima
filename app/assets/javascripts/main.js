@@ -14,52 +14,95 @@ jQuery.ui.autocomplete.prototype._resizeMenu = function () {
 ///////////////////
 //Flights search JS
 //////////////////
+//Twitter Typahead autocomplete
+function typeahead_initialize() {
+    var cityAirports = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.whitespace,
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+   
+    remote: {
+      url: '/airports/autocomplete?term=%QUERY',
+      wildcard: '%QUERY',
+    }
+  });
+    
+    $('.query').typeahead(null, {
+    source: cityAirports,
+       limit: 10
+  });
+}
+
+//Jquery ui autocomplete 
+//$(document ).on('turbolinks:load', function() {
+//   $( "#test" ).autocomplete({
+//     source: "/airports/autocomplete.json",
+//     icons: { submenu: "ui-icon-circle-triangle-e" }
+//   });
+// } );
+
+
+////////////////////////
+//get the date of today
+////////////////////////
+
+function todaysDate() {
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; //January is 0!
+        var yyyy = today.getFullYear();
+
+        if(dd<10) {
+            dd='0'+dd
+        } 
+
+        if(mm<10) {
+            mm='0'+mm
+        } 
+
+        today = yyyy+'-'+mm+'-'+dd;
+        return today;
+}
 
 $(document ).on('turbolinks:load', function(){
+    var t = document.getElementsByClassName('twitter-typeahead').length;
+    if(t == 0) {
+        typeahead_initialize();
+    }
     var i = 1;
     var x = document.getElementById('flights_title');
+    var y = document.getElementById('returning');
+    
     $("#button").click(function(){
         ++i;
         if(x.className === "form-col-xl-full off"){
-            x.className = "form-col-xl-full on"
+            x.className = "form-col-xl-full on";
         }
+        
+        if(y.className === "form-col-3 on"){
+            y.className = "form-col-3 off";
+            y.innerHTML = "";
+        }
+        
+        var today = todaysDate(); 
         var content = "<div class='form-col-xl-full on' id='flights_title'>" +
         "<h3 class='flight-search-title'>Flight " + i + "</h3>" +
         "</div>" +
         "<div class='form-col-6'>" + 
         "<label for='coming_from'>Coming From</label>" +
-        "<input type='text' name='query_" + i + "_1' class='query' placeholder='city or airport' />" +
+        "<input type='text' name='query[query" + i + "[query_" + i + "_1]]' class='query' placeholder='city or airport' />" +
         "</div>" +
         "<div class='form-col-6'>" +
         "<label for='going_to'>Going To</label>" +
-        "<input type='text' name='query_" + i + "_2' class='query' placeholder='city or airport' />" +
+        "<input type='text' name='query[query" + i + "[query_" + i + "_2]]' class='query' placeholder='city or airport' />" +
         "</div>" +
         "<div class='form-col-3'>" +
         "<label for='leaving'>Leaving</label>"   +
-        "<input type='date' name='datetime_leave_" + i + "' id='datetime_leave' value='2017-01-12' />" +
+        "<input type='date' name='query_" + i + "_date_l' id='datetime_leave' value='"+today+"' />" +
         "</div>"   +
         "<div class='form-col-3'>"    +
         "</div>" +
         "<div class='form-col-f'>" +
-        "</div>" +
-        "<div class='form-col-2'>" +
-        "<label for='adult'>Adult (18+)</label>" +
-        "<select name='adult_" + i + "' id='adult'><option selected='selected' value='1'>1</option>" +
-        "<option value='2'>2</option>" +
-        "<option value='3'>3</option>" +
-        "<option value='4'>4</option>" +
-        "<option value='5'>5</option>" +
-        "<option value='6'>6</option></select>" +
-        "</div>" +
-        "<div class='form-col-2'>" +
-        "<label for='child'>Child (0-17)</label>" +
-        "<select name='child_" + i + "' id='child'><option selected='selected' value='0'>0</option>" +
-        "<option value='2'>2</option>" +
-        "<option value='3'>3</option>" +
-        "<option value='4'>4</option>" +
-        "<option value='5'>5</option>" +
-        "<option value='6'>6</option></select>" +
-        "</div>";
+        "</div>" ;
             
         $('.query').typeahead('destroy');
         $("#container").append(content);

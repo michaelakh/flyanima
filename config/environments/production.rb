@@ -91,5 +91,7 @@ Rails.application.configure do
   #used for devise, change ({ host: 'localhost', port: 3000 }) to the website domain when aquired
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   
-  
+  #used for heroku to use images from app/assets/images
+  config.serve_static_assets = true
+  config.assets.compile = true
 end

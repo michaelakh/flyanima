@@ -98,6 +98,12 @@
         display:inline-block;
         width:20%;
     } 
+
+    form div.form-group-home div.form-col-1 {
+        display:inline-block;
+        width:14.9%;
+    } 
+
     form div.form-col-f{
         display:inline-block;
         width:5%;
@@ -150,7 +156,7 @@
         padding: 3px 3px 3px 30px;
         overflow:hidden;
         white-space:nowrap;
-        font-size:10px;
+        font-size:12px;
         background-image: url('airplane_icon.gif');
         background-size:10px;
         background-repeat: no-repeat;
@@ -332,7 +338,7 @@ fieldset[disabled] .twitter-typeahead .tt-input {
 .tt-dropdown-menu .tt-suggestion,
 .tt-menu .tt-suggestion {
   display: block;
-  padding: 3px 20px;
+  padding: 3px 10px 3px 30px;
   clear: both;
   font-weight: normal;
   line-height: 1.42857143;
@@ -404,7 +410,7 @@ fieldset[disabled] .twitter-typeahead .tt-input {
         div.search-box-ad {
             display:block;
             height:50px;
-            max-width:100%;
+            max-width:89%;
             width:95%;
             margin:0px auto 20px auto;
             float:none;
@@ -438,11 +444,13 @@ fieldset[disabled] .twitter-typeahead .tt-input {
 
     section ul.col-m-3 {
         width:100%;
+        margin:auto;
+        padding:0px;
         list-style-type: none;
     }
 
     section ul li.col-m-3 {
-        width:28%;
+        width:30%;
         display:inline-block;
         height:200px;
         border:solid 1px black;
@@ -531,94 +539,108 @@ fieldset[disabled] .twitter-typeahead .tt-input {
         display:inline-block;
         padding:5px;
     }
+    
+    /* Small Devices, Tablets */
+    @media only screen and (max-width : 768px) {
+        section ul.col-m-3 {
+            width:100%;
+            margin:auto;
+            padding:0px;
+            list-style-type: none;
+        }
+
+        section ul li.col-m-3 {
+            width:30%;
+            display:inline-block;
+            height:200px;
+            border:solid 1px black;
+            margin:5px 0px 5px 10px;
+        }
+    }
+
 
     /* Extra Small Devices, Phones */
     @media only screen and (max-width : 480px) {
         
         
         section {
+            min-width:250px;
             background-color:white;
             margin:5px 5px 5px 5px;
             max-width:1200px;
             margin:0 auto;
             clear:both;
         }
-     
-    
-    form div.form-group-home div.form-col-6 {
-        display:inline-block;
-        width:100%;
-    }
-    
-    
-    form div.form-group-home div.form-col-3 {
-        display:inline-block;
-        width:48.5%;
-    } 
-    
-    form div.form-group-home div.form-col-2 {
-        display:inline-block;
-        width:48.5%;
-    } 
-    form div.form-group-home div.form-col-f{
-        display:none;
-        width:0px
-    }
-    
-    form div.form-group-home div.form-col-xl-full{
-        display:block;
-        width:100%;
-    }
-    
-    form div.form-group-home label{
-        display:block;
-        font-size:12px;
-        color: #CFCFCF;
-        padding:10px 0px 3px 0px;
-    }
-    
-    form div.form-group-home label.l-small {
-        display:inline-block;
-        font-size:10px;
-        cursor:pointer;
-    }
-    
-    form div.form-group-home input {
-        padding:4px 5px;
-        font-size:12px;
-        border: solid 1px transparent;
-        border-color: #45106e #8828ab #45106e;
-        border-radius:4px;
-        width:80%;
-    }
-    
-    form div.form-group-home select {
-        padding:4px;
-        width:90%;
-    }
-    
-    .query, .query2, .twitter-typeahead {
-        width:80%;
-        max-width:430px;
+        
+        div.search-box {
+            min-width:250px;
+            width:85%;
+            margin:20px auto 20px 15px;
+            padding:10px;
+            border: solid 1px black;
+            background-color:rgba(0, 0, 0, 0.5);
+            transition:padding .5s cubic-bezier(.23,1,.32,1);
+            display:inline-block;
+        } 
+
+        form div.form-group-home div.form-col-6 {
+            display:inline-block;
+            width:100%;
         }
-    input.query.tt-input{
-        width:100%;
-    }
-    .tt-open {
-        background-color:white;
-        border:solid 1px black;
-        width:100%;
-    }
-    
-    .tt-suggestion {
-        color: #222;
-    }
-    
-    
-    .tt-suggestion:hover {
-        text-decoration:underline;
-        color: #555;
-    }
+
+
+        form div.form-group-home div.form-col-3 {
+            display:inline-block;
+            width:48.5%;
+        } 
+
+        form div.form-group-home div.form-col-2 {
+            display:inline-block;
+            width:48.5%;
+        } 
+
+        form div.form-group-home div.form-col-1 {
+            display:inline-block;
+            width:30.9%;
+        } 
+
+        form div.form-group-home div.form-col-f{
+            display:none;
+            width:0px
+        }
+
+        form div.form-group-home div.form-col-xl-full{
+            display:block;
+            width:100%;
+        }
+
+        form div.form-group-home label{
+            display:block;
+            font-size:12px;
+            color: #CFCFCF;
+            padding:10px 0px 3px 0px;
+        }
+
+        form div.form-group-home label.l-small {
+            display:inline-block;
+            font-size:10px;
+            cursor:pointer;
+        }
+
+        form div.form-group-home input {
+            padding:4px 5px;
+            font-size:12px;
+            border: solid 1px transparent;
+            border-color: #45106e #8828ab #45106e;
+            border-radius:4px;
+            width:80%;
+        }
+
+        form div.form-group-home select {
+            padding:4px;
+            width:90%;
+        }
+
 
         section ul.col-m-3 {
             width:100%;

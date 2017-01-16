@@ -8,31 +8,12 @@ class SearchesController < ApplicationController
         elsif params[:type] == "R"
         elsif params[:type] == "M"
         end
-        #@depart_city_ita = params[:query1_1].split(/, \(/)[1][0..2]
-           
-        #@arrive_city_ita = params[:query1_2].split(/, \(/)[1][0..2]
-        @date_leave = params[:datetime_leave]
-        @date_return = params[:datetime_return]
+        @date_leave = params[:datetime_leave_1]
+        @date_return = params[:datetime_return_1]
         @adult = params[:adult]
         @child = params[:child]
             
-        #Prepare the Json Request
-        @json_req = {request: 
-                [
-                    slice:
-                    [
-                        origin: @depart_city_ita, 
-                        destination: @arrive_city_ita,
-                        date: @date_leave
-                    ],
-                    passengers:
-                    [
-                        adultCount: @adult,
-                        childCount: @child
-                    ],
-                    solutions: 20,
-                    refundable: false
-                ]}
+        
             
         if @depart_city_ita == "), "
           @depart_city_ita = params[:query].split(/\), /)
@@ -41,13 +22,49 @@ class SearchesController < ApplicationController
           @depart_city_ita = params[:query].split(/,/)[0]
           #After finding empty iata records airport name, search other database for the iata name, update the main database and send it in googles api
         else
-        params[:querys].each do |x, y|
-            @test = y[:query1_1]
-        end
-        @response = @test
+        
+        #Prepare the Json Request
+        i = 0;
+        @slice = Array.new
+        query_count = params[:query].count
+        params[:query].each do |x, y|
+            i = i + 1
+            j = i + 1
+            origin = ""
             
-            #HTTP.post('https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyCizuMFFkD3mMU1Ng9p6nJ0kaT_7b0_5Dw', :json => #@json_req)
-           
+            if y["query_#{i}_1"] != nil
+                origin = y["query_#{i}_1"].split(/, \(/)[1][0..2]
+            end
+                
+            if y["query_#{i}_2"] != nil
+                destination = y["query_#{i}_2"].split(/, \(/)[1][0..2]
+            date = y["query_#{i}_2"]
+            end
+            if params["query_#{i}_date_l"] == params["query_#{j}_date_l"]
+                redirect_to root_url, notice: "You can't leave and return on the same day"
+            elsif params["query_#{i}_date_l"] != nil
+                date_leave = params["query_#{i}_date_l"]
+            end
+            
+            @slice.push "origin" => origin, "destination" => destination, "date" => date_leave
+                
+            if params[:type][:pass_confirm] == "r"
+                date_return = params["query_#{j}_date_l"]
+                @slice.push "origin" => destination, "destination" => origin, "date" => date_return 
+            end
+        end
+            @request = {}
+            @request["request"] = {}
+            @request["request"]["slice"] = {}
+            @request["request"]["slice"] = @slice
+            @request["request"].store("passengers", ["adultCount" => @adult, "childCount" => @child]) 
+            @request["request"].store("solutions", 20)
+            @request["request"].store("refundable", false)
+                
+        
+        @json_request = @request
+       # @response = @json_request
+        @response = HTTP.post('https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyCizuMFFkD3mMU1Ng9p6nJ0kaT_7b0_5Dw', :json => @json_request)
         end
     end
     
