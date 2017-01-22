@@ -42,7 +42,7 @@
                         
                         <div class='form-col-3 on' id='returning'>
                             <%= label_tag 'returing', 'Returning' %>
-                            <%= date_field_tag(:query_2_date_l, Date.today) %>
+                            <%= date_field_tag(:query_2_date_r, Date.today) %>
                         </div>
                         <div class='form-col-f'>
                         
@@ -58,8 +58,16 @@
                         </div>
                         
                         <div class='form-col-1'>
-                            <%= label_tag 'Pet', 'Pet' %>             
-                            <%= select_tag "pet", options_for_select([ "...", "Dogs", "Cats", "Birds"], "...") %>
+                            <%= label_tag 'Dogs', 'Dogs' %>             
+                            <%= select_tag "dogs", options_for_select([ 0, 1, 2, 3], "0") %>
+                        </div>
+                        <div class='form-col-1'>
+                            <%= label_tag 'Cats', 'Cats' %>             
+                            <%= select_tag "cats", options_for_select([ 0, 1, 2, 3], "0") %>
+                        </div>
+                        <div class='form-col-1'>
+                            <%= label_tag 'Other', 'Other' %>             
+                            <%= select_tag "other_pet", options_for_select([ 0, 1, 2, 3], "0") %>
                         </div>
                         
                         <div id='container'>

@@ -10,7 +10,7 @@ class AirportsController < ApplicationController
       limit: 11,
       load: false,
       misspellings: {below: 2}
-    }).map{|f| "#{f.name}, (#{f.iata}), #{f.city}, #{f.country}"}
+    }).map{|f| "#{f.city}, (#{f.iata}), #{f.name} - #{f.country}"}
   end
   
   # GET /airports

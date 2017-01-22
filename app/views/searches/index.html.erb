@@ -1,0 +1,389 @@
+<style>
+    div.side {
+        float:left;
+        width:15%;
+        max-width:300px;
+        border:solid 1px pink;
+        margin:20px 20px 0px 10px;
+        overflow:hidden;
+    }
+    div.middle {
+        display:inline-block;
+        clear:left;
+        width:75%;
+        max-width:900px;
+        border: solid 1px black;
+    }
+    div .col-12 {
+        width:100%;
+        padding:10px;
+    }
+
+    div.col-6 {
+        width:42%;
+        padding:10px;
+    }
+
+    div.col-4 {
+        width:20%;
+        padding:10px;
+    }
+
+    div.result-box {
+        position:relative;
+        border: solid 1px transparent;
+        padding:10px;
+        margin: 20px auto 20px auto;
+        width:90%;
+        font-family:sans-serif;
+        font-size:14px;
+        transition: 0.2s border;
+    }
+    
+    div.result-box:hover {
+        border: solid 1px #999;
+    }
+    
+    div.rb-main-info {
+        width:23%;
+        max-width:150px;
+        float:left;
+        
+    }
+    
+    div.expensive-flag {
+        display:inline-block;
+        width:96px;
+    }
+    
+    div.expensive-flag-text {
+        display:inline-block;
+        background-color:#ff944d;
+        color:white;
+        border-radius:5px;
+        border:outset 1px #ffce99;
+        padding:2px;
+        font-weight:bolder;
+        font-family:sans-serif;
+        box-shadow: 1px 1px 3px rgba(30,30,5,0.5);
+    }
+    
+    div.view-flight-button {
+        display:inline-block;
+        background-color:#45106e;
+        border-radius:5px;
+        border:outset 1px #45106e;
+        margin:10px 0px 20px 10px;
+        padding:5px;
+        transition: 0.2s background;
+    }
+    
+    div.view-flight-button:hover {
+        display:inline-block;
+        background-color:#8745b3;
+        border-radius:5px;
+        border:outset 1px #8745b3;
+        margin:10px 0px 20px 10px;
+        padding:5px;
+    }
+    div.view-flight-button a{
+        color:white;
+        text-decoration:none;
+        font-weight:bold;
+        padding:5px;
+    }
+    
+   
+    
+    div.flight-carrier {
+        display:block;
+        font-size:14px;
+        color: #444;
+        padding: 0px 0px 0px 5px;
+    }
+    
+    div.flight-time {
+        display:inline-block;
+        padding:5px;
+    }
+    
+    div.sb-container {
+        display:inline-block;
+        width:75%;
+        float:left;
+        padding:10px 0px 10px 0px;
+    }
+    
+    span.flight-destination {
+        font-weight:bold;
+    }
+    
+    span.flight-grey {
+        padding:0px 5px 0px 5px;
+        color:#777
+    }
+    
+    span.flight-stops {
+        
+        color:#45106e;
+    }
+    
+    div.flight-time.stops {
+        
+    }
+    
+    header.flight-search-header {
+        border: solid 1px black;
+        width:100%;
+        position:relative;
+        min-height:50px;
+    }
+    
+    header div.search-header-cities {
+        display:inline-block;
+        padding:10px;
+    }
+    
+    
+    div.flight-extra-info {
+        clear:both;
+        width:100%;
+        display:block;
+        border:solid 1px black;
+    }
+    
+    button.change-flight, input.change-flight {
+        padding:5px 15px 5px 15px;
+        border-radius:5px;
+        background-color:#45106e;
+        border: 1px groove #8745b3;
+        color:white;
+        font-size:14px;
+        font-family:sans-serif;
+        font-weight:bold;
+        cursor:pointer;
+    }
+    
+    button.change-flight:hover, input.change-flight:hover {
+        background-color:#8745b3;
+        border: 1px outset #8745b3;
+    }
+    
+    div.flight-header {
+        position:relative;
+        display:block;
+    }
+    
+    div.form-short-col-3 {
+        width:15%;
+        display:inline-block;
+    }
+    
+    div.form-short-col-2 {
+        width:100%;
+        display:block;
+        position:
+    }
+    
+    button.passengers {
+        
+    }
+    div.short-form {
+        display:none;
+    }
+    div.passengers-container {
+        display:inline-block;
+        position:relative;
+    }
+    label.passengers {
+        width:40%;
+        display:inline-block;
+    }
+    select.passengers {
+        width:40%;
+        display:inline-block;
+    }
+    div.passengers {
+        position:absolute; 
+        top:20px;
+        left:0px;
+        background-color:white;
+        border:1px solid black;
+        width:200px;
+        z-index:1;
+        font-family:sans-serif;
+        font-size:12px;
+    }
+    form div.short-form-group input {
+        padding:4px 5px;
+        font-size:12px;
+        border: solid 1px transparent;
+        border-color: #45106e #8828ab #45106e;
+        border-radius:4px;
+        width:80%;
+    }
+</style>
+<div class='container'>
+    <div class='side'>
+        This column will contain more options to either customize the search, or it might be something else
+    </div>
+    <div class='col-10 middle clearfix'>
+    <header class='flight-search-header'>
+        <div class='flight-header'>
+            <div class='search-header-cities'>
+                <span><%=@origin%></span>
+                <span>&#8596;</span>
+                <span><%=@destination%></span>
+            </div> 
+
+            <div class='search-header-cities'>
+                <span><%= @departure_first %></span>
+                &#8594;
+                <span><%= @departure_last %></span>
+            </div> 
+
+            <button class='change-flight'>
+                Change
+            </button>
+        </div>
+        <div class='short-form'>
+            <%= form_tag search_path, method: :GET, role: "search"  %>
+                    <div class='short-form-group'>
+                        <div class='form-col-xl-full off' id='flights_title'>
+                            <h3 class='flight-search-title'>Flight 1</h3>
+                        </div>
+                        <div class='form-short-col-3'>
+                            <%= text_field_tag 'city', nil, placeholder: 'city or airport', class: "query", name:"query[query1[query_1_1]]", id: 'query1' %>
+                        </div>
+                        <span>&#8594; </span>
+                        <div class='form-short-col-3'>
+                            <%= text_field_tag 'city', nil, placeholder: 'city or airport', class: "query", name:"query[query1[query_1_2]]", id: 'query2' %>
+                        </div>
+
+                        <div class='form-short-col-3'>
+                            <%= date_field_tag(:query_1_date_l, Date.today) %>
+                        </div>
+                        
+                        <div class='form-short-col-3 on' id='returning'>
+                            <%= label_tag 'returing', 'Returning' %>
+                            <%= date_field_tag(:query_2_date_r, Date.today) %>
+                        </div>
+                        <div class='passengers-container'>
+                            <button type='button' onclick="" class='passengers'>Passengers</button>
+                            <div class='passengers off'>
+                                <div class='form-short-col-2'>
+                                    <%= label_tag 'adult', 'Adult (18+)' %>             
+                                    <%= select_tag "adult", options_for_select([ 1, 2, 3, 4, 5, 6], "1"), class: "passengers" %>
+                                </div>
+
+                                <div class='form-short-col-2'>
+                                    <%= label_tag 'child', 'Child (0-17)' %>             
+                                    <%= select_tag "child", options_for_select([ 0, 1, 2, 3, 4, 5, 6], "0"), class: "passengers" %>
+                                </div>
+
+                                <div class='form-short-col-2'>
+                                    <%= label_tag 'Dogs', 'Dogs' %>             
+                                    <%= select_tag "dogs", options_for_select([ 0, 1, 2, 3], "0"), class: "passengers" %>
+                                </div>
+                                <div class='form-short-col-2'>
+                                    <%= label_tag 'Cats', 'Cats' %>             
+                                    <%= select_tag "cats", options_for_select([ 0, 1, 2, 3], "0"), class: "passengers" %>
+                                </div>
+                                <div class='form-short-col-2'>
+                                    <%= label_tag 'Other', 'Other' %>             
+                                    <%= select_tag "other_pet", options_for_select([ 0, 1, 2, 3], "0"), class: "passengers" %>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id='container'>
+                            <div class='test'>
+                            </div>
+                        </div>
+                        <div class='form-col-xl-full'>
+                            <button type='button' id='button'>Add flight</button>
+                        </div>
+                        <div class='form-col-xl-full'>
+                            <%= label_tag 'advanced_options', 'Advanced Search', class: 'l-small' %>
+                            <%= hidden_field(:type, :pass_confirm, :value => "n") %>
+                            <%= submit_tag 'Search', class: 'change-flight' %>
+                        </div>
+                    </div>
+                </form>
+            <button class='change-flight'>
+                Search
+            </button>
+        </div>
+    </header>
+    <% if @response != "" %>
+        <% @response["trips"]["tripOption"].each do |x|%>
+            <div class='result-box clearfix'>
+                <div class="box-header">
+
+                </div>
+                <div class='rb-main-info'>
+                    <div class='rb-price'>
+                        <span class='price'>
+                            £<%= x["saleTotal"][3..8]%>
+                        </span>
+                    </div>
+                    <div class='expensive-flag'>
+                        <% @price_comp = @baseprice.to_i * 2
+                       if @price_comp < x["saleTotal"][3..8].to_i %>
+                        <div class='expensive-flag-text'>
+                            EXPENSIVE
+                        </div>
+                        <% end %>
+                    </div>
+                    
+                    <div class='paw-icon'>
+
+                    </div>
+                    <div class='view-flight-button'>
+                        <a href="/search_show?"> View Flight</a>
+                       <!-- <%= link_to 'View Flight', search_show_path() %> -->
+                    </div>
+                </div>
+                <div class='carrier-icon'>
+                </div>
+            <% x["slice"].each do |s| %>
+
+                <% s["segment"].each do |y| %>
+                    
+                    <div class='flight-time sb-container'>
+                        <div class='flight-carrier'>
+                            <%= @carrier[y["flight"]["carrier"]] %>
+                        </div>
+                        <div class='flight-time flightDepart'>
+                            <span class='flight-destination'><%= y["leg"][0]["departureTime"][11..15]%></span> - <%=d = y["leg"][0]["origin"] %> 
+                        </div>
+                        <div class='flight-time arrow'>&#8594;</div>
+                        <div class='flight-time flightDepart'>
+                            <span class='flight-destination'><%= y["leg"][0]["arrivalTime"][11..15]%></span> - <%=g = y["leg"][0]["destination"]%>
+                        </div>
+                        
+                        <div class='flight-time flight-duration'>
+                            <span class='flight-grey'><%= (y["duration"] * 0.01666666667).to_s[0] %>hr <%= (y["duration"] * 0.0166667).to_s[2..3] %>m</span>
+                        </div>
+                        
+                        <div class='flight-time'>
+                            <span class='flight-grey'><%= y["leg"][0]["departureTime"][0..9]%></span>
+                        </div>
+                        
+                        <div class='flight-time stops'>
+                           <span class='flight-stops'>Non Stop</span>
+                        </div>
+                        
+                    </div>  
+                <% end %>  
+            <% end %>
+                <div class='flight-extra-info'>
+                     Extra information is hidden in this box, it will be revealed if you click on this outer box
+                </div>
+            </div>
+        <% end %>
+    <% end %> 
+    </div>
+</div>
+
+<%= render 'pages/footer'%>

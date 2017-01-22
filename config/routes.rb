@@ -17,7 +17,8 @@ Rails.application.routes.draw do
   post 'contact', to: 'messages#create'
     
   get 'search_flights', to:"searches#new", as: 'search_flights'
-  get 'search', to:"searches#show" , as: 'search'
+  get 'search', to:"searches#index" , as: 'search'
+  get 'search_show', to:"searches#show" , as: 'search_show'
   post 'search_flights', to:"searches#create" 
     
   get '/city_airport_ita_codes/autocomplete', to:"city_airport_ita_codes#autocomplete", as:"city_airport_ita_codes/autocomplete"
