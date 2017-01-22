@@ -83,28 +83,33 @@ class SearchesController < ApplicationController
         @json_request = @request
         @httprequest = HTTP.post('https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyCizuMFFkD3mMU1Ng9p6nJ0kaT_7b0_5Dw', :json => @json_request)
         
+                    
         @response = JSON.parse(@httprequest)
-        @airport = Hash.new 
-        @aircraft = Hash.new 
-        @carrier = Hash.new 
-        @city = Hash.new 
-        @tax = Hash.new   
-        @response["trips"]["data"]["airport"].each do |a|
-        @airport.store(a["code"], a["name"])
-        end 
-        @response["trips"]["data"]["aircraft"].each do |a|
-        @aircraft.store(a["code"], a["name"])
-        end 
-        @response["trips"]["data"]["carrier"].each do |c|
-        @carrier.store(c["code"], c["name"])
-        end 
-        @response["trips"]["data"]["city"].each do |c|
-        @city.store(c["code"], c["name"])
+                    
+        if @response["trips"]["data"]["airport"] != nil ||  @response["trips"]["data"]["aircraft"] != nil || @response["trips"]["data"]["carrier"] != nil
+            @airport = Hash.new 
+            @aircraft = Hash.new 
+            @carrier = Hash.new 
+            @city = Hash.new 
+            @tax = Hash.new   
+            @response["trips"]["data"]["airport"].each do |a|
+            @airport.store(a["code"], a["name"])
+            end 
+            @response["trips"]["data"]["aircraft"].each do |a|
+            @aircraft.store(a["code"], a["name"])
+            end 
+            @response["trips"]["data"]["carrier"].each do |c|
+            @carrier.store(c["code"], c["name"])
+            end 
+            @response["trips"]["data"]["city"].each do |c|
+            @city.store(c["code"], c["name"])
+            end
+            @response["trips"]["data"]["tax"].each do |t|
+            @tax.store(t["id"], t["name"])
+            end 
+            @baseprice = @response["trips"]["tripOption"][0]["saleTotal"][3..8]
         end
-        @response["trips"]["data"]["tax"].each do |t|
-        @tax.store(t["id"], t["name"])
-        end 
-        @baseprice = @response["trips"]["tripOption"][0]["saleTotal"][3..8]
+        
         end
     end
 

@@ -11,6 +11,7 @@
         display:inline-block;
         clear:left;
         width:75%;
+        min-height:200px;
         max-width:900px;
         border: solid 1px black;
     }
@@ -227,6 +228,7 @@
     <div class='side'>
         This column will contain more options to either customize the search, or it might be something else
     </div>
+    <% if @response["trips"]["tripOption"] != nil %>
     <div class='col-10 middle clearfix'>
     <header class='flight-search-header'>
         <div class='flight-header'>
@@ -384,6 +386,13 @@
         <% end %>
     <% end %> 
     </div>
+    <% else %>
+    <div class='col-10 middle clearfix'>
+        <p>Your search result came up empty, Please try a different search</p>
+        <p>Suggested searches</p>
+        <em>(list of suggested searches)</em>
+    </div>
+    <% end %>
 </div>
 
 <%= render 'pages/footer'%>
