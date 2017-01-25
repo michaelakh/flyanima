@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170106125203) do
+ActiveRecord::Schema.define(version: 20170122205338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,9 +21,9 @@ ActiveRecord::Schema.define(version: 20170106125203) do
     t.string   "country"
     t.string   "iata"
     t.string   "icao"
-    t.integer  "latitude_deg"
-    t.integer  "longitude_deg"
-    t.integer  "altitude_feet"
+    t.decimal  "latitude"
+    t.decimal  "longitude"
+    t.integer  "altitude"
     t.integer  "timezone"
     t.string   "DST"
     t.string   "tz_database_timezone"

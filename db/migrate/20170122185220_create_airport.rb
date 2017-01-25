@@ -1,4 +1,4 @@
-class CreateAirports < ActiveRecord::Migration[5.0]
+class CreateAirport < ActiveRecord::Migration[5.0]
   def change
     create_table :airports do |t|
       t.string :name
@@ -6,8 +6,8 @@ class CreateAirports < ActiveRecord::Migration[5.0]
       t.string :country
       t.string :iata
       t.string :icao
-      t.integer :latitude_deg
-      t.integer :longitude_deg
+      t.decimal :latitude_deg
+      t.decimal :longitude_deg
       t.integer :altitude_feet
       t.integer :timezone
       t.string :DST

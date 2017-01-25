@@ -15,4 +15,7 @@ class Airport < ApplicationRecord
       end # end if !product.nil?
     end # end CSV.foreach
   end # end self.import(file)
+    
+  geocoded_by :iata
+  after_validation :geocode
 end

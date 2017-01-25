@@ -1,16 +1,39 @@
 <style>
-    div.side {
+    div.side-left {
         float:left;
         width:15%;
         max-width:300px;
-        border:solid 1px pink;
         margin:20px 20px 0px 10px;
         overflow:hidden;
     }
+    
+    div.side-content{
+        height:600px;
+        padding:5px;
+        border:solid 1px pink;
+        border-radius:5px;
+    }
+    
+    div.side-ads {
+        height:300px;
+        padding:5px;
+        margin: 10px 0px 10px 0px;
+        border:solid 1px pink;
+        border-radius:5px;
+    }
+    
+    div.side-right {
+        float:left;
+        width:20%;
+        max-width:300px;
+        margin:20px 0px 0px 10px;
+        overflow:hidden;
+    }
+    
     div.middle {
         display:inline-block;
-        clear:left;
-        width:75%;
+        float:left;
+        width:60%;
         min-height:200px;
         max-width:900px;
         border: solid 1px black;
@@ -110,7 +133,7 @@
     
     div.sb-container {
         display:inline-block;
-        width:75%;
+        width:100%;
         float:left;
         padding:10px 0px 10px 0px;
     }
@@ -189,21 +212,26 @@
     button.passengers {
         
     }
+    
     div.short-form {
         display:none;
     }
+    
     div.passengers-container {
         display:inline-block;
         position:relative;
     }
+    
     label.passengers {
         width:40%;
         display:inline-block;
     }
+    
     select.passengers {
         width:40%;
         display:inline-block;
     }
+    
     div.passengers {
         position:absolute; 
         top:20px;
@@ -215,6 +243,7 @@
         font-family:sans-serif;
         font-size:12px;
     }
+    
     form div.short-form-group input {
         padding:4px 5px;
         font-size:12px;
@@ -223,11 +252,108 @@
         border-radius:4px;
         width:80%;
     }
+    
+    div.extra-information {
+        clear:left;
+        display:none;
+    }
+    
+    div.extra-info-body {
+        
+    }
+    
+    div.result-box:focus div.extra-information{
+        display:block;
+    }
+    
+    div.extra-info-menu {
+        display:inline-block;
+        padding:10px 20px 10px 20px;
+    }
+    
+    div.extra-info-menu.on {
+        display:inline-block;
+        margin-bottom: -1px;
+        padding:10px 20px 10px 20px;
+        border-top:solid 1px #BBB;
+        border-left:solid 1px #BBB;
+        border-right:solid 1px #BBB;
+        border-bottom:solid 5px #FFF;
+    }
+    
+    div.extra-info-menu.off {
+        display:inline-block;
+        margin-bottom: 0px;
+        padding:10px 20px 10px 20px;
+        border-top:solid 1px #FFF;
+        border-left:solid 1px #FFF;
+        border-right:solid 1px #FFF;
+        border-bottom:solid 1px transparent;
+    }
+    
+    div.flight-right-col {
+        display:block;
+        width:77%;
+        float:left;
+    }
+    
+    div.extra-info-header {
+        display:block;
+        clear:left;
+        border-bottom: solid 1px #BBB;
+    }
+    
+    h2.extra-info-title {
+        clear:left;
+        border-bottom:solid 1px #CCC;
+        margin: 10px auto 0px auto;
+        padding-left: 5px;
+        font-size:16px;
+        color:#555;
+    }
+    
+    div.flight-fare-row {
+        display:block;
+        font-size:14px;
+        color: #444;
+        padding: 0px 0px 0px 5px;
+    }
+    
+    div.flight-fare-left-col {
+        display:inline-block;
+        width:20%;
+        text-align:left;
+    }
+    div.flight-fare-right-col {
+        display:inline-block;
+        width:40%;
+        text-align:left;
+    }
+    
+    div.extra-info-details-wrapper.on {
+        display:block;
+    }
+    div.extra-info-details-wrapper.off {
+        display:none;
+    }
+    
+    div.extra-info-fares-wrapper.on {
+        display:block;
+    }
+    div.extra-info-fares-wrapper.off {
+        display:none;
+    }
 </style>
-<div class='container'>
-    <div class='side'>
-        This column will contain more options to either customize the search, or it might be something else
+
+<div class='container clearfix'>
+    <div class='side-left'>
+        <div class='side-content'>
+        </div>
+        <div class='side-ads'>
+            ads go here
+        </div> 
     </div>
+    
     <% if @response["trips"]["tripOption"] != nil %>
     <div class='col-10 middle clearfix'>
     <header class='flight-search-header'>
@@ -348,49 +474,249 @@
                 </div>
                 <div class='carrier-icon'>
                 </div>
-            <% x["slice"].each do |s| %>
+                <div class='flight-right-col'>
+                    <% x["slice"].each do |s| %>
+                    <% if s["segment"][1] != nil 
+                    j = s["segment"].count - 1 
+                    k = 0 %>
 
-                <% s["segment"].each do |y| %>
-                    
                     <div class='flight-time sb-container'>
                         <div class='flight-carrier'>
-                            <%= @carrier[y["flight"]["carrier"]] %>
+                            <%= @carrier[s["segment"][0]["flight"]["carrier"]] %>
                         </div>
-                        <div class='flight-time flightDepart'>
-                            <span class='flight-destination'><%= y["leg"][0]["departureTime"][11..15]%></span> - <%=d = y["leg"][0]["origin"] %> 
+                        <div class='flight-time flightDepart'> 
+                            <span class='flight-destination'><%= s["segment"][0]["leg"][0]["departureTime"][11..15]%></span> - <%=d = s["segment"][0]["leg"][0]["origin"] %>
                         </div>
                         <div class='flight-time arrow'>&#8594;</div>
                         <div class='flight-time flightDepart'>
-                            <span class='flight-destination'><%= y["leg"][0]["arrivalTime"][11..15]%></span> - <%=g = y["leg"][0]["destination"]%>
+                            <span class='flight-destination'><%= s["segment"][j]["leg"][0]["arrivalTime"][11..15]%></span> - <%=g = s["segment"][j]["leg"][0]["destination"]%>
                         </div>
-                        
                         <div class='flight-time flight-duration'>
-                            <span class='flight-grey'><%= (y["duration"] * 0.01666666667).to_s[0] %>hr <%= (y["duration"] * 0.0166667).to_s[2..3] %>m</span>
+                            <% @total_d =  0
+                                while k < x["slice"].count do 
+                                 @total_d = @total_d + x["slice"][k]["segment"][0]["duration"]
+                                 if s["segment"][0]["connectionDuration"] != nil
+                                      @total_d_c = @total_d + s["segment"][0]["connectionDuration"]
+                                 end  
+                                %>
+                                <% k = k + 1 %>
+                                <% end %>
+                            <span class='flight-grey'><%= (@total_d/60).floor %>hr <%= (@total_d % 60 ) %>m</span>
                         </div>
-                        
+
                         <div class='flight-time'>
-                            <span class='flight-grey'><%= y["leg"][0]["departureTime"][0..9]%></span>
+                            <span class='flight-grey'><% date = Date.parse(s["segment"][0]["leg"][0]["departureTime"][0..9]) %> <%= date.strftime("#{date.day.ordinalize}, %b %Y") %></span> 
                         </div>
-                        
                         <div class='flight-time stops'>
-                           <span class='flight-stops'>Non Stop</span>
+                           <span class='flight-stops'>
+                               <% if s["segment"].count == 1 %>
+                               non-stop
+                               <% elsif s["segment"].count == 2 %>
+                               <%= s["segment"].count - 1 %> stop
+                               <% elsif s["segment"].count > 2 %>
+                               <%= s["segment"].count - 1 %> stops
+                               <% end %>
+                            </span>
                         </div>
-                        
                     </div>  
-                <% end %>  
-            <% end %>
-                <div class='flight-extra-info'>
-                     Extra information is hidden in this box, it will be revealed if you click on this outer box
-                </div>
-            </div>
+
+                    <% else %>
+
+                    <% @total_d =  0
+                        k = 0
+                    while k < x["slice"].count do 
+                     @total_d = @total_d + x["slice"][k]["duration"]
+                     if x["slice"][k]["segment"][0]["connectionDuration"] != nil
+                          @total_d = @total_d + x["slice"][k]["segment"][0]["connectionDuration"]
+                     end 
+                    %>
+                    <% k = k + 1 %>
+                    <% end %>
+                    <% s["segment"].each do |y| %>
+                        <div class='flight-time sb-container'>
+                            <div class='flight-carrier'>
+                                <%= @carrier[y["flight"]["carrier"]] %>
+                            </div>
+                            <div class='flight-time flightDepart'>
+                                <span class='flight-destination'><%= y["leg"][0]["departureTime"][11..15]%></span> - <%=d = y["leg"][0]["origin"] %> 
+                            </div>
+                            <div class='flight-time arrow'>&#8594;</div>
+                            <div class='flight-time flightDepart'>
+                                <span class='flight-destination'><%= y["leg"][0]["arrivalTime"][11..15]%></span> - <%=g = y["leg"][0]["destination"]%>
+                            </div>
+
+                            <div class='flight-time flight-duration'>
+                                <span class='flight-grey'><%= (y["duration"]/60).floor %>hr <%= (y["duration"] % 60 ) %>m</span>
+                            </div>
+
+                            <div class='flight-time'>
+                                <span class='flight-grey'><% date = Date.parse(y["leg"][0]["departureTime"][0..9]) %> <%= date.strftime("#{date.day.ordinalize}, %b %Y") %></span> 
+                            </div>
+
+                            <div class='flight-time stops'>
+                               <span class='flight-stops'>
+                                   <% if s["segment"].count == 1 %>
+                                   non-stop
+                                   <% elsif s["segment"].count == 2 %>
+                                   <%= s["segment"].count - 1 %> stop
+                                   <% elsif s["segment"].count > 2 %>
+                                   <%= s["segment"].count - 1 %> stops
+                                   <% end %>
+                                </span>
+                            </div>
+
+                        </div>  
+                    <% end %> 
+                    <% end %>
+
+                <% end %>
+                    <div class='extra-information'>
+                        <div class='extra-info-header'>
+                            <div class='extra-info-menu on' onclick='show_details()'>
+                                Details  
+                            </div>
+                            <div class='extra-info-menu off' onclick='show_fares()'>
+                                Fares
+                            </div>
+                        </div>
+                        <div class='extra-info-details-wrapper on'>
+                        <% i = 0 %>
+                        <% x["slice"].each do |s| %>
+                        <% if i == 0 %>
+                            <h2 class='extra-info-title'>
+                                Depart
+                            </h2>
+                            <% elsif i == 1 %>
+                            <h2 class='extra-info-title'>
+                                Return
+                            </h2>
+                            <% end %>
+                        <% s["segment"].each do |y| %>
+                        <div class='extra-info-body'>
+                            <div class='flight-time sb-container'>
+                                <div class='flight-carrier'>
+                                    <%= @carrier[y["flight"]["carrier"]] %>
+                                </div>
+                                <div class='flight-time flightDepart'>
+                                    <span class='flight-destination'><%= y["leg"][0]["departureTime"][11..15]%></span> - <%=d = y["leg"][0]["origin"] %> 
+                                </div>
+                                <div class='flight-time arrow'>&#8594;</div>
+                                <div class='flight-time flightDepart'>
+                                    <span class='flight-destination'><%= y["leg"][0]["arrivalTime"][11..15]%></span> - <%=g = y["leg"][0]["destination"]%>
+                                </div>
+
+                                <div class='flight-time flight-duration'>
+                                    <span class='flight-grey'><%= (y["duration"]/60).floor %>hr <%= (y["duration"] % 60 ) %>m</span>
+                                </div>
+
+                                <div class='flight-time'>
+                                    <span class='flight-grey'><% date = Date.parse(y["leg"][0]["departureTime"][0..9]) %> <%= date.strftime("%a, %d %b") %></span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <% end %> 
+
+                        
+                        <% i = i + 1 %>
+                        <% end %>
+                        </div>
+                        <div class='extra-info-fares-wrapper off'>
+                            <h2 class='extra-info-title'>
+                                Known fares
+                            </h2>
+                            <div class='flight-fare-row'>
+                                <div class='flight-fare-left-col'>
+                                    <span>Flight Price:</span>
+                                </div>
+                                <div class='flight-fare-right-col'>
+                                    <span>£<%= x["pricing"][0]["saleFareTotal"][3..10] %></span>
+                                </div>
+                            </div>
+                            <div class='flight-fare-row'>
+                                <div class='flight-fare-left-col'>
+                                    <span>Tax:</span>
+                                </div>
+                                <div class='flight-fare-right-col'>
+                                    <span>£<%= x["pricing"][0]["saleTaxTotal"][3..10] %></span>
+                                </div>
+                            </div>
+                            <div class='flight-fare-row'>
+                                <div class='flight-fare-left-col'>
+                                    <span>Ticket Total:</span>
+                                </div>
+                                <div class='flight-fare-right-col'>
+                                    <span>£<%= x["pricing"][0]["saleTotal"][3..10] %></span>
+                                </div>
+                            </div>
+                            <div class='flight-fare-row'>
+                                <div class='flight-fare-left-col'>
+                                    <span>Last chance to buy:</span>
+                                </div>
+                                <div class='flight-fare-right-col'>
+                                    <span><% lctb = Date.parse(x["pricing"][0]["latestTicketingTime"][0..9]) %> <%= lctb.strftime("%a, %d %b") %> at <%= x["pricing"][0]["latestTicketingTime"][11..15] %></span>
+                                </div>
+                            </div>
+                           
+                            <% if x["pricing"][0]["refundable"] == "TRUE" %>
+                            <div class='flight-fare-row'>
+                                <div class='flight-fare-left-col'>
+                                </div>
+                                <div class='flight-fare-right-col'>
+                                    <span>Refundable</span>
+                                </div>
+                            </div>
+                            <% else %>
+                            <div class='flight-fare-row'>
+                                <div class='flight-fare-left-col'>
+                                </div>
+                                <div class='flight-fare-right-col'>
+                                    <span>Non-Refundable</span>
+                                </div>
+                            </div>
+                            <%end%>
+                        </div>
+                    </div>
+            </div>   
+    </div>
         <% end %>
     <% end %> 
+    </div>
+    <div class='side-right'>
+        <div class='side-ads'>
+            ads go here
+        </div>
     </div>
     <% else %>
     <div class='col-10 middle clearfix'>
         <p>Your search result came up empty, Please try a different search</p>
         <p>Suggested searches</p>
-        <em>(list of suggested searches)</em>
+        <span>Flying from</span>
+        <ul class='flight-suggestions'>
+            <% @test.each do |x| %>
+            <% if x["iata"] != nil %>
+            <li>
+                <%= x["name"] %>, (<%= x["iata"] %>), <%= x["city"] %>, <%= x["country"] %>
+            </li>
+            <% end %>
+            <% end %>
+        </ul>
+        
+        <span>Going to</span>
+        <ul class='flight-suggestions'>
+            <% @testt.each do |x| %>
+            <% if x["iata"] != nil %>
+            <li>
+                <%= x["name"] %>, (<%= x["iata"] %>), <%= x["city"] %>, <%= x["country"] %>
+            </li>
+            <% end %>
+            <% end %>
+        </ul>
+    </div>
+    <div class='side-right'>
+        <div class='side-ads'>
+            ads go here
+        </div>
     </div>
     <% end %>
 </div>

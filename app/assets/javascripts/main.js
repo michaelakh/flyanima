@@ -107,6 +107,12 @@ $(document ).on('turbolinks:load', function(){
         $('.query').typeahead('destroy');
         $("#container").append(content);
         typeahead_initialize();
-    });        
+    }); 
+    
+
+var divs = document.getElementsByClassName('result-box clearfix');
+for (var i = 0, len = divs.length; i < len; i++){
+    divs[i].setAttribute('tabindex', '0');
+}
     
 });

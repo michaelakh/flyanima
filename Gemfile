@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+#Use for finding distance in postgres database
+gem 'geocoder'
+
 #use for trie algorithm for effective autocomplete
 gem 'twitter-typeahead-rails'
 
