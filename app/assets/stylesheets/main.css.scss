@@ -6,6 +6,26 @@ $top-nav_font_color_highlight:#FFFFFF;
 
 
 /* Foundation for all devices */
+.cover {
+        background: image-url('ajax-loader.gif') no-repeat scroll center center #FFF;
+        position: absolute;
+        top:0px;
+        left:0px;
+        overflow:none;
+        height: 100%;
+        width: 100%;
+    }
+
+.cover_data {
+        background: image-url('ajax-loader.gif') no-repeat scroll auto auto #FFF;
+        position: absolute;
+        top:0px;
+        left:0px;
+        overflow:none;
+        height: 100%;
+        width: 60%;
+    }
+
 body {
     margin: 0px;
     padding:0px;
@@ -19,6 +39,7 @@ div.container{
     margin:0 auto;
     clear:both;
     background-color:#FFFFFF;
+    position:relative;
 }
 
 div.container-no-bg {

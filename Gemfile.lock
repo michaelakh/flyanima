@@ -77,7 +77,7 @@ GEM
     faraday (0.11.0)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.17)
-    geocoder (1.4.1)
+    geocoder (1.4.2)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     google-api-client (0.9.1)
@@ -100,7 +100,7 @@ GEM
       multi_json (~> 1.11)
       os (~> 0.9)
       signet (~> 0.7)
-    hashie (3.4.6)
+    hashie (3.5.1)
     http (2.1.0)
       addressable (~> 2.3)
       http-cookie (~> 1.0)
@@ -112,7 +112,7 @@ GEM
     http_parser.rb (0.6.0)
     httpclient (2.8.3)
     hurley (0.2)
-    i18n (0.7.0)
+    i18n (0.8.0)
     jbuilder (2.6.1)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
@@ -126,6 +126,18 @@ GEM
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
     jwt (1.5.6)
+    kaminari (1.0.1)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.0.1)
+      kaminari-activerecord (= 1.0.1)
+      kaminari-core (= 1.0.1)
+    kaminari-actionview (1.0.1)
+      actionview
+      kaminari-core (= 1.0.1)
+    kaminari-activerecord (1.0.1)
+      activerecord
+      kaminari-core (= 1.0.1)
+    kaminari-core (1.0.1)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -147,6 +159,8 @@ GEM
     mimemagic (0.3.2)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
+    momentjs-rails (2.17.1)
+      railties (>= 3.1)
     multi_json (1.12.1)
     multipart-post (2.0.0)
     nio4r (1.2.1)
@@ -162,7 +176,7 @@ GEM
       mimemagic (~> 0.3.0)
     pg (0.19.0)
     public_suffix (2.0.5)
-    puma (3.6.2)
+    puma (3.7.0)
     rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -196,7 +210,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (12.0.0)
     rb-fsevent (0.9.8)
-    rb-inotify (0.9.7)
+    rb-inotify (0.9.8)
       ffi (>= 0.5.0)
     representable (2.3.0)
       uber (~> 0.0.7)
@@ -233,7 +247,7 @@ GEM
       sprockets (>= 3.0.0)
     thor (0.19.4)
     thread_safe (0.3.5)
-    tilt (2.0.5)
+    tilt (2.0.6)
     turbolinks (5.0.1)
       turbolinks-source (~> 5)
     turbolinks-source (5.0.0)
@@ -249,7 +263,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.2)
-    warden (1.2.6)
+    warden (1.2.7)
       rack (>= 1.0)
     web-console (3.4.0)
       actionview (>= 5.0)
@@ -275,8 +289,10 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   jquery-ui-rails
+  kaminari
   listen (~> 3.0.5)
   meta-tags
+  momentjs-rails
   paperclip (~> 5.0.0)
   pg
   puma (~> 3.0)

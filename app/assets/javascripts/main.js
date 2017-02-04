@@ -4,11 +4,15 @@ function get(name){
       return decodeURIComponent(name[1]);
 }
 
+
 //fixing jquery autocomplete width css
 jQuery.ui.autocomplete.prototype._resizeMenu = function () {
   var ul = this.menu.element;
   ul.outerWidth(this.element.outerWidth() + 100);
 }
+
+
+
 
 
 ///////////////////

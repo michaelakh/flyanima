@@ -1,3 +1,16 @@
 ///////////////////
 //Flights search JS
 //////////////////
+
+function googleQPXrequest(){
+         $.ajax({
+          type: "POST",
+          url: "/search_googleQPX",
+          data: <%= raw @request.to_json %>,
+          success:(data) ->
+            alert data.id
+            return false
+          error:(data) ->
+            return false
+        })   
+}

@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     
   get 'search_flights', to:"searches#new", as: 'search_flights'
   get 'search', to:"searches#index" , as: 'search'
+  post 'search_googleQPX', to:"searches#googleQPX" , as: 'search_googleQPX'
   get 'search_show', to:"searches#show" , as: 'search_show'
   post 'search_flights', to:"searches#create" 
     

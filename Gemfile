@@ -1,5 +1,11 @@
 source 'https://rubygems.org'
 
+#used for javascript time processing
+gem 'momentjs-rails'
+
+#Used for pagination
+gem 'kaminari'
+
 #Use for finding distance in postgres database
 gem 'geocoder'
 

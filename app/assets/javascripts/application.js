@@ -14,6 +14,7 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require jquery-ui/widgets/autocomplete
+//= require moment
 //= require_tree .
 //= require twitter/typeahead
 //= require twitter/typeahead.min
