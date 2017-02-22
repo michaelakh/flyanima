@@ -4,6 +4,7 @@
             <button class='button-col-xs-10 off' id='Flights-button-search' onclick="responsive_travel_search('Flights')">
                 Flights
             </button>
+            <!--
             <button class='button-col-xs-10 off' id='Hotels-button-search' onclick="responsive_travel_search('Hotels')">
                 Hotels
             </button>
@@ -19,6 +20,7 @@
             <button class='button-col-xs-10 off' id='All-button-search' onclick="responsive_travel_search('All')">
                 All
             </button>
+-->
             <div id='Flights-search' class='active-search on'>
                <%= form_tag search_path, method: :GET, role: "search"  %>
                     <div class='form-group-home'>
@@ -49,25 +51,25 @@
                         </div>
                         <div class='form-col-1'>
                             <%= label_tag 'adult', 'Adult (18+)' %>             
-                            <%= select_tag "adult", options_for_select([ 1, 2, 3, 4, 5, 6], "1") %>
+                            <%= select_tag "passenger[adult]", options_for_select([ 1, 2, 3, 4, 5, 6], "1") %>
                         </div>
                         
                         <div class='form-col-1'>
                             <%= label_tag 'child', 'Child (0-17)' %>             
-                            <%= select_tag "child", options_for_select([ 0, 1, 2, 3, 4, 5, 6], "0") %>
+                            <%= select_tag "passenger[child]", options_for_select([ 0, 1, 2, 3, 4, 5, 6], "0") %>
                         </div>
                         
                         <div class='form-col-1'>
                             <%= label_tag 'Dogs', 'Dogs' %>             
-                            <%= select_tag "dogs", options_for_select([ 0, 1, 2, 3], "0") %>
+                            <%= select_tag "passenger[dogs]", options_for_select([ 0, 1, 2], "0") %>
                         </div>
                         <div class='form-col-1'>
                             <%= label_tag 'Cats', 'Cats' %>             
-                            <%= select_tag "cats", options_for_select([ 0, 1, 2, 3], "0") %>
+                            <%= select_tag "passenger[cats]", options_for_select([ 0, 1, 2], "0") %>
                         </div>
                         <div class='form-col-1'>
                             <%= label_tag 'Other', 'Other' %>             
-                            <%= select_tag "other_pet", options_for_select([ 0, 1, 2, 3], "0") %>
+                            <%= select_tag "passenger[other_pet]", options_for_select([ 0, 1, 2], "0") %>
                         </div>
                         
                         <div id='container'>
@@ -75,7 +77,10 @@
                             </div>
                         </div>
                         <div class='form-col-xl-full'>
-                            <button type='button' id='button'>Add flight</button>
+                            <button type='button' id='button-add'>Add Flight</button>
+                        </div>
+                        <div class='form-col-xl-full'>
+                            <button type='button' id='button-remove' class='br-off'>Remove Flight</button>
                         </div>
                         <div class='form-col-xl-full'>
                             <%= label_tag 'advanced_options', 'Advanced Search', class: 'l-small' %>

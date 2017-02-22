@@ -7,24 +7,55 @@ $top-nav_font_color_highlight:#FFFFFF;
 
 /* Foundation for all devices */
 .cover {
-        background: image-url('ajax-loader.gif') no-repeat scroll center center #FFF;
-        position: absolute;
-        top:0px;
-        left:0px;
-        overflow:none;
-        height: 100%;
-        width: 100%;
-    }
+    background: image-url('ajax-loader.gif') no-repeat scroll center center #FFF;
+    position: absolute;
+    top:0px;
+    left:0px;
+    overflow:none;
+    height: 100%;
+    width: 100%;
+}
 
 .cover_data {
-        background: image-url('ajax-loader.gif') no-repeat scroll auto auto #FFF;
-        position: absolute;
-        top:0px;
-        left:0px;
-        overflow:none;
-        height: 100%;
-        width: 60%;
-    }
+    background: image-url('ajax-loader.gif') no-repeat scroll auto auto #FFF;
+    position: absolute;
+    top:0px;
+    left:0px;
+    overflow:none;
+    height: 100%;
+    width: 60%;
+}
+
+.flash.notice, .flash.alert {
+    position:fixed;
+    z-index: 10;
+    top:-200px;
+    left:0px;
+    background-color:#DDD;
+    width:100%;
+    text-align:center;
+    font-weight:bold;
+    padding:5px;
+    -webkit-animation-name: notice; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 7s; /* Safari 4.0 - 8.0 */
+    animation-name: notice;
+    animation-duration: 7s;
+}
+
+.flash.alert {
+    background-color:red;
+    font-family:sans-serif;
+    font-size:1.2em;
+    color:white;
+}
+
+@keyframes notice {
+    0%   {top:-200px;}
+    10%  {top:0px;}
+    80%  {top:0px;}
+    90%  {top:-500px;}
+    100% {display:none;}
+}
 
 body {
     margin: 0px;

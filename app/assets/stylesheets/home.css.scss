@@ -50,7 +50,7 @@
         outline:-webkit-focus-ring-color auto 5px;
     }
      
-    form div.form-group-home .submit {
+    form div.form-group-home .submit, div.submit button.search {
         display:block;
         border-color: #d4a900 #aa8700 #aa8700; 
         border: 1px solid transparent;
@@ -64,6 +64,10 @@
         font-weight:700;
         cursor:pointer;
         width:57px;
+    }
+
+    form div.form-group-home .submit:active, div.submit button.search:active {
+        outline: solid 2px #aaa; 
     }
 
     div#flights_title.off {
@@ -141,8 +145,36 @@
         font-family:serif
     }
     
+    div.form-col-xl-full button {
+        float:right;
+        margin:10px;
+        padding:5px;
+        background:#426E44;
+        border: outset 2px #426E44;
+        color:white;
+        font-weight:bold;
+    }
 
-    
+    div.form-col-xl-full button:hover {
+        background:#AFA;
+        border: outset 2px #AFA;
+        color:black;
+        font-weight:bold;
+    }
+    .br-off {
+        display:none;
+    }
+    #button-remove.br-on {
+        display:block;
+        background:#E3C261;
+        border: outset 2px #E3C261;
+        color:black;
+    }
+
+    #button-remove.br-on:hover {
+        background:#E3D4B0;
+        border: outset 2px #E3D4B0;
+    }
     .tt-open {
         background-color:white;
         border:solid 1px black;

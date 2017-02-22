@@ -21,14 +21,14 @@
         
         $("<ul class='Paginate'></ul>").prependTo(paginationContainer);
         
-        paginationContainer.find("ul").append("<li>"+ defaults.first + "</li>"); 
+        //paginationContainer.find("ul").append("<li>"+ defaults.first + "</li>"); 
         
         for (var index = 0; index < numberOfPaginationLinks; index++)
         {
             paginationContainer.find("ul").append("<li>"+ (index+1)+ "</li>");       
         }
         
-        paginationContainer.find("ul").append("<li>"+ defaults.last + "</li>");
+        //paginationContainer.find("ul").append("<li>"+ defaults.last + "</li>");
         
         itemsToPaginate.filter(":gt(" + (itemsPerPage - 1) + ")").hide();
         

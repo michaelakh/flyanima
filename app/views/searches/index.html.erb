@@ -1,416 +1,101 @@
 <style>
-    div.side-left {
-        float:left;
-        width:15%;
-        max-width:300px;
-        margin:20px 20px 0px 10px;
-        overflow:hidden;
-    }
-    
-    div.side-content{
-        height:600px;
-        padding:5px;
-        border:solid 1px pink;
-        border-radius:5px;
-    }
-    
-    div.side-ads {
-        height:300px;
-        padding:5px;
-        margin: 10px 0px 10px 0px;
-        border:solid 1px pink;
-        border-radius:5px;
-    }
-    
-    div.side-right {
-        float:left;
-        width:20%;
-        max-width:300px;
-        margin:20px 0px 0px 10px;
-        overflow:hidden;
-    }
-    
-    div.middle {
-        display:inline-block;
-        float:left;
-        width:60%;
-        min-height:200px;
-        max-width:900px;
-        border: solid 1px black;
-        position:relative;
-    }
-    div .col-12 {
-        width:100%;
-        padding:10px;
-    }
-
-    div.col-6 {
-        width:42%;
-        padding:10px;
-    }
-
-    div.col-4 {
-        width:20%;
-        padding:10px;
-    }
-
-    div.result-box {
-        position:relative;
-        border: solid 1px transparent;
-        padding:10px;
-        margin: 20px auto 20px auto;
-        width:90%;
-        font-family:sans-serif;
-        font-size:14px;
-        transition: 0.2s border;
-    }
-    
-    div.result-box:hover {
-        border: solid 1px #999;
-    }
-    
-    div.rb-main-info {
-        width:23%;
-        max-width:150px;
-        float:left;
-        
-    }
-    
-    div.expensive-flag {
-        display:inline-block;
-        width:96px;
-    }
-    
-    div.expensive-flag-text {
-        display:inline-block;
-        background-color:#ff944d;
-        color:white;
-        border-radius:5px;
-        border:outset 1px #ffce99;
-        padding:2px;
-        font-weight:bolder;
-        font-family:sans-serif;
-        box-shadow: 1px 1px 3px rgba(30,30,5,0.5);
-    }
-    
-    div.view-flight-button {
-        display:inline-block;
-        background-color:#45106e;
-        border-radius:5px;
-        border:outset 1px #45106e;
-        margin:10px 0px 20px 10px;
-        padding:5px;
-        transition: 0.2s background;
-    }
-    
-    div.view-flight-button:hover {
-        display:inline-block;
-        background-color:#8745b3;
-        border-radius:5px;
-        border:outset 1px #8745b3;
-        margin:10px 0px 20px 10px;
-        padding:5px;
-    }
-    div.view-flight-button a{
-        color:white;
-        text-decoration:none;
-        font-weight:bold;
-        padding:5px;
-    }
-    
-   
-    
-    div.flight-carrier {
-        display:block;
-        font-size:14px;
-        color: #444;
-        padding: 0px 0px 0px 5px;
-    }
-    
-    div.flight-time {
-        display:inline-block;
-        padding:5px;
-    }
-    
-    div.sb-container {
-        display:inline-block;
-        width:100%;
-        float:left;
-        padding:10px 0px 10px 0px;
-    }
-    
-    span.flight-destination {
-        font-weight:bold;
-    }
-    
-    span.flight-grey {
-        padding:0px 5px 0px 5px;
-        color:#777
-    }
-    
-    span.flight-stops {
-        
-        color:#45106e;
-    }
-    
-    div.flight-time.stops {
-        
-    }
-    
-    header.flight-search-header {
-        border: solid 1px black;
-        width:100%;
-        position:relative;
-        min-height:50px;
-    }
-    
-    header div.search-header-cities {
-        display:inline-block;
-        padding:10px;
-    }
-    
-    
-    div.flight-extra-info {
-        clear:both;
-        width:100%;
-        display:block;
-        border:solid 1px black;
-    }
-    
-    button.change-flight, input.change-flight {
-        padding:5px 15px 5px 15px;
-        border-radius:5px;
-        background-color:#45106e;
-        border: 1px groove #8745b3;
-        color:white;
-        font-size:14px;
-        font-family:sans-serif;
-        font-weight:bold;
-        cursor:pointer;
-    }
-    
-    button.change-flight:hover, input.change-flight:hover {
-        background-color:#8745b3;
-        border: 1px outset #8745b3;
-    }
-    
-    div.flight-header {
-        position:relative;
-        display:block;
-    }
-    
-    div.form-short-col-3 {
-        width:15%;
-        display:inline-block;
-    }
-    
-    div.form-short-col-2 {
-        width:100%;
-        display:block;
-        position:
-    }
-    
-    button.passengers {
-        
-    }
-    
-    div.short-form {
-        display:none;
-    }
-    
-    div.passengers-container {
-        display:inline-block;
-        position:relative;
-    }
-    
-    label.passengers {
-        width:40%;
-        display:inline-block;
-    }
-    
-    select.passengers {
-        width:40%;
-        display:inline-block;
-    }
-    
-    div.passengers {
-        position:absolute; 
-        top:20px;
-        left:0px;
-        background-color:white;
-        border:1px solid black;
-        width:200px;
-        z-index:1;
-        font-family:sans-serif;
-        font-size:12px;
-    }
-    
-    form div.short-form-group input {
-        padding:4px 5px;
-        font-size:12px;
-        border: solid 1px transparent;
-        border-color: #45106e #8828ab #45106e;
-        border-radius:4px;
-        width:80%;
-    }
-    
-    div.extra-information {
-        clear:left;
-        display:none;
-    }
-    
-    div.extra-info-body {
-        
-    }
-    
-    div.result-box:focus div.extra-information{
-        display:block;
-    }
-    
-    div.extra-info-menu {
-        display:inline-block;
-        padding:10px 20px 10px 20px;
-    }
-    
-    div.extra-info-menu.on {
-        display:inline-block;
-        margin-bottom: -1px;
-        padding:10px 20px 10px 20px;
-        border-top:solid 1px #BBB;
-        border-left:solid 1px #BBB;
-        border-right:solid 1px #BBB;
-        border-bottom:solid 5px #FFF;
-    }
-    
-    div.extra-info-menu.off {
-        display:inline-block;
-        margin-bottom: 0px;
-        padding:10px 20px 10px 20px;
-        border-top:solid 1px #FFF;
-        border-left:solid 1px #FFF;
-        border-right:solid 1px #FFF;
-        border-bottom:solid 1px transparent;
-    }
-    
-    div.flight-right-col {
-        display:block;
-        width:77%;
-        float:left;
-    }
-    
-    div.extra-info-header {
-        display:block;
-        clear:left;
-        border-bottom: solid 1px #BBB;
-    }
-    
-    h2.extra-info-title {
-        clear:left;
-        border-bottom:solid 1px #CCC;
-        margin: 10px auto 0px auto;
-        padding-left: 5px;
-        font-size:16px;
-        color:#555;
-    }
-    
-    div.flight-fare-row {
-        display:block;
-        font-size:14px;
-        color: #444;
-        padding: 0px 0px 0px 5px;
-    }
-    
-    div.flight-fare-left-col {
-        display:inline-block;
-        width:20%;
-        text-align:left;
-    }
-    div.flight-fare-right-col {
-        display:inline-block;
-        width:40%;
-        text-align:left;
-    }
-    
-    div.extra-info-details-wrapper.on {
-        display:block;
-    }
-    div.extra-info-details-wrapper.off {
-        display:none;
-    }
-    
-    div.extra-info-fares-wrapper.on {
-        display:block;
-    }
-    div.extra-info-fares-wrapper.off {
-        display:none;
-    }
-    div.pagination {
-        margin: 0 auto;
-        
-    }
-    div.pagination ul.Paginate {
+    ul.col-6.flight {
         list-style-type:none;
-        display:block;
-        margin: 0 auto;
-        width:300px;
+        padding:0px 5px 0px 5px;
     }
     
-    div.pagination ul.Paginate li{
-        display:inline-block;
-        padding:5px 10px 5px 10px;
-        margin: 0px 5px 0px 5px;
-        border:solid 1px black;
+    ul.col-6.flight li {
+        padding:5px;
     }
-    div.flight-time.flightDepart{
+    span.flight-destination-iata {
         position:relative;
     }
-    span.flight-destination-name {
-        visibility: hidden;
-        opacity: 0;
-        transition: visibility 0s, opacity 0.2s linear;
-        position:absolute;
-        top:-24px;
-        left:17px;
-        width:auto;
-        white-space:nowrap;
-        background-color:#666;
-        color: #FFF;
-        padding:2px 5px 2px 5px;
-        border-radius:5px;
-        border: solid 1px #444;
-    }
-    span.flight-desc-pointer {
-        visibility: hidden;
-        opacity: 0;
-        transition: visibility 0s, opacity 0.2s linear;
-        position:absolute;
-        top:-3px;
-        left:59px;
-        width: 0; 
-        height: 0; 
-        border-left: 10px solid transparent;
-        border-right: 10px solid transparent;
-
-        border-top: 10px solid #666;
-    }
-    span.flight-destination-iata:hover span.flight-destination-name, span.flight-destination-iata:hover span.flight-desc-pointer {
-        visibility: visible;
-        opacity: 1;
+    
+    span.flight-destination-name.iata {
+        top:-30px;
+        left: -96px;
+        z-index:1;
     }
     
+    span.flight-desc-pointer.iata {
+        top:-6px;
+        left:50px;
+        z-index:1;
+    }
+    
+    h5.col-6 {
+        font-family:sans-serif;
+        width:37%;
+        float:left;
+        text-align:center;
+        margin: 10px 0px 10px 0px;
+    }
+    div.submit {
+        clear: left;
+    }
+    
+    a.ham-icon {
+    background: #667655;
+    display: inline-block;
+    height: 24px;
+    width: 25px;
+    position:relative; top:13px; left:36px;
+    display:none;
+    }
+    
+    div.submit button.search {
+        margin: 10px auto;
+    }
+    
+    div.nav-hamburger {
+        width: 18px;
+        height: 2px;
+        background-color: white;
+        margin: 3px 0;
+    }
+
+    div.nav-hamburger-container {
+        display:inline-block;
+        height:12px;
+        margin:0px 0px 0px 4px;
+    }
+    
+    button.flight-list {
+        background:transparent;
+        border:solid 1px transparent;
+        padding:7px;
+        border-radius:10px;
+    }
+    
+    button.flight-list.on {
+        background:linear-gradient(to top, #ffbe00 0, #ffcb00 100%);
+        padding:7px;
+        border-radius:10px;
+        border:solid 1px transparent;
+    }
+    
+    button.flight-list:hover {
+        background:#FFDF8D;
+        border:solid 1px transparent;
+    }
+    
+    button.flight-list:active {
+        background:linear-gradient(to top, #ffbe00 0, #ffcb00 100%);
+    }
 </style>
 <% @query_no = params[:query].count %>
 <div class='container'>
     <div class='container clearfix'>
         <div class='side-left'>
+            <a href="javascript:void(0)" class = 'ham-icon' onclick="showSide()"><!--&#9776--><div class="nav-hamburger-container"><div class="nav-hamburger"></div><div class="nav-hamburger"></div><div class="nav-hamburger"></div></div></a>
+            <div class='side-inner'>
             <div class='side-content'>
             </div>
             <div class='side-ads' style="height:auto;">
-
-                <button type='button' onclick='myfunction2()'>
-                 Click me
-                </button>
+                Ads go here
             </div> 
+            </div>
+            
         </div>
     <div class='col-10 middle clearfix paginate'>
      <header class='flight-search-header'>
@@ -426,10 +111,6 @@
                 &#8594;
                 <span><%= params["query_2_date_r"] != nil ? params["query_2_date_r"] : params["query_#{@query_no}_date_l"] %></span>
             </div> 
-
-            <button class='change-flight'>
-                Change
-            </button>
         </div>
         <div class='short-form'>
             <%= form_tag search_path, method: :GET, role: "search"  %>
@@ -499,9 +180,7 @@
                 Search
             </button>
         </div>
-    </header>
-    <div class='cover'></div>
-    <div class='cover_data'></div>
+    </header>  
         
 <% @params = {} %>
 <% @params["query"] = {} %>
@@ -517,8 +196,12 @@
 $(window).load(function(){
     $('.cover').fadeOut(1000);
 })
-var response
+
+//create params to be sent to next page when clicking on the "View Flight" button
+var urlParams = window.location.href.split('search?')[1];
         
+var response
+var homeUrl = "pages/home";       
 function googleQPXrequest(){
          
          $.ajax({
@@ -530,7 +213,13 @@ function googleQPXrequest(){
           success:function (data) {
              $('.cover_data').fadeOut(1000);
              response = data;
-            testing();
+             try {
+            showResult();
+             } catch (e) {
+             
+            console.log(data);
+            showNearBy();
+            }
           },
           error:function (data) {
             return false
@@ -541,11 +230,11 @@ function googleQPXrequest(){
         
         window.onload = function() {
             var data = googleQPXrequest();
-            
         }
         
-        function testing(){
+        function showResult(){
             var content = "";
+            var content_h = "";
             for (i = 0; i < Object.keys(response['trips']['tripOption']).length; i++) { 
                 content += "<div class='result-box clearfix' tabindex='0'>" +
                 "<div class='box-header'>" +
@@ -564,12 +253,13 @@ function googleQPXrequest(){
                     "<div class='paw-icon'>" +
                     "</div>" +
                     "<div class='view-flight-button'>" +
-                        "<a href='/search_show?'>View Flight</a>" +
+                        "<button class='show-flight-button' type='button' onclick='showSearch("+i+")'>View Flight</button>"; 
+
+                     content += "</div>" +
                     "</div>" +
-                "</div>" +
-                "<div class='carrier-icon'>" +
-                "</div>"  + 
-                "<div class='flight-right-col'>" ;
+                    "<div class='carrier-icon'>" +
+                    "</div>"  + 
+                    "<div class='flight-right-col'>" ;
                 
                 for(j=0; j < Object.keys(response['trips']['tripOption'][i]['slice']).length; j++){
                         if (Object.keys(response['trips']['tripOption'][i]['slice'][j]['segment']).length = 2) { 
@@ -906,23 +596,145 @@ function googleQPXrequest(){
                         content += "</div>" +
                     "</div>" +
                 "</div>" +
-            "</div>"; 
+            "</div>";
             }
             document.getElementById("f-results-container").innerHTML = content;
-            console.log(response);
             $(function() {
                 $(".pagination").customPaginate({
                     items: Object.keys(response['trips']['tripOption']).length,
                     itemsToPaginate: ".result-box",
-                    itemsPerPage: 10,
-                    cssStyle: 'light-theme'
+                    itemsPerPage: 30,
                 });
             });
         } 
         
+        function showSearch(x) {
+            
+            var now = new Date();
+            now.setTime(now.getTime() + 0.166667 * 3600 * 1000);
+            localStorage.search = JSON.stringify(response['trips']['tripOption'][x]);
+            
+            localStorage.data = JSON.stringify(response['trips']['data']);
+            window.location.href = "/search_show?" + urlParams;
+            
+        }
+        
+        
+                
+        var origin;      
+        var destination;
+        function showNearBy(){
+            var urlT = window.location.href.split("?")[1].split("&");
+            delete urlT[1];
+            delete urlT[2];
+            var content = "";
+            
+            content += "<h3>Sorry.. but could you narrow down your search?. <br>Pick an Airport your and coming from and an Airport you are going to, then click 'search' </h3>" +
+                "<h5 class='col-6'> Origin </h5>" +
+                "<h5 class='col-6'> Destination </h5>" +
+                "<ul class='col-6 flight'>";
+            
+            for (i = 0; i < Object.keys(response['origin']).length; i++) { 
+                if(response['origin'][i]['iata'] != null){
+                content += "<li>" +
+                                "<span class='flight-destination-iata'>" +
+                                    "<button class='flight-list origin off' id='origin-"+i+"'>" +
+                                    response['origin'][i]['name'] + " (" + response['origin'][i]['iata'] + ")" +
+                                    "</button>" +
+                                    "<span class='flight-destination-name iata'>" +
+                                     response['origin'][i]['city'] + ", " + response['origin'][i]['name'] + " - " + response['origin'][i]['country'] +
+                                    "</span><span class='flight-desc-pointer iata'></span>" +
+                                "</span>" +
+                                "</li>";
+                }
+            }  
+            
+            content += "</ul>" +
+                "<ul class='col-6 flight'>";
+            
+            for (i = 0; i < Object.keys(response['destination']).length; i++) {
+                if(response['destination'][i]['iata'] != null){
+                content += "<li>" +
+                                "<span class='flight-destination-iata'>" +
+                                    "<button class='flight-list destination off' id='destination-"+i+"'>" +
+                                    response['destination'][i]['name'] + " (" + response['destination'][i]['iata'] + ")"+
+                                    "</button>" +
+                                    "<span class='flight-destination-name iata'>" +
+                                     response['destination'][i]['city'] + ", " + response['destination'][i]['name'] + " - " + response['destination'][i]['country'] +
+                                    "</span><span class='flight-desc-pointer iata'></span>" +
+                                "</span>" +
+                                "</li>";
+                }
+            }  
+            content += "</ul>" +
+                "<div class='submit'>" +
+                "<button class='search' type='search'>Search</button>" +
+                "</div>" +
+                "<p> not finding a suitable airport? <a href='"+homeUrl+"'>click here</a> to go back to the main search engine to try again</p>"
+            ;
+            
+            document.getElementById("f-results-container").innerHTML = content;
+            
+            $( ".flight-list.origin" ).click(function(){
+                var i = event.target.id.split("-")[1];
+                origin = response['origin'][i]['city'] + ", (" + response['origin'][i]['iata'] + "), " + response['origin'][i]['name'] + " - " + response['origin'][i]['country'];
+                urlT[1] = "&query%5Bquery1%5Bquery_1_1%5D%5D=" + encodeURIComponent(origin);
+                var y = event.target.id;
+                var x = document.getElementById(y);
+                if(x.className == "flight-list origin on") {
+                    
+                }
+                else {
+                z = document.getElementsByClassName("flight-list origin on");
+                    for(i=0; z.length; i++) {
+                        if (z[i].className === 'flight-list origin on') {
+                             z[i].className = 'flight-list origin off';
+                        }
+                    }
+                }
+                x.className = "flight-list origin on";
+            });
+            
+            $( ".flight-list.destination" ).click(function(){
+                var i = event.target.id.split("-")[1];
+                destination = response['destination'][i]['city'] + ", (" + response['destination'][i]['iata'] + "), " + response['destination'][i]['name'] + " - " + response['destination'][i]['country'];
+                urlT[2] = "&query%5Bquery1%5Bquery_1_2%5D%5D=" + encodeURIComponent(destination);
+                var y = event.target.id;
+                var x = document.getElementById(y);
+                if(x.className == "flight-list destination on") {
+                    
+                }
+                else {
+                z = document.getElementsByClassName("flight-list destination on");
+                    for(i=0; z.length; i++) {
+                        if (z[i].className === 'flight-list destination on') {
+                             z[i].className = 'flight-list destination off';
+                        }
+                    }
+                }
+                x.className = "flight-list destination on";
+            });
+            
+            $( ".search" ).click(function(){
+                if(destination == null || origin == null) {
+                    $( "body" ).append("<div class='flash alert'>Please select an Origin and Destination</div>");
+                }
+                else {
+                    var urlP = urlT.join("&");
+                    var urlC = window.location.href.split("?")[0] + "?" + urlP;
+                    window.location.href = urlC;
+                }
+            });
+            
+        }
         
     </script>
         <div id='f-results-container'>
+            <div class='loader-image'>
+                <%= image_tag('ajax-loader.gif') %>
+                <p class='loader'>Please wait... <br> we are getting the best results from over 150 pet friendly Airlines</p>
+                <div class='loader'><div class='loader-fill'></div></div>
+            </div>
         </div>
         <div class='pagination'></div>
     </div>

@@ -1,1 +1,255 @@
-Testing 1 2 3
+<style>
+   
+</style>
+<div class='container clearfix'>
+    <script>
+        function isJson(str) {
+            try {
+                JSON.parse(str);
+            } catch (e) {
+                return false;
+            }
+            return true;
+        }
+        
+        var response_pre = localStorage.search;
+        if (isJson(response_pre)) {
+            var response = JSON.parse(response_pre);
+        }
+        else {
+            var obj = '{' 
+                 +'"pricing": ['
+                     +'{'
+                      +'"baseFareTotal": "GBP0",'
+                      +'"saleFareTotal": "GBP0",'
+                      +'"saleTaxTotal": "GBP0",'
+                      +'"saleTotal": "GBP0"'
+                      +'}],'
+                      +'"saleTotal": "GBP0"'
+                        +'}';
+            
+            var response = JSON.parse(obj);
+        }
+        
+        var data_pre = localStorage.data;
+        if (isJson(data_pre)) {
+            var data = JSON.parse(data_pre);
+        }
+        else {
+            var data = null;
+        }
+
+        
+        
+        
+        function toggleFares(){
+            var x = getElementById("toggle-fares");
+            
+                var tripFares = "<a href='javascript:void(0)' onclick='toggleFares()' id='toggle-fares' class='toggle-fares-on'> Traveller Adult:" +
+                params["adult"];
+                tripFares += "</a>";
+                document.getElementById("trip-fares").innerHTML = tripFares;
+        }
+        
+        window.onload = function()
+        {
+            
+            removeSearch = setTimeout(function(){ 
+                localStorage.removeItem("search");
+                localStorage.removeItem("data");
+                alert("You're Search has expired. Please make a new search for more accurate results"); 
+            
+            }, 600000);
+            
+            function getTripSearchData() {
+            try {
+            var content = ""; 
+            var m = 0;
+              for(n=0;n < Object.keys(response['slice']).length; n++) {
+                            if (m == 0) {
+                            content += "<h2 class='extra-info-title'>" +
+                                            "Depart" +
+                                       "</h2>";
+                            }
+                            else if (m == 1) {
+                                content += "<h2 class='extra-info-title'>" +
+                                                "Return" +
+                                           "</h2>";
+                            }
+                            
+                            for(o=0; o < Object.keys(response['slice'][n]['segment']).length;o++){
+                                content += "<div class='extra-info-body'>" +
+                                    "<div class='flight-time sb-container'>" +
+                                        "<div class='flight-carrier'>";
+                                        for(k=0; k < Object.keys(data['carrier']).length; k++) {
+                                            if(data['carrier'][k]['code'] == response['slice'][n]['segment'][o]['flight']['carrier']) {
+                                               content += data['carrier'][k]['name'];
+                                            }
+                                        }
+                                        content += "</div>" +
+                                        "<div class='flight-time flightDepart'>" +
+                                            "<span class='flight-destination'>" +
+                                        response['slice'][n]['segment'][o]['leg'][0]["departureTime"].substring(11,16) +
+                                        "</span> - " +
+                                        "<span class='flight-destination-iata'>" +
+                                            response['slice'][n]['segment'][o]['leg'][0]["origin"] +
+                                            "<span class='flight-destination-name'>";
+                                            for(k=0; k < Object.keys(data['airport']).length; k++) {
+
+                                                if(data['airport'][k]['code'] == response['slice'][n]['segment'][o]['leg'][0]["origin"]) {
+                                                   content += data['airport'][k]['name']
+                                                }
+                                            }
+                                            content += "</span><span class='flight-desc-pointer'></span>" +
+                                        "</span>" +
+                                        "</div>" +
+                                        "<div class='flight-time arrow'>&#8594;</div>" +
+                                        "<div class='flight-time flightDepart'>" +
+                                            "<span class='flight-destination'>" +
+                                                response['slice'][n]['segment'][o]['leg'][0]["arrivalTime"].substring(11,16) +
+                                            "</span> - " +
+                                            "<span class='flight-destination-iata'>" +
+                                                response['slice'][n]['segment'][o]['leg'][0]["destination"] +
+                                             "<span class='flight-destination-name'>";
+                                            for(k=0; k < Object.keys(data['airport']).length; k++) {
+
+                                                if(data['airport'][k]['code'] == response['slice'][n]['segment'][o]['leg'][0]["destination"]) {
+                                                   content += data['airport'][k]['name']
+                                                }
+                                            }
+                                            content += "</span><span class='flight-desc-pointer'></span>" +
+                                            "</span>" +
+                                        "</div>" +
+
+                                        "<div class='flight-time flight-duration'>" +
+                                           "<span class='flight-grey'>" + 
+                                            Math.floor(response['slice'][n]['segment'][o]["duration"]/60).toString() + 
+                                            "hr" + 
+                                            (response['slice'][n]['segment'][o]["duration"] % 60 ) +
+                                            "m" +
+                                            "</span>" +
+                                        "</div>" +
+                                        "<div class='flight-time'>" +
+                                            "<span class='flight-grey'>" +
+                                            moment(response['slice'][n]['segment'][o]['leg'][0]["departureTime"]).format("MMM Do YY") +
+                                            "</span>" +
+                                        "</div>" +
+                                    "</div>" +
+                                "</div>";
+                            }
+                                
+                            m = m + 1;
+                        }
+            return content;
+            } catch (e) {
+                return "<b class='red-important'>this search result has expired, please make another search</b> <p> read the information bellow for general advice on pet travel </p>"
+            }
+        }
+            
+            
+              if(getTripSearchData() == null){
+                            console.log("it was null");
+                        }
+                        else {
+                            console.log("it has content");
+                        }
+            console.log( getTripSearchData()); 
+            document.getElementById("search-container").innerHTML = getTripSearchData();
+            document.getElementById("trip-price").innerHTML = response["saleTotal"].split("GBP").join("");
+            document.getElementById("total-price").innerHTML = response["saleTotal"].split("GBP").join("");
+            document.getElementById("flight-price").innerHTML = response["pricing"][0]["baseFareTotal"].split("GBP").join("");
+            document.getElementById("tax-price").innerHTML = response["pricing"][0]["saleTaxTotal"].split("GBP").join("");
+            console.log(response);
+        }
+       
+        
+    </script>
+    <div class='main-content' id='main-content'>
+        <h3 class='trip-sum-title right'>
+            Passengers - <span>
+            <% params[:passenger].each do |x, y| %>
+                <% if y != "0" %>
+                <%= x.capitalize %>: <%= y %>,
+                <% end %>
+            <% end %>
+            </span>
+        </h3>
+        <h3 class='trip-sum-title'> Journey Details</h3>
+        
+        <div id='search-container' class='clearfix'>
+        </div>
+        <div class='pet-info container'>
+            <h3 class='trip-sum-title'>
+                Pets Not Allowed (In most Cases)
+            </h3>
+            
+            <p>Many Flights will not transport the following breeds of dogs as checked baggage or cargo: </p>
+            <ul class='col-6'>
+                <li> Boston Terrier</li>
+                <li> Affenpinscher</li>
+                <li> Boxer (all breeds)</li>
+                <li> Brussels Griffon</li>
+                <li> Bulldog (all breeds)</li>
+                <li>Cane Corso</li>
+                <li>Chow Chow</li>
+                <li>Dogue De Bordeaux</li>
+                <li>English Toy Spaniel</li>
+                <li>Lhasa Apso</li>
+                
+            </ul>
+            <ul class='col-6'>
+            <li>Japanese Spaniel (Chin)</li>
+                
+                <li>Mastiff (all breeds)</li>
+                <li>Pekinese</li>
+                <li>Pit Bull</li>
+                <li>Presa Canario</li>
+                <li>Pug (all breeds)</li>
+                <li>Staffordshire Bull Terrier</li>
+                <li>Shar Pei</li>
+                <li>Shih Tzu and Tibetan Spaniel</li>
+            </ul>
+            <div class='clearfix'></div>
+            <p>The following breeds of cats are not transported:</p>
+            
+            <ul class='col-12'>
+                <li>Burmese</li>
+                <li>Exotic</li>
+                <li>Himalayan</li>
+                <li>Persian</li>
+                <li>English Shorthair and Scottish Fold</li>
+            </ul>
+            
+            <p> for more information <a href='#'>click here</a></p>
+        </div>
+    </div>
+    <div class='side-col'>
+        <h3 class='trip-sum-title'>
+            Trip Details
+        </h3>
+
+        <div class='trip-details-container'>
+            <div id='trip-fares'>
+             <div class='trip-fare-row'><b> Fare Total:</b>
+               <span class='price-info'>£<span id='total-price'></span></span></div>
+             <div class='trip-fare-row in'><span> Flight </span>
+               <span class='price-info'>£<span id='flight-price'></span></span></div>
+                <div class='trip-fare-row in'><span> Tax </span>
+               <span class='price-info'>£<span id='tax-price'></span></span></div>
+            </div>
+            
+            <div class='search-price'>
+            <span class='total-price-main'>Total Price:</span>£<span id='trip-price'></span>
+            </div>
+            <div class='trip-far-row'><span class='price-info-GPB'>Prices are shown in British pounds sterling</span></div>
+            <div class='contact-box'>
+                
+            </div>
+        </div>
+    </div>
+    <div class='side-col ad-place'>
+        Ad Placement
+    </div>
+</div>
+
+<%= render 'pages/footer'%>
