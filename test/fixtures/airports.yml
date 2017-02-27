@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  city: MyString
+  country: MyString
+  iata: MyString
+  icao: MyString
+  latitude_deg: 1
+  longitude_deg: 1
+  altitude_feet: 1
+  timezone: 1
+  DST: MyString
+  tz_database_timezone: MyString
+
+two:
+  name: MyString
+  city: MyString
+  country: MyString
+  iata: MyString
+  icao: MyString
+  latitude_deg: 1
+  longitude_deg: 1
+  altitude_feet: 1
+  timezone: 1
+  DST: MyString
+  tz_database_timezone: MyString

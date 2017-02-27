@@ -1,0 +1,27 @@
+#Array Syntax
+<% @split.each do |x| %>
+    <% if x === "USA" %>
+    <%=x.strip%>
+    <% elsif x.length === 3 && x === x.upcase %>
+    ",<br>
+    "<%= x %>" => "<% else %><%=x.strip%>
+    <% end %>
+    <% end %>
+
+
+# CSV tainted code
+
+<% @split.each do |x| %>
+    <% if x === "USA" || x === "SPB" || x === "NAF"%>
+    <%=x.strip%>
+    <%elsif x.length === 3 && x === x.upcase %>"<br><%=i = i + 1%>|<%= x %>|<%else%><%=x%>|
+    <% end %>
+    <% end %>
+ 
+<datalist id='listid'>
+        <% @cities_code.sort.each do |key, value|%>
+       <option label='<%= key %>' value='<%= value %>'>
+        <% end %>
+           
+       ...
+    </datalist>

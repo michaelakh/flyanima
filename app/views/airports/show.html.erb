@@ -1,0 +1,60 @@
+<div class='container'>
+
+<p>
+  <strong>Name:</strong>
+  <%= @airport.name %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @airport.city %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @airport.country %>
+</p>
+
+<p>
+  <strong>Iata:</strong>
+  <%= @airport.iata %>
+</p>
+
+<p>
+  <strong>Icao:</strong>
+  <%= @airport.icao %>
+</p>
+
+<p>
+  <strong>Latitude deg:</strong>
+  <%= @airport.latitude_deg %>
+</p>
+
+<p>
+  <strong>Longitude deg:</strong>
+  <%= @airport.longitude_deg %>
+</p>
+
+<p>
+  <strong>Altitude feet:</strong>
+  <%= @airport.altitude_feet %>
+</p>
+
+<p>
+  <strong>Timezone:</strong>
+  <%= @airport.timezone %>
+</p>
+
+<p>
+  <strong>Dst:</strong>
+  <%= @airport.DST %>
+</p>
+
+<p>
+  <strong>Tz database timezone:</strong>
+  <%= @airport.tz_database_timezone %>
+</p>
+
+<%= link_to 'Edit', edit_airport_path(@airport) %> |
+<%= link_to 'Back', airports_path %>
+</div>

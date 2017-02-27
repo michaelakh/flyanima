@@ -1,0 +1,72 @@
+<%= form_for(airport) do |f| %>
+  <% if airport.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(airport.errors.count, "error") %> prohibited this airport from being saved:</h2>
+
+      <ul>
+      <% airport.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :city %>
+    <%= f.text_field :city %>
+  </div>
+
+  <div class="field">
+    <%= f.label :country %>
+    <%= f.text_field :country %>
+  </div>
+
+  <div class="field">
+    <%= f.label :iata %>
+    <%= f.text_field :iata %>
+  </div>
+
+  <div class="field">
+    <%= f.label :icao %>
+    <%= f.text_field :icao %>
+  </div>
+
+  <div class="field">
+    <%= f.label :latitude_deg %>
+    <%= f.number_field :latitude_deg %>
+  </div>
+
+  <div class="field">
+    <%= f.label :longitude_deg %>
+    <%= f.number_field :longitude_deg %>
+  </div>
+
+  <div class="field">
+    <%= f.label :altitude_feet %>
+    <%= f.number_field :altitude_feet %>
+  </div>
+
+  <div class="field">
+    <%= f.label :timezone %>
+    <%= f.number_field :timezone %>
+  </div>
+
+  <div class="field">
+    <%= f.label :DST %>
+    <%= f.text_field :DST %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tz_database_timezone %>
+    <%= f.text_field :tz_database_timezone %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
