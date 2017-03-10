@@ -1,5 +1,5 @@
 class SearchesController < ApplicationController
-    
+    require 'twitter_cldr'
     def index
         #Prepare data for Google QPX Api Call
         
@@ -32,7 +32,7 @@ class SearchesController < ApplicationController
 
             @slice = Array.new
         
-            permitted_carriers = ["A3","RE","EI","SU","AR","AM","VV","AH","G9","BT","AB","SB","AC","TX","CA","UX","AF","AI","KM","NZ","FJ","TN","TS","FL","AS","AZ","NH","G4","HP","AA","NH","W3","OR","OZ","5Y","OS","AV","9V","PG","BD","BA","SN","FB","9K","BW","CX","KX","5J","CI","MU","CZ", "DE","CO","CM","SS","OU","CU","CY","OK","DL","9H","U2","WK","MS","LY","EK","EY","BR","AY", "BE","F9","GA","4U","ZK","GF", "HU","HA","QX","IB","FI","6E","7I","4O","JL","9W","B6","S2","JQ","KQ","IT","KL","KE","MN","KU","LA","XL","LP","LI","LO","LH","MN","MA","IG", "MX","ME","YX","ZB","OM","DD","NW","DY","OA","WY", "PC", "PR","NI","QF","QR","AT","RJ","FR","S7","RZ","SK","SP","SV","CB","SQ","NE","5P","OO","XZ","WN","JK","SG","NK","UL","SY","LX","TA","T0","JJ","TP","RO","TG","BY","UN","HV","TU","TK","UA","U6","US","HY","SA","VN","NN","VX","VS","VA","V2","Y4","VY","WS","W6","WW","SE","Y0","ZJ","Z2" ]
+            permitted_carriers = ["A3","RE","EI","SU","AR","AM","VV","AH","G9","BT","AB","SB","AC","TX","CA","UX","AF","AI","KM","NZ","FJ","TN","TS","FL","AS","AZ","NH","G4","HP","AA","W3","OR","OZ","5Y","OS","AV","9V","PG","BD","BA","SN","FB","9K","BW","CX","KX","5J","CI","MU","CZ","FC","DE","CO","CM","SS","OU","CU","CY","OK","DL","9H","U2","WK","MS","LY","EK","EY","BR","AY","7F","BE","F9","GA","4U","ZK","GF","HU","HA","QX","IB","FI","6E","7I","4O","JL","9W","B6","S2","JQ","KQ","IT","KL","KE","MN","KU","LA","XL","LP","LI","LO","LH","MN","MA","IG","MX","ME","YX","ZB","OM","DD","NW","DY","OA","WY","PC","PR","NI","QF","QR","AT","RJ","FR","S7","RZ","SK","SP","SV","CB","SQ","NE","5P","OO","XZ","WN","JK","SG","NK","UL","SY","LX","TA","T0","JJ","TP","RO","TG","BY","UN","HV","TU","TK","UA","U6","US","HY","SA","VN","NN","VX","VS","VA","V2","Y4","VY","WS","W6","SE","Y0","ZJ"]
         
             params[:query].each do |x, y|
                 i = i + 1

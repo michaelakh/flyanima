@@ -541,6 +541,9 @@
         display:inline-block;
         float:right;
     }
+    span#currency-name {
+        text-transform:capitalize;
+    }
     
     div.trip-fare-row {
         float:left;

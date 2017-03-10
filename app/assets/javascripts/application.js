@@ -15,10 +15,11 @@
 //= require jquery_ujs
 //= require jquery-ui/widgets/autocomplete
 //= require moment
-//= require_tree .
+//= require_directory .
 //= require twitter/typeahead
 //= require twitter/typeahead.min
-
+//= require twitter_cldr/en-GB
+//= require twitter_cldr/core
 //= require turbolinks
 
 

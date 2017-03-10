@@ -147,19 +147,20 @@
         }
             
             
-              if(getTripSearchData() == null){
-                            console.log("it was null");
-                        }
-                        else {
-                            console.log("it has content");
-                        }
-            console.log( getTripSearchData()); 
+            fmt = new TwitterCldr.CurrencyFormatter();
+            
             document.getElementById("search-container").innerHTML = getTripSearchData();
-            document.getElementById("trip-price").innerHTML = response["saleTotal"].split("GBP").join("");
-            document.getElementById("total-price").innerHTML = response["saleTotal"].split("GBP").join("");
-            document.getElementById("flight-price").innerHTML = response["pricing"][0]["baseFareTotal"].split("GBP").join("");
-            document.getElementById("tax-price").innerHTML = response["pricing"][0]["saleTaxTotal"].split("GBP").join("");
-            console.log(response);
+            
+            document.getElementById("trip-price").innerHTML =  fmt.format(response["saleTotal"].substring(3), {currency: response["saleTotal"].substring(0,3)});
+            
+            document.getElementById("total-price").innerHTML = fmt.format(response["saleTotal"].substring(3), {currency: response["saleTotal"].substring(0,3)});
+            
+            document.getElementById("flight-price").innerHTML = fmt.format(response["pricing"][0]["baseFareTotal"].substring(3), {currency: response["pricing"][0]["baseFareTotal"].substring(0,3)});
+            
+            document.getElementById("tax-price").innerHTML = fmt.format(response["pricing"][0]["saleTaxTotal"].substring(3), {currency: response["pricing"][0]["saleTaxTotal"].substring(0,3)});
+            
+            document.getElementById("currency-name").innerHTML = TwitterCldr.Currencies.for_code(response["saleTotal"].substring(0,3))["name"];
+            
         }
        
         
@@ -231,17 +232,17 @@
         <div class='trip-details-container'>
             <div id='trip-fares'>
              <div class='trip-fare-row'><b> Fare Total:</b>
-               <span class='price-info'>£<span id='total-price'></span></span></div>
+               <span class='price-info'><span id='total-price'></span></span></div>
              <div class='trip-fare-row in'><span> Flight </span>
-               <span class='price-info'>£<span id='flight-price'></span></span></div>
+               <span class='price-info'><span id='flight-price'></span></span></div>
                 <div class='trip-fare-row in'><span> Tax </span>
-               <span class='price-info'>£<span id='tax-price'></span></span></div>
+               <span class='price-info'><span id='tax-price'></span></span></div>
             </div>
             
             <div class='search-price'>
-            <span class='total-price-main'>Total Price:</span>£<span id='trip-price'></span>
+            <span class='total-price-main'>Total Price:</span><span id='trip-price'></span>
             </div>
-            <div class='trip-far-row'><span class='price-info-GPB'>Prices are shown in British pounds sterling</span></div>
+            <div class='trip-far-row'><span class='price-info-GPB'>Prices are shown in <span id='currency-name'></span></span></div>
             <div class='contact-box'>
                 
             </div>

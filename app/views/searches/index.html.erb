@@ -216,8 +216,6 @@ function googleQPXrequest(){
              try {
             showResult();
              } catch (e) {
-             
-            console.log(data);
             showNearBy();
             }
           },
@@ -241,9 +239,10 @@ function googleQPXrequest(){
                 "</div>" +
                 "<div class='rb-main-info'>" +
                     "<div class='rb-price'>" +
-                        "<span class='price'>" +
-                            response['trips']['tripOption'][i]["saleTotal"].split("GBP").join("") +
-                        "</span>" +
+                        "<span class='price'>";
+                    fmt = new TwitterCldr.CurrencyFormatter();
+                    content += fmt.format(response['trips']['tripOption'][i]["saleTotal"].substring(3), {currency: response['trips']['tripOption'][i]["saleTotal"].substring(0,3)});
+                        content += "</span>" +
                     "</div>" +
                     "<div class='expensive-flag'>" +
                         "<div class='expensive-flag-text'>" +
@@ -628,8 +627,8 @@ function googleQPXrequest(){
             delete urlT[1];
             delete urlT[2];
             var content = "";
-            
-            content += "<h3>Sorry.. but could you narrow down your search?. <br>Pick an Airport your and coming from and an Airport you are going to, then click 'search' </h3>" +
+           try{ 
+            content += "<h3>Sorry.. but could you narrow down your search?. <br>Pick an Airport you're going to (destination) and an Airport you are coming from (origin), then click 'search' </h3>" +
                 "<h5 class='col-6'> Origin </h5>" +
                 "<h5 class='col-6'> Destination </h5>" +
                 "<ul class='col-6 flight'>";
@@ -670,8 +669,12 @@ function googleQPXrequest(){
                 "<div class='submit'>" +
                 "<button class='search' type='search'>Search</button>" +
                 "</div>" +
-                "<p> not finding a suitable airport? <a href='"+homeUrl+"'>click here</a> to go back to the main search engine to try again</p>"
-            ;
+                "<p> not finding a suitable airport? <a href='"+homeUrl+"'>click here</a> to go back to the main search engine to try again</p>";
+            }
+            catch(e) {
+                content += "<h3>Sorry.. but there was an error getting your results?. It could be that the origin or destination cities you are flying from or to may not supported by our website yet. Please try again with different cities nearby </h3>"
+                content += "<p><a href='"+homeUrl+"'>click here</a> to do another search</p><p> if you are still getting errors, please contact us at (WIP)";
+            }
             
             document.getElementById("f-results-container").innerHTML = content;
             

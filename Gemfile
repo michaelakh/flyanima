@@ -1,5 +1,9 @@
 source 'https://rubygems.org'
 
+gem 'twitter_cldr'
+
+gem 'globalize', git: 'https://github.com/globalize/globalize'
+gem 'activemodel-serializers-xml'
 #used for javascript time processing
 gem 'momentjs-rails'
 

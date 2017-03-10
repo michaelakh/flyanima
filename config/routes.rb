@@ -40,4 +40,11 @@ Rails.application.routes.draw do
   
   root to: "city_airport_ita_codes#index"
   end
+
+  TinoUk::Application.routes.draw do
+  resources :airlines do
+    collection { post :import }
+  end
+    root to: "airports#index"
+  end
 end
