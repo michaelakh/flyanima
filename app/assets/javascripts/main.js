@@ -40,6 +40,16 @@ function typeahead_initialize() {
 //   });
 // } );
 
+// test to see if data is json object
+
+function isJson(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
 
 ////////////////////////
 //get the date of today

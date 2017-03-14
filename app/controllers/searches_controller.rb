@@ -143,8 +143,6 @@ class SearchesController < ApplicationController
     end
 
     def show
-
-        
          if @response != nil && @response["trips"]["data"]["airport"] != nil &&  @response["trips"]["data"]["aircraft"] != nil && @response["trips"]["data"]["carrier"] != nil
             @airport = Hash.new 
             @aircraft = Hash.new 
@@ -178,6 +176,14 @@ class SearchesController < ApplicationController
         end
 
         #@response_p = Kaminari.paginate_array(@response["trips"]["tripOption"], total_count: @response["trips"]["tripOption"].count).page(params[:page]).per(10)
+    end
+    def contact
+        @airlines = Array.new;
+        i = 0
+        params[:iata].each do |x,y|
+          @airlines[i] = Airline.where(iata:y).first
+            i = i + 1
+        end
     end
     
     def search

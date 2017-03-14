@@ -1,0 +1,250 @@
+<style>
+    h2.header-contacts {
+        font-weight:bolder;
+        text-transform:uppercase;
+        text-decoration:underline;
+        
+    }
+    div.container.contact h3 {
+        margin:5px;
+    }
+
+    
+    ul.contact-listing {
+        padding-left:0px;
+        margin:0 auto;
+        width:100%;
+        list-style-type:none;
+        float:left;
+    }
+    ul.contact-listing li {
+        margin:5px 20px;
+        font-weight:bolder;
+        padding:5px;
+    }
+    
+    ul.contact-listing li a{
+        color:#0046B5;
+    }
+    p.paragraph-12 {
+        width:95%;
+        display:inline-block;
+        margin:10px auto;
+    }
+    p.paragraph-6 {
+        width:58%;
+        display:inline-block;
+        margin:10px auto;
+    }
+    div.container.center{
+        text-align:center;
+        width:58%;
+        display:inline-block;
+        border: outset 2px #CCC;
+        margin:10px;
+        transition:0.2s;
+    }
+    div.container.center.right {
+        float:left;
+        height:300px;
+        width:300px;
+        border:solid 1px #555;
+        margin:10px;
+    }
+    ul.pet-tips {
+        
+    }
+    ul.pet-tips li {
+        padding:2px;
+    }
+    
+    
+    @media only screen and (max-width : 992px) {
+        div.container.center,p.paragraph-6{
+            width:54%;
+        }
+        
+    }
+    
+    @media only screen and (max-width : 768px) {
+        div.container.center,p.paragraph-6{
+            width:43%;
+        }
+    }
+    
+    @media only screen and (max-width : 620px) {
+        div.container.center,p.paragraph-6{
+            float:none;
+            width:90%;
+            margin: 0 auto;
+            display:block;
+            height:210px;
+        }
+        div.container.center.right {
+            float:none;
+            display:block;
+            height:300px;
+            width:300px;
+            border:solid 1px #555;
+            margin:20px auto;
+        }
+        p.paragraph-6 {
+            margin:15px;
+            height:auto;
+        }
+    }
+</style>
+<script>
+var response_pre = localStorage.search;
+    if (isJson(response_pre)) {
+        var response = JSON.parse(response_pre);
+    }
+    else {
+        var obj = '{' 
+                 +'"pricing": ['
+                     +'{'
+                      +'"baseFareTotal": "'+localStorage.currency+'0",'
+                      +'"saleFareTotal": "'+localStorage.currency+'0",'
+                      +'"saleTaxTotal": "'+localStorage.currency+'0",'
+                      +'"saleTotal": "'+localStorage.currency+'0"'
+                      +'}],'
+                      +'"saleTotal": "'+localStorage.currency+'0"'
+                        +'}';
+
+        var response = JSON.parse(obj);
+    }
+var data_pre = localStorage.data;
+    if (isJson(data_pre)) {
+        var data = JSON.parse(data_pre);
+    }
+    else {
+        var data = null;
+    }
+    
+$(document).ready(function(){
+            if(localStorage.search != null){
+                removeSearch = setTimeout(function(){ 
+                    localStorage.removeItem("search");
+                    localStorage.removeItem("data");
+                    alert("You're Search has expired. Please make a new search for more accurate results"); 
+
+                }, 600000);
+            }
+
+            fmt = new TwitterCldr.CurrencyFormatter();
+    
+            document.getElementById("search-container").innerHTML = getTripSearchData();
+            
+            document.getElementById("trip-price").innerHTML =  fmt.format(response["saleTotal"].substring(3), {currency: response["saleTotal"].substring(0,3)});
+            
+            document.getElementById("total-price").innerHTML = fmt.format(response["saleTotal"].substring(3), {currency: response["saleTotal"].substring(0,3)});
+            
+            document.getElementById("flight-price").innerHTML = fmt.format(response["pricing"][0]["baseFareTotal"].substring(3), {currency: response["pricing"][0]["baseFareTotal"].substring(0,3)});
+            
+            document.getElementById("tax-price").innerHTML = fmt.format(response["pricing"][0]["saleTaxTotal"].substring(3), {currency: response["pricing"][0]["saleTaxTotal"].substring(0,3)});
+            
+            document.getElementById("currency-name").innerHTML = TwitterCldr.Currencies.for_code(response["saleTotal"].substring(0,3))["name"];
+            
+});
+</script>
+<div class='container contact'>
+    <p class='paragraph-12'>
+        Before contacting them, you should visit the airline(s) Pet Policy pages on their websites to find out more about what kind of pets they accept and how pet travel works with them
+    </p>
+    <div class='clearfix'>
+    
+    <div class='container center' id='contact-listing'>
+        <h3>Airline Contact Links:</h3>
+        <ul class='contact-listing'>
+            <% @airlines.each do |x| %>
+            <li>
+                <a href='<%= x[:contact_link]%>'><%= x[:name] %></a>
+            </li>
+            <% end %>
+        </ul>
+
+        <h3>Pet policy Links:</h3>
+        <ul class='contact-listing'>
+            <% @airlines.each do |x| %>
+            <li>
+                <a href='<%= x[:pet_info_link]%>'><%= x[:name] %></a>
+            </li>
+            <% end %>
+        </ul>
+    </div>
+    <div class='container center right'>
+        Ad content
+    </div>
+    <p class='paragraph-6'>
+        Some Airline websites have more that 1 language to choose from. Look for it at the top of the page (usually in the top right corner)
+    </p>
+    <p class='paragraph-6 clearfix'>
+        Disclaimer: we are not responsible for the content of external websites
+    </p>
+    </div>
+    
+    <div class='main-content' id='main-content'>
+    <h3 class='trip-sum-title right' id='header-1'>
+            Passengers - <span>
+            <% params[:passenger].each do |x, y| %>
+                <% if y != "0" %>
+                <%= x.capitalize %>: <%= y %>,
+                <% end %>
+            <% end %>
+            </span>
+        </h3>
+        <h3 class='trip-sum-title' id='header-2'> Journey Details</h3>
+    
+    <div id='search-container' class='clearfix'>
+    </div>
+    </div>
+    <div class='side-col'>
+        <h3 class='trip-sum-title'>
+            Trip Details
+        </h3>
+        
+        <div class='trip-details-container'>
+            <div id='trip-fares'>
+             <div class='trip-fare-row'><b> Fare Total:</b>
+               <span class='price-info'><span id='total-price'></span></span></div>
+             <div class='trip-fare-row in'><span> Flight </span>
+               <span class='price-info'><span id='flight-price'></span></span></div>
+                <div class='trip-fare-row in'><span> Tax </span>
+               <span class='price-info'><span id='tax-price'></span></span></div>
+            </div>
+
+            <div class='search-price'>
+            <span class='total-price-main'>Total Price:</span><span id='trip-price'></span>
+            </div>
+            <div class='trip-far-row'><span class='price-info-GPB'>Prices are shown in <span id='currency-name'></span></span></div>
+            <div class='contact-box'>
+
+            </div>
+        </div>
+    </div>
+    <div class='container'>
+        <h3 id='header-3'>Tips on flying with your pet</h3>
+        <ul class='pet-tips' id='pet-tips'>
+            <li>
+                It is a good idea to take your pet for a health checkup prior to flying. You will want your veterinarian to make sure that your pet is in top condition and all vaccinations are up to date. It is mandatory to see your vet if you are flying internationally.
+            </li>
+            <li>
+                Never give your pet a medical (prescription) sedative. If you want your dog or cat to be more relaxed, then give it a natural pet calmer. Many airlines will refuse to ship a pet that has been sedated.
+            </li>
+            <li>
+                If your pet tends toward motion sickness, limit food intake until you have reached your destination. Be sure that your pet gets some hydration prior to travel. It is best to accomplish this at home if possible.
+            </li>
+            <li>
+                Always purchase your pet carrier or pet crate well in advance of your trip so that the pet can get used to it. Measure your pet from tip of nose to base of tail and from top of head to floor in order to select the proper size carrier. The airlines will require that your pet be able to stand up and turn around in the carrier.
+            </li>
+            <li>
+                Be sure to tell the airline you will be flying with a pet when you make your reservation as they impose restrictions on the number of pets on a specific flight. You must make your reservations on the telephone. You cannot make reservations for your pet online.
+            </li>
+            <li>
+                Even though air travel for your dog or cat can be stressful for your pet, both planning and preparation will make things easier for you both. More information on airline travel tips can be found in our articles on pet travel.
+            </li>
+        </ul>
+    </div>
+</div>
+
+<%= render 'pages/footer'%>

@@ -21,11 +21,11 @@ Rails.application.routes.draw do
   post 'search_googleQPX', to:"searches#googleQPX" , as: 'search_googleQPX'
   get 'search_show', to:"searches#show" , as: 'search_show'
   post 'search_flights', to:"searches#create" 
-    
+  
   get '/city_airport_ita_codes/autocomplete', to:"city_airport_ita_codes#autocomplete", as:"city_airport_ita_codes/autocomplete"
     
   get 'airports/autocomplete', to:"airports#autocomplete", as:"airports/autocomplete"
-    
+  get 'contact/airlines', to:"searches#contact", as:"contact/airlines"  
   TinoUk::Application.routes.draw do
   resources :airports do
     collection { post :import }

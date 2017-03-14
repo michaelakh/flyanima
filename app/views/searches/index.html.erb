@@ -7,19 +7,15 @@
     ul.col-6.flight li {
         padding:5px;
     }
-    span.flight-destination-iata {
+    span.flight-time.flightDepart {
         position:relative;
     }
     
     span.flight-destination-name.iata {
-        top:-30px;
-        left: -96px;
-        z-index:1;
     }
     
     span.flight-desc-pointer.iata {
-        top:-6px;
-        left:50px;
+        left:58px;
         z-index:1;
     }
     
@@ -289,7 +285,7 @@ function googleQPXrequest(){
                                        content += response['trips']['data']['airport'][k]['name']
                                     }
                                 }
-                                content += "</span><span class='flight-desc-pointer'></span>" +
+                                content += "</span><span class='flight-desc-pointer iata'></span>" +
                             "</span>" +
                         "</div>" +
                         "<div class='flight-time arrow'>&#8594;</div>" +
@@ -306,7 +302,7 @@ function googleQPXrequest(){
                                        content += response['trips']['data']['airport'][k]['name']
                                     }
                                 }
-                                content += "</span><span class='flight-desc-pointer'></span>" +
+                                content += "</span><span class='flight-desc-pointer iata'></span>" +
                             "</span>" +
                         "</div>" +
                         "<div class='flight-time flight-duration'>";
@@ -609,11 +605,12 @@ function googleQPXrequest(){
         
         function showSearch(x) {
             
-            var now = new Date();
-            now.setTime(now.getTime() + 0.166667 * 3600 * 1000);
             localStorage.search = JSON.stringify(response['trips']['tripOption'][x]);
             
             localStorage.data = JSON.stringify(response['trips']['data']);
+            
+            localStorage.currency = response['trips']['tripOption'][0]["saleTotal"].substring(0,3);
+            
             window.location.href = "/search_show?" + urlParams;
             
         }

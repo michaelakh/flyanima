@@ -393,7 +393,7 @@
         transition: visibility 0s, opacity 0.2s linear;
         position:absolute;
         top:-24px;
-        left:17px;
+        left:10px;
         width:auto;
         white-space:nowrap;
         background-color:#666;
@@ -409,7 +409,7 @@
         transition: visibility 0s, opacity 0.2s linear;
         position:absolute;
         top:-3px;
-        left:59px;
+        left:68px;
         width: 0; 
         height: 0; 
         border-left: 10px solid transparent;
@@ -594,7 +594,9 @@
     b.red-important {
         color:red;
     }
-    
+    div.side-col.disclaimer {
+        background-color:transparent;
+    }
     /* Medium Devices, Tablets */
     @media only screen and (max-width : 992px) {
         div.side-col {
@@ -613,8 +615,13 @@
     @media only screen and (max-width : 768px) {
         div.side-col {
             float:left;
-            width:29%;
+            width:28%;
             padding:10px;
+        }
+        div.side-col.disclaimer {
+            background-color:transparent;
+            width:90%;
+            margin: 0 auto;
         }
         
         div.main-content {
@@ -664,9 +671,11 @@
     @media only screen and (max-width : 480px) {
         div.side-col {
             float:none;
-            width:100%;
+            width:95%;
             padding:0px;
+            margin: 0 auto;
         }
+        
         
         div.main-content {
             width:95%;

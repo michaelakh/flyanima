@@ -1,16 +1,45 @@
 <style>
-   
+    div.side-col.info {
+        background-color:white;
+    }
+    div.airline-contact-button {
+        background-color:#45106e;
+        border:groove 2px #45106e;
+        display:inline-block;
+        border-radius:5px;
+        transition:  0.2s;
+    }
+    
+    div.airline-contact-button:hover {
+        background-color:#8828ab;
+        border:groove 2px #8828ab;
+    }
+    
+    button.contact-button-inline {
+        background-color:transparent;
+        border:none;
+        cursor:pointer;
+        font-weight:bold;
+        font-family:"lato";
+        font-size:1.01em;
+        color:#2E58E2;
+        padding:0px;
+    }
+    
+    button.contact-button-inline:hover {
+        color:#3B85F2;
+        text-decoration:underline;
+    }
+    h3#Disclaimer {
+        margin:0px;
+    }
+    p {
+        margin:8px 0px;
+    }
 </style>
 <div class='container clearfix'>
     <script>
-        function isJson(str) {
-            try {
-                JSON.parse(str);
-            } catch (e) {
-                return false;
-            }
-            return true;
-        }
+        
         
         var response_pre = localStorage.search;
         if (isJson(response_pre)) {
@@ -20,12 +49,12 @@
             var obj = '{' 
                  +'"pricing": ['
                      +'{'
-                      +'"baseFareTotal": "GBP0",'
-                      +'"saleFareTotal": "GBP0",'
-                      +'"saleTaxTotal": "GBP0",'
-                      +'"saleTotal": "GBP0"'
+                      +'"baseFareTotal": "'+localStorage.currency+'0",'
+                      +'"saleFareTotal": "'+localStorage.currency+'0",'
+                      +'"saleTaxTotal": "'+localStorage.currency+'0",'
+                      +'"saleTotal": "'+localStorage.currency+'0"'
                       +'}],'
-                      +'"saleTotal": "GBP0"'
+                      +'"saleTotal": "'+localStorage.currency+'0"'
                         +'}';
             
             var response = JSON.parse(obj);
@@ -39,9 +68,6 @@
             var data = null;
         }
 
-        
-        
-        
         function toggleFares(){
             var x = getElementById("toggle-fares");
             
@@ -51,105 +77,39 @@
                 document.getElementById("trip-fares").innerHTML = tripFares;
         }
         
-        window.onload = function()
-        {
-            
-            removeSearch = setTimeout(function(){ 
-                localStorage.removeItem("search");
-                localStorage.removeItem("data");
-                alert("You're Search has expired. Please make a new search for more accurate results"); 
-            
-            }, 600000);
-            
-            function getTripSearchData() {
-            try {
-            var content = ""; 
-            var m = 0;
-              for(n=0;n < Object.keys(response['slice']).length; n++) {
-                            if (m == 0) {
-                            content += "<h2 class='extra-info-title'>" +
-                                            "Depart" +
-                                       "</h2>";
-                            }
-                            else if (m == 1) {
-                                content += "<h2 class='extra-info-title'>" +
-                                                "Return" +
-                                           "</h2>";
-                            }
-                            
-                            for(o=0; o < Object.keys(response['slice'][n]['segment']).length;o++){
-                                content += "<div class='extra-info-body'>" +
-                                    "<div class='flight-time sb-container'>" +
-                                        "<div class='flight-carrier'>";
-                                        for(k=0; k < Object.keys(data['carrier']).length; k++) {
-                                            if(data['carrier'][k]['code'] == response['slice'][n]['segment'][o]['flight']['carrier']) {
-                                               content += data['carrier'][k]['name'];
-                                            }
-                                        }
-                                        content += "</div>" +
-                                        "<div class='flight-time flightDepart'>" +
-                                            "<span class='flight-destination'>" +
-                                        response['slice'][n]['segment'][o]['leg'][0]["departureTime"].substring(11,16) +
-                                        "</span> - " +
-                                        "<span class='flight-destination-iata'>" +
-                                            response['slice'][n]['segment'][o]['leg'][0]["origin"] +
-                                            "<span class='flight-destination-name'>";
-                                            for(k=0; k < Object.keys(data['airport']).length; k++) {
+$(document).on('turbolinks:load', function(){
+            if(localStorage.search != null){
+                removeSearch = setTimeout(function(){ 
+                    localStorage.removeItem("search");
+                    localStorage.removeItem("data");
+                    alert("You're Search has expired. Please make a new search for more accurate results"); 
 
-                                                if(data['airport'][k]['code'] == response['slice'][n]['segment'][o]['leg'][0]["origin"]) {
-                                                   content += data['airport'][k]['name']
-                                                }
-                                            }
-                                            content += "</span><span class='flight-desc-pointer'></span>" +
-                                        "</span>" +
-                                        "</div>" +
-                                        "<div class='flight-time arrow'>&#8594;</div>" +
-                                        "<div class='flight-time flightDepart'>" +
-                                            "<span class='flight-destination'>" +
-                                                response['slice'][n]['segment'][o]['leg'][0]["arrivalTime"].substring(11,16) +
-                                            "</span> - " +
-                                            "<span class='flight-destination-iata'>" +
-                                                response['slice'][n]['segment'][o]['leg'][0]["destination"] +
-                                             "<span class='flight-destination-name'>";
-                                            for(k=0; k < Object.keys(data['airport']).length; k++) {
-
-                                                if(data['airport'][k]['code'] == response['slice'][n]['segment'][o]['leg'][0]["destination"]) {
-                                                   content += data['airport'][k]['name']
-                                                }
-                                            }
-                                            content += "</span><span class='flight-desc-pointer'></span>" +
-                                            "</span>" +
-                                        "</div>" +
-
-                                        "<div class='flight-time flight-duration'>" +
-                                           "<span class='flight-grey'>" + 
-                                            Math.floor(response['slice'][n]['segment'][o]["duration"]/60).toString() + 
-                                            "hr" + 
-                                            (response['slice'][n]['segment'][o]["duration"] % 60 ) +
-                                            "m" +
-                                            "</span>" +
-                                        "</div>" +
-                                        "<div class='flight-time'>" +
-                                            "<span class='flight-grey'>" +
-                                            moment(response['slice'][n]['segment'][o]['leg'][0]["departureTime"]).format("MMM Do YY") +
-                                            "</span>" +
-                                        "</div>" +
-                                    "</div>" +
-                                "</div>";
-                            }
-                                
-                            m = m + 1;
-                        }
-            return content;
-            } catch (e) {
-                return "<b class='red-important'>this search result has expired, please make another search</b> <p> read the information bellow for general advice on pet travel </p>"
+                }, 600000);
             }
-        }
-            
-            
+            var fmt;
             fmt = new TwitterCldr.CurrencyFormatter();
+    
+            function prepareContactInfo(){
+            var content = "";
+            content +=  "<p>" +
+            "Prices above reflect Human Travelers. Prices for pets may vary depending on the airline. Prices can range from 0USD to "+
+            "150USD depending on the pet(s), pet(s) weight and Airline" +
+            "</p>"+
+            "<p>"+
+                "Unfortunately, booking a flight ticket for animal(s) cannot be done online."+
+            "</p>"+
+            "<p>"+
+                "Please <button class='contact-button-inline' onclick='getContactLink()'>contact</button> the Airlines to make the booking. and get more information about your travel"+
+            "</p>";
+            return content
+            }
+            
+            document.getElementById("airline-contact-link").innerHTML = "<div class='airline-contact-button'><button class='show-flight-button' type='button' onclick='getContactLink()'>Airline Contact Information</button></div>"
+            
+            //getContactLink("Airline Contact Information");
             
             document.getElementById("search-container").innerHTML = getTripSearchData();
+            document.getElementById("airline-contact-info").innerHTML = prepareContactInfo();
             
             document.getElementById("trip-price").innerHTML =  fmt.format(response["saleTotal"].substring(3), {currency: response["saleTotal"].substring(0,3)});
             
@@ -161,7 +121,7 @@
             
             document.getElementById("currency-name").innerHTML = TwitterCldr.Currencies.for_code(response["saleTotal"].substring(0,3))["name"];
             
-        }
+        });
        
         
     </script>
@@ -248,8 +208,28 @@
             </div>
         </div>
     </div>
+    <div class='side-col info'>
+        <div id='airline-contact-info'>
+        <p>
+            Prices above reflect Human Travelers. Prices for pets may vary depending on the airline. Prices can range from 0USD to 150USD depending on the pet(s), pet(s) weight and Airline
+        </p>
+        <p>
+            Unfortunately, booking a flight ticket for animal(s) cannot be done online. 
+        </p>
+        <p>
+            Please <button class='contact-button-inline' onclick='getContactLink()'>contact</button> the Airlines to make the booking. and get more information about your travel
+        </p>
+        </div>
+        <div id='airline-contact-link'></div>
+    </div>
     <div class='side-col ad-place'>
         Ad Placement
+    </div>
+    <div class='side-col disclaimer'>
+        <h3 class='disclaimer' id='Disclaimer'>Disclaimer</h3>
+        <p>
+            To the best of our ability, we ensure that recommendations given on our website reflect the current airline regulations. We cannot predict how a given airline may enforce these regulations. Noncompliance may result in the need to deny boarding for your pet. We suggest that you carefully following the rules of the airline you are using.
+        </p>
     </div>
 </div>
 
