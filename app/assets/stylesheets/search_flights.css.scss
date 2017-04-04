@@ -53,9 +53,10 @@
         padding:10px;
         margin:10px;
     }
-    div .col-12 {
-        width:100%;
+    div.col-12 {
+        width:95%;
         padding:10px;
+        margin: 0 auto;
     }
 
     div.col-6 {
@@ -498,7 +499,8 @@
         border: solid 1px #AAA;
         height:100%;
         width:300px;
-        margin:10px auto;
+        height:300px;
+        margin:10px;
     }
 
     a.toggle-fares {
@@ -580,8 +582,12 @@
         padding-left:30px;
         margin: 10px 0px 10px 0px;
     }
-    
-    ul.col-12 {
+
+    ul.col-6.flight li{
+        position:relative;
+    }
+
+    ul.col-12.sf {
         font-family:sans-serif;
         width:100%;
         padding-left:30px;

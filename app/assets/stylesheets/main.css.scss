@@ -49,6 +49,44 @@ $top-nav_font_color_highlight:#FFFFFF;
     color:white;
 }
 
+.col-1 {
+    width:8%;
+}
+.col-2 {
+    width:12%;
+}
+.col-3 {
+    width:20%;
+}
+.col-4 {
+    width:30%;
+}
+.col-5 {
+    width:35%
+}
+.col-6 {
+    width:42%;
+}
+.col-7 {
+    width:50%;
+}
+.col-8 {
+    width:60%
+}
+.col-9 {
+    width:70%
+}
+.col-10 {
+    width:80%;
+}
+.col-11 {
+    width:88%;
+}
+.col-12 {
+    width:95%;
+    margin: 0 auto;
+}
+
 @keyframes notice {
     0%   {top:-200px;}
     10%  {top:0px;}

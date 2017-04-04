@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   get "/pages/*page" => "pages#show"
   get "/pages/home" => "pages#home"
+  get '/pages/pet_selfie_challenge', to:"pages#petSelfie", as:"/pet_selfie_challenge"
+  get '/pages/top_deals', to:"pages#topDeals", as:"/top_deals"
   root 'pages#home'
     
   get 'contact', to: 'messages#new', as: 'contact'

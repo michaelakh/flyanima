@@ -28,7 +28,7 @@
     }
     p.paragraph-12 {
         width:95%;
-        display:inline-block;
+        display:block;
         margin:10px auto;
     }
     p.paragraph-6 {
@@ -57,7 +57,9 @@
     ul.pet-tips li {
         padding:2px;
     }
-    
+    div.side-col.disclaimer-2 {
+        float:right;
+    }
     
     @media only screen and (max-width : 992px) {
         div.container.center,p.paragraph-6{
@@ -158,7 +160,7 @@ $(document).ready(function(){
         <ul class='contact-listing'>
             <% @airlines.each do |x| %>
             <li>
-                <a href='<%= x[:contact_link]%>'><%= x[:name] %></a>
+                <a href='<%= x[:contact_link]%>' target='_blank'><%= x[:name] %></a>
             </li>
             <% end %>
         </ul>
@@ -167,7 +169,7 @@ $(document).ready(function(){
         <ul class='contact-listing'>
             <% @airlines.each do |x| %>
             <li>
-                <a href='<%= x[:pet_info_link]%>'><%= x[:name] %></a>
+                <a href='<%= x[:pet_info_link]%>' target='_blank'><%= x[:name] %></a>
             </li>
             <% end %>
         </ul>
@@ -222,7 +224,7 @@ $(document).ready(function(){
             </div>
         </div>
     </div>
-    <div class='container'>
+    <div class='main-content clearfix'>
         <h3 id='header-3'>Tips on flying with your pet</h3>
         <ul class='pet-tips' id='pet-tips'>
             <li>
@@ -245,6 +247,21 @@ $(document).ready(function(){
             </li>
         </ul>
     </div>
+    <div class='side-col disclaimer'>
+        <div id='airline-contact-info'>
+        <p>
+            Prices above reflect Human Travelers. Prices for pets may vary depending on the airline. Prices can range from 0USD to 150USD depending on the pet(s), pet(s) weight and Airline
+        </p>
+        </div>
+        <div id='airline-contact-link'></div>
+    </div>
+    <div class='side-col disclaimer-2'>
+        <h3 class='disclaimer' id='Disclaimer'>Disclaimer</h3>
+        <p>
+            To the best of our ability, we ensure that recommendations given on our website reflect the current airline regulations. We cannot predict how a given airline may enforce these regulations. Noncompliance may result in the need to deny boarding for your pet. We suggest that you carefully following the rules of the airline you are using.
+        </p>
+    </div>
+    <div class='clearfix'></div>
 </div>
 
 <%= render 'pages/footer'%>
