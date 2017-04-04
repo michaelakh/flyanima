@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# decrease puma workers to free up ram for heroku
+gem "puma_worker_killer"
+
 gem 'twitter_cldr'
 
 gem 'globalize', git: 'https://github.com/globalize/globalize'
@@ -19,7 +22,6 @@ gem 'twitter-typeahead-rails'
 #Use for http requests from api servers
 gem "http", require:['http']
 
-gem 'google-api-client', '0.9.1', require: ['google/apis/calendar_v3', 'google/apis/plus_v1']
 # Use paperclip to manange user uploaded images
 gem "paperclip", "~> 5.0.0"
 

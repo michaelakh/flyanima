@@ -267,7 +267,45 @@
              <h3 class='col-m-3'>
                 Today's News
              </h3>
-              
+              <ul class='col-m-3'>
+                <li class='col-m-3'>
+                    <%= link_to(top_deals_path, class:'overlay-m') do %>
+                        <div class='overlay-m-3-l'>
+                        </div>
+                        <div class='cust-image-container'>
+                            <%= image_tag("spring-savin.jpg", class: "cust-img", alt: "Top Deals") %>
+                        </div>
+                        <div class='overlay-m-3'>
+                                <h4>Tino's Top Deals</h4>
+                                <p> Today's Sales</p>
+                        </div>
+                    
+                    <% end %>
+                </li>
+                <li class='col-m-3'>
+                    <%= link_to(pet_selfie_challenge_path, class:'overlay-m') do %>
+                        <div class='overlay-m-3-l'>
+                        </div>
+                        <%= image_tag("Annonymous_1.jpg", class: "cust-img", alt: "Annonymous") %>
+                        <div class='overlay-m-3'>
+                            <h4>Pet Selfie Competition</h4>
+                            <p> Get a chance to win a £10 Amazon GiftCard</p>
+                        </div>
+                    <% end %>
+                </li>
+                <li class='col-m-3'>
+                    
+                    <%= link_to(posts_path, class:'overlay-m') do %>
+                        <div class='overlay-m-3-l'>
+                            </div>
+                     <%= image_tag("dog-reading.jpg", class: "cust-img", alt: "Learn More about Travelling with your pet") %> 
+                        <div class='overlay-m-3'>
+                            <h4>Pet Travel Information</h4>
+                            <p> Learn more about travelling with your pet</p>
+                        </div>
+                    <% end %>
+                </li>
+             </ul>
              <div class='section-ad'>
                 ads go here
             </div>
