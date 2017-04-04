@@ -28,6 +28,10 @@
         top:0px;
         left:0px;
     }
+    div.cust-image-container {
+        height:200px;
+        width:100%;
+    }
     div.overlay-m-3 {
         position:absolute;
         top:0px;
@@ -268,11 +272,13 @@
                     <%= link_to(top_deals_path, class:'overlay-m') do %>
                         <div class='overlay-m-3-l'>
                         </div>
-                        <%= image_tag("spring-savin.jpg", class: "cust-img", alt: "Top Deals") %>
+                        <div class='cust-image-container'>
+                            <%= image_tag("spring-savin.jpg", class: "cust-img", alt: "Top Deals") %>
+                        </div>
                         <div class='overlay-m-3'>
                                 <h4>Tino's Top Deals</h4>
                                 <p> Today's Sales</p>
-                            </div>
+                        </div>
                     
                     <% end %>
                 </li>
