@@ -229,6 +229,9 @@ function googleQPXrequest(){
         function showResult(){
             var content = "";
             var content_h = "";
+            fmt = new TwitterCldr.CurrencyFormatter();
+            var start_price = fmt.format(response['trips']['tripOption'][0]["saleTotal"].substring(3), {currency: response['trips']['tripOption'][0]["saleTotal"].substring(0,3)});
+            
             for (i = 0; i < Object.keys(response['trips']['tripOption']).length; i++) { 
                 content += "<div class='result-box clearfix' tabindex='0'>" +
                 "<div class='box-header'>" +
@@ -236,16 +239,20 @@ function googleQPXrequest(){
                 "<div class='rb-main-info'>" +
                     "<div class='rb-price'>" +
                         "<span class='price'>";
-                    fmt = new TwitterCldr.CurrencyFormatter();
+                    
+                    var current_price = fmt.format(response['trips']['tripOption'][i]["saleTotal"].substring(3), {currency: response['trips']['tripOption'][i]["saleTotal"].substring(0,3)});
+                
                     content += fmt.format(response['trips']['tripOption'][i]["saleTotal"].substring(3), {currency: response['trips']['tripOption'][i]["saleTotal"].substring(0,3)});
                         content += "</span>" +
-                    "</div>" +
-                    "<div class='expensive-flag'>" +
-                        "<div class='expensive-flag-text'>" +
-                            "Cheap" +
-                        "</div>" +
-                    "</div>" +
-                    "<div class='paw-icon'>" +
+                    "</div>";
+                    if(start_price == current_price){
+                        content += "<div class='expensive-flag'>" +
+                            "<div class='expensive-flag-text'>" +
+                                "Sale" +
+                            "</div>" +
+                        "</div>";
+                    }
+                    content += "<div class='paw-icon'>" +
                     "</div>" +
                     "<div class='view-flight-button'>" +
                         "<button class='show-flight-button' type='button' onclick='showSearch("+i+")'>View Flight</button>"; 

@@ -1,12 +1,21 @@
-<div class='container'>
-    <div class=''>
-        <%= form_tag search_posts_path, method: :get, class: "navbar-form", role: "search" do %>
-        <p>
-            <%= text_field_tag :search, params[:search], class: "search" %>
-            <%= submit_tag "Search", name: nil, class: "search" %>
-        </p>
-        <% end %>
+<style>
+
+
+</style>
+<div class='container clearfix'>
+   
+    <div class='search-post clearfix'>
+        <div class='search-input-box-post'>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path d="M19.848 18.499a.512.512 0 0 0 0-.727l-3.806-3.774a.745.745 0 0 1-.128-.82s1.415-2.703 1.415-4.585C17.33 3.854 13.442 0 8.665 0S0 3.854 0 8.592c0 4.737 3.887 8.591 8.665 8.591 1.811 0 4.42-1.273 4.42-1.273a.783.783 0 0 1 .833.137l3.835 3.802c.202.2.532.2.733 0l1.362-1.35zM2.541 8.592c0-3.348 2.748-6.072 6.124-6.072 3.377 0 6.124 2.724 6.124 6.072s-2.747 6.072-6.124 6.072-6.124-2.724-6.124-6.072z" fill="#fff"/></svg>
+            <%= form_tag search_posts_path, method: :get, class: "navbar-form", role: "search" do %>
+
+            <%= text_field_tag :search, params[:search], class: "search", placeholder: "Search Articles"%>
+
+            <%= submit_tag "Search", name: nil, class: "submit-search" %>
+            <% end %>
+        </div>
     </div>
+     <div class='main-content' id='main-content'>
     <h1>Posts</h1>
 
     <table>
@@ -36,4 +45,9 @@
     <br>
 
     <%= link_to 'New Post', new_post_path %>
+    </div>
+    <div class='side-col ad-place'>
+        Ad Placement
+    </div>
 </div>
+<%= render 'pages/footer' %>
