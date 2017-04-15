@@ -19,9 +19,9 @@ class ApplicationController < ActionController::Base
 
   #meta_tags
   def prepare_meta_tags(options={})
-    site_name   = "Tino"
+    site_name   = "FlyAnima"
     title       = [controller_name, action_name].join(" ")
-    description = "Travel with Pets, take your pets on vacation with Tino"
+    description = "Travel with Pets, take your pets on vacation with FlyAnima"
     image       = options[:image] || "your-default-image-url"
     current_url = request.url
 
@@ -31,10 +31,10 @@ class ApplicationController < ActionController::Base
       title:       title,
       image:       image, 
       description: description, 
-      keywords:    %w[travel pets dogs cats last minute travel ideaes cheap flights hotels train car hire city breaks vacation beach holidays tino],
+      keywords:    %w[travel pets dogs cats last minute travel ideaes cheap flights hotels train car hire city breaks vacation beach holidays FlyAnima],
       twitter: {
         site_name: site_name,
-        site: '@tinotravel',
+        site: '@FlyAnimatravel',
         card: 'summary',
         description: description,
         image: image

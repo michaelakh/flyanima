@@ -1,7 +1,13 @@
 <div class='container'>
-    <header class='top-header'>
+    <header class='top-header clearfix'>
         <div class='logo'>
-            <%= image_tag "Tino_Image_Logo.jpg", size: "200x110", alt: "Tino Logo" %>
+            <div class='logo-image'>
+                <%= image_tag "FlyAnima Logo.png", alt: "FlyAnima Logo" %>
+                <div class='site-name'>
+                    <span class='site-name'> FlyAnima <sup class='tm'>tm</sup></span>
+                </div>
+            </div>
+            
         </div>
         <div class='header-right'>
             Announcement or advert or slogan or something
@@ -32,10 +38,11 @@
                 </li>
                 
                 <% else %>
-                
+                <% if params[:add] == "me" %>
                 <li class='nav-list'>
                     <%= link_to 'Sign in', user_session_path %>
                 </li>
+                <% end %>
                 
                 <% end %>
                 

@@ -12,7 +12,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    prepare_meta_tags title: "Blog", description: "Keep up to date with Tinos recent news and updates"
+    prepare_meta_tags title: "Blog", description: "Keep up to date with FlyAnima's recent news and updates"
     @posts = Post.all
   end
 
