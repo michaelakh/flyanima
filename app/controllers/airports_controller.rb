@@ -5,7 +5,7 @@ class AirportsController < ApplicationController
   def autocomplete
     render json: Airport.search(params[:term], {
       fields: ["name","city","country"],
-      where: {iata:{not: nil}},
+      where: {iata:{not: nil}, DST:["E","A","S","O","Z","U","N"] },
       boost_where: {name: "All Airports"},
       match: :word_start,
       limit: 11,
