@@ -7,11 +7,14 @@ Rails.application.routes.draw do
       get 'search'
     end
     resources :reviews, except: [:show, :index]
+  end
+  
   constraints(:host => "/https://flyanima.herokuapp.com/") do
    match "/(*path)" => redirect {|params, req| "http://www.flyanima.com/#{params[:path]}"},  via: [:get, :post]
   end
-  end
-  
+    
+  resources :sitemaps, :only => :index
+  get "sitemap.xml" => "sitemaps#index", :format => "xml", :as => :sitemap
   
   get "/pages/*page" => "pages#show"
   get "/pages/home" => "pages#home"
