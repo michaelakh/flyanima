@@ -1,0 +1,18 @@
+<div class='container'>
+    <p>
+      <strong>Title:</strong>
+      <%= @review.title %>
+    </p>
+    <p>
+      <strong>Body:</strong>
+      <%= @review.body %>
+    </p>
+
+    <p>
+      <strong>Category:</strong>
+      <%= @review.category %>
+    </p>
+
+    <%= link_to 'Edit', edit_post_path(@review) %> |
+    <%= link_to 'Back', posts_path %>
+</div>

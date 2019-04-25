@@ -1,0 +1,1 @@
+json.array! @city_airport_ita_codes, partial: 'city_airport_ita_codes/city_airport_ita_code', as: :city_airport_ita_code

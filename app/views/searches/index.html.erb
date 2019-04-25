@@ -1,0 +1,755 @@
+<style>
+    ul.col-6.flight {
+        list-style-type:none;
+        padding:0px 5px 0px 5px;
+    }
+    
+    ul.col-6.flight li {
+        padding:5px;
+    }
+    span.flight-time.flightDepart {
+        position:relative;
+    }
+    
+    span.flight-destination-name.iata {
+    }
+    
+    span.flight-desc-pointer.iata {
+        left:58px;
+        z-index:1;
+    }
+    
+    h5.col-6 {
+        font-family:sans-serif;
+        width:37%;
+        float:left;
+        text-align:center;
+        margin: 10px 0px 10px 0px;
+    }
+    div.submit {
+        clear: left;
+    }
+    
+    a.ham-icon {
+    background: #667655;
+    display: inline-block;
+    height: 24px;
+    width: 25px;
+    position:relative; top:13px; left:36px;
+    display:none;
+    }
+    
+    div.submit button.search {
+        margin: 10px auto;
+    }
+    
+    div.nav-hamburger {
+        width: 18px;
+        height: 2px;
+        background-color: white;
+        margin: 3px 0;
+    }
+
+    div.nav-hamburger-container {
+        display:inline-block;
+        height:12px;
+        margin:0px 0px 0px 4px;
+    }
+    
+    button.flight-list {
+        background:transparent;
+        border:solid 1px transparent;
+        padding:7px;
+        border-radius:10px;
+    }
+    
+    button.flight-list.on {
+        background:linear-gradient(to top, #ffbe00 0, #ffcb00 100%);
+        padding:7px;
+        border-radius:10px;
+        border:solid 1px transparent;
+    }
+    
+    button.flight-list:hover {
+        background:#FFDF8D;
+        border:solid 1px transparent;
+    }
+    
+    button.flight-list:active {
+        background:linear-gradient(to top, #ffbe00 0, #ffcb00 100%);
+    }
+</style>
+<% @query_no = params[:query].count %>
+<div class='container'>
+    <div class='container clearfix'>
+        <div class='side-left'>
+            <a href="javascript:void(0)" class = 'ham-icon' onclick="showSide()"><!--&#9776--><div class="nav-hamburger-container"><div class="nav-hamburger"></div><div class="nav-hamburger"></div><div class="nav-hamburger"></div></div></a>
+            <div class='side-inner'>
+            <div class='side-content'>
+            </div>
+            <div class='side-ads' style="height:auto;">
+                Ads go here
+            </div> 
+            </div>
+            
+        </div>
+    <div class='col-10 middle clearfix paginate'>
+     <header class='flight-search-header'>
+        <div class='flight-header'>
+            <div class='search-header-cities'>
+                <span><%=params[:query][:query1]["query_1_1"].split(/, \(/)[1][0..2]%></span>
+                <span>&#8596;</span>
+                <span><%=params[:query]["query#{@query_no}"]["query_#{@query_no}_2"].split(/, \(/)[1][0..2]%></span>
+            </div> 
+
+            <div class='search-header-cities'>
+                <span><%= params["query_1_date_l"] %></span>
+                &#8594;
+                <span><%= params["query_2_date_r"] != nil ? params["query_2_date_r"] : params["query_#{@query_no}_date_l"] %></span>
+            </div> 
+        </div>
+        <div class='short-form'>
+            <%= form_tag search_path, method: :GET, role: "search"  %>
+                    <div class='short-form-group'>
+                        <div class='form-col-xl-full off' id='flights_title'>
+                            <h3 class='flight-search-title'>Flight 1</h3>
+                        </div>
+                        <div class='form-short-col-3'>
+                            <%= text_field_tag 'city', nil, placeholder: 'city or airport', class: "query", name:"query[query1[query_1_1]]", id: 'query1' %>
+                        </div>
+                        <span>&#8594; </span>
+                        <div class='form-short-col-3'>
+                            <%= text_field_tag 'city', nil, placeholder: 'city or airport', class: "query", name:"query[query1[query_1_2]]", id: 'query2' %>
+                        </div>
+
+                        <div class='form-short-col-3'>
+                            <%= date_field_tag(:query_1_date_l, Date.today) %>
+                        </div>
+                        
+                        <div class='form-short-col-3 on' id='returning'>
+                            <%= label_tag 'returing', 'Returning' %>
+                            <%= date_field_tag(:query_2_date_r, Date.today) %>
+                        </div>
+                        <div class='passengers-container'>
+                            <button type='button' onclick="" class='passengers'>Passengers</button>
+                            <div class='passengers off'>
+                                <div class='form-short-col-2'>
+                                    <%= label_tag 'adult', 'Adult (18+)' %>             
+                                    <%= select_tag "adult", options_for_select([ 1, 2, 3, 4, 5, 6], "1"), class: "passengers" %>
+                                </div>
+
+                                <div class='form-short-col-2'>
+                                    <%= label_tag 'child', 'Child (0-17)' %>             
+                                    <%= select_tag "child", options_for_select([ 0, 1, 2, 3, 4, 5, 6], "0"), class: "passengers" %>
+                                </div>
+
+                                <div class='form-short-col-2'>
+                                    <%= label_tag 'Dogs', 'Dogs' %>             
+                                    <%= select_tag "dogs", options_for_select([ 0, 1, 2, 3], "0"), class: "passengers" %>
+                                </div>
+                                <div class='form-short-col-2'>
+                                    <%= label_tag 'Cats', 'Cats' %>             
+                                    <%= select_tag "cats", options_for_select([ 0, 1, 2, 3], "0"), class: "passengers" %>
+                                </div>
+                                <div class='form-short-col-2'>
+                                    <%= label_tag 'Other', 'Other' %>             
+                                    <%= select_tag "other_pet", options_for_select([ 0, 1, 2, 3], "0"), class: "passengers" %>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id='container'>
+                            <div class='test'>
+                            </div>
+                        </div>
+                        <div class='form-col-xl-full'>
+                            <button type='button' id='button'>Add flight</button>
+                        </div>
+                        <div class='form-col-xl-full'>
+                            <%= label_tag 'advanced_options', 'Advanced Search', class: 'l-small' %>
+                            <%= hidden_field(:type, :pass_confirm, :value => "n") %>
+                            <%= submit_tag 'Search', class: 'change-flight' %>
+                        </div>
+                    </div>
+                </form>
+            <button class='change-flight'>
+                Search
+            </button>
+        </div>
+    </header>  
+        
+<% @params = {} %>
+<% @params["query"] = {} %>
+<% params.each do |key,value| %>
+<% if key[0..4] == "query" %>
+<% @params["query"].store(key,value) %>
+<% else %>
+<% @params.store(key,value) %>
+<% end %>
+<% end %>
+    <script>
+        // Add loading icon when page is loading
+$(window).load(function(){
+    $('.cover').fadeOut(1000);
+})
+
+//create params to be sent to next page when clicking on the "View Flight" button
+var urlParams = window.location.href.split('search?')[1];
+        
+var response
+var homeUrl = "pages/home";       
+function googleQPXrequest(){
+         
+         $.ajax({
+          accepts: "application/json; charset=utf-8",
+          type:"POST",
+          datatype: "json",
+          url: "/search_googleQPX.json",
+          data: <%=raw params.to_json %>,
+          success:function (data) {
+             $('.cover_data').fadeOut(1000);
+             response = data;
+             try {
+            showResult();
+             } catch (e) {
+            showNearBy();
+            }
+          },
+          error:function (data) {
+            return false
+         }
+          
+        })   
+        }
+        
+        window.onload = function() {
+            var data = googleQPXrequest();
+        }
+        
+        function showResult(){
+            var content = "";
+            var content_h = "";
+            fmt = new TwitterCldr.CurrencyFormatter();
+            var start_price = fmt.format(response['trips']['tripOption'][0]["saleTotal"].substring(3), {currency: response['trips']['tripOption'][0]["saleTotal"].substring(0,3)});
+            
+            for (i = 0; i < Object.keys(response['trips']['tripOption']).length; i++) { 
+                content += "<div class='result-box clearfix' tabindex='0'>" +
+                "<div class='box-header'>" +
+                "</div>" +
+                "<div class='rb-main-info'>" +
+                    "<div class='rb-price'>" +
+                        "<span class='price'>";
+                    
+                    var current_price = fmt.format(response['trips']['tripOption'][i]["saleTotal"].substring(3), {currency: response['trips']['tripOption'][i]["saleTotal"].substring(0,3)});
+                
+                    content += fmt.format(response['trips']['tripOption'][i]["saleTotal"].substring(3), {currency: response['trips']['tripOption'][i]["saleTotal"].substring(0,3)});
+                        content += "</span>" +
+                    "</div>";
+                    if(start_price == current_price){
+                        content += "<div class='expensive-flag'>" +
+                            "<div class='expensive-flag-text'>" +
+                                "Sale" +
+                            "</div>" +
+                        "</div>";
+                    }
+                    content += "<div class='paw-icon'>" +
+                    "</div>" +
+                    "<div class='view-flight-button'>" +
+                        "<button class='show-flight-button' type='button' onclick='showSearch("+i+")'>View Flight</button>"; 
+
+                     content += "</div>" +
+                    "</div>" +
+                    "<div class='carrier-icon'>" +
+                    "</div>"  + 
+                    "<div class='flight-right-col'>" ;
+                
+                for(j=0; j < Object.keys(response['trips']['tripOption'][i]['slice']).length; j++){
+                        if (Object.keys(response['trips']['tripOption'][i]['slice'][j]['segment']).length = 2) { 
+                            
+                            var segCount = Object.keys(response['trips']['tripOption'][i]['slice'][j]['segment']).length - 1;
+                            var departureTime = response['trips']['tripOption'][i]['slice'][j]['segment'][0]['leg'][0]["departureTime"];
+                            var arrivalTime = response['trips']['tripOption'][i]['slice'][j]['segment'][segCount]['leg'][0]["arrivalTime"];
+                            
+                            content += "<div class='flight-time sb-container'>" +            
+                        "<div class='flight-carrier'>";
+                            for(k=0; k < Object.keys(response['trips']['data']['carrier']).length; k++) {
+                                if(response['trips']['data']['carrier'][k]['code'] == response['trips']['tripOption'][i]['slice'][j]['segment'][0]['flight']['carrier']) {
+                                   content += response['trips']['data']['carrier'][k]['name'];
+                                }
+                            }
+                        content += "</div>" +
+                        "<div class='flight-time flightDepart'>" + 
+                            "<span class='flight-destination'>" +
+                                departureTime.substring(11,16) +
+                            "</span>" +
+                                " - " + 
+                            "<span class='flight-destination-iata'>" +
+                                response['trips']['tripOption'][i]['slice'][j]['segment'][0]['leg'][0]["origin"] +
+                                "<span class='flight-destination-name'>";
+                                for(k=0; k < Object.keys(response['trips']['data']['airport']).length; k++) {
+                                    
+                                    if(response['trips']['data']['airport'][k]['code'] == response['trips']['tripOption'][i]['slice'][j]['segment'][0]['leg'][0]["origin"]) {
+                                       content += response['trips']['data']['airport'][k]['name']
+                                    }
+                                }
+                                content += "</span><span class='flight-desc-pointer iata'></span>" +
+                            "</span>" +
+                        "</div>" +
+                        "<div class='flight-time arrow'>&#8594;</div>" +
+                        "<div class='flight-time flightDepart'>" +
+                            "<span class='flight-destination'>" +
+                                arrivalTime.substring(11,16) +
+                            "</span> - " +
+                            "<span class='flight-destination-iata'>" +
+                                response['trips']['tripOption'][i]['slice'][j]['segment'][segCount]['leg'][0]["destination"] +
+                                "<span class='flight-destination-name'>";
+                                for(k=0; k < Object.keys(response['trips']['data']['airport']).length; k++) {
+                                    
+                                    if(response['trips']['data']['airport'][k]['code'] == response['trips']['tripOption'][i]['slice'][j]['segment'][segCount]['leg'][0]["destination"]) {
+                                       content += response['trips']['data']['airport'][k]['name']
+                                    }
+                                }
+                                content += "</span><span class='flight-desc-pointer iata'></span>" +
+                            "</span>" +
+                        "</div>" +
+                        "<div class='flight-time flight-duration'>";
+                            
+                            var total_d = 0;
+                            var total_d_c = 0;
+                            
+                            for(l=0; l < Object.keys(response['trips']['tripOption'][i]['slice'][j]['segment']).length; l++) {
+                                
+                                total_d = total_d + response['trips']['tripOption'][i]['slice'][j]['segment'][l]['duration'];
+                                
+                                if(response['trips']['tripOption'][i]['slice'][j]['segment'][0]['connectionDuration'] != null) {
+                                    total_d_c += total_d + parseInt(response['trips']['tripOption'][i]['slice'][l]['segment'][0]['connectionDuration']);
+                                }
+                            }
+                            
+                            content += "<span class='flight-grey'>" +
+                                Math.floor(total_d/60).toString() +
+                                "hr " +
+                                (total_d % 60).toString() +
+                                "m</span>" +
+                        "</div>" +
+                        "<div class='flight-time'>" +
+                            "<span class='flight-grey'>" +
+                                moment(response['trips']['tripOption'][i]['slice'][j]['segment'][0]['leg'][0]["departureTime"]).format("MMM Do YYYY") + 
+                            "</span>" +
+                        "</div>" +
+                        "<div class='flight-time stops'>" +
+                           "<span class='flight-stops'>";
+                            
+                                if(response['trips']['tripOption'][i]['slice'][j]['segment'].length == 1){
+                                    content += "non-stop";
+                                }
+                                else if (response['trips']['tripOption'][i]['slice'][j]['segment'].length == 2) {
+                                    content += response['trips']['tripOption'][i]['slice'][j]['segment'].length - 1 +
+                                        " stop";
+                                }
+                                else if (response['trips']['tripOption'][i]['slice'][j]['segment'].length > 2) {
+                                    content += response['trips']['tripOption'][i]['slice'][j]['segment'].length - 1 +
+                                        " stops";
+                                }
+                            content += "</span> </div></div>";
+                        }
+                    else {
+                        
+                        var total_d = 0;
+                        var k = 0;
+                        while(k < Object.keys(response['trips']['tripOption'][i]['slice']).length) {
+                            total_d = total_d + response['trips']['tripOption'][i]['slice'][k]['duration'];
+                            
+                            if (response['trips']['tripOption'][i]["slice"][k]['segment'][0]["connectionDuration"] != null){
+                                total_d = total_d + response['trips']['tripOption'][i]["slice"][k]['segment'][0]["connectionDuration"];
+                            }
+                            
+                            k = k + 1;
+                        }
+                        
+                        for(j=0;j < Object.keys(response['trips']['tripOption'][i]['slice']).length; j++) {
+                            for(l=0; l < Object.keys(response['trips']['tripOption'][i]['slice'][j]['segment']).length; l++){
+                                
+                                content += "<div class='flight-time sb-container'>" +
+                                "<div class='flight-carrier'>";
+                                    for(k=0; k < Object.keys(response['trips']['data']['carrier']).length; k++) {
+                                        if(response['trips']['data']['carrier'][k]['code'] ==  response['trips']['tripOption'][i]['slice'][j]['segment'][l]['flight']['carrier']) {
+                                           content += response['trips']['data']['carrier'][k]['name'];
+                                        }
+                                    }
+                                "</div>" +
+                            "<div class='flight-time flightDepart'>" +
+                               "<span class='flight-destination'>" +
+                                    response['trips']['tripOption'][i]['slice'][j]['segment'][l]['leg'][0]["departureTime"].substring(11,16) +
+                            "</span> - " +
+                                "<span class='flight-destination-iata'>" +
+                                    response['trips']['tripOption'][i]['slice'][j]['segment'][l]['leg'][0]['origin'] +
+                                    "<span class='flight-destination-name'>";
+                                    for(k=0; k < Object.keys(response['trips']['data']['airport']).length; k++) {
+
+                                        if(response['trips']['data']['airport'][k]['code'] == response['trips']['tripOption'][i]['slice'][j]['segment'][l]['leg'][0]['origin']) {
+                                           content += response['trips']['data']['airport'][k]['name']
+                                        }
+                                    }
+                                    content += "</span><span class='flight-desc-pointer'></span>" +
+                                "</span>" +
+                            "</div>" +       
+                            "<div class='flight-time arrow'>&#8594;</div>" +
+                            "<div class='flight-time flightDepart'>" +
+                                "<span class='flight-destination'>" +
+                                    response['trips']['tripOption'][i]['slice'][j]['segment'][l]['leg'][0]["arrivalTime"].substring(11,16) +
+                                "</span> - " +
+                                "<span class='flight-destination-iata'>" +
+                                    response['trips']['tripOption'][i]['slice'][j]['segment'][l]['leg'][0]["destination"] +
+                                    "<span class='flight-destination-name'>";
+                                    for(k=0; k < Object.keys(response['trips']['data']['airport']).length; k++) {
+
+                                        if(response['trips']['data']['airport'][k]['code'] == response['trips']['tripOption'][i]['slice'][j]['segment'][l]['leg'][0]["destination"]) {
+                                           content += response['trips']['data']['airport'][k]['name']
+                                        }
+                                    }
+                                    content += "</span><span class='flight-desc-pointer'></span>" +
+                                "</span>" +
+                            "</div>" +
+                            "<div class='flight-time flight-duration'>" +
+                                "<span class='flight-grey'>" +
+                                    Math.floor(response['trips']['tripOption'][i]['slice'][j]['segment'][l]["duration"]/60).toString() +
+                                    "hr " +
+                                    (response['trips']['tripOption'][i]['slice'][j]['segment'][l]["duration"] % 60 ).toString() +
+                                    "m" +
+                                    "</span>" +
+                            "</div>" +
+                            "<div class='flight-time'>" +
+                                "<span class='flight-grey'>" +
+                                    moment(response['trips']['tripOption'][i]['slice'][j]['segment'][l]['leg'][0]["departureTime"]).format("MMM Do YY") +
+                                    "</span>" +
+                            "</div>" +
+                            "<div class='flight-time stops'> " +
+                               "<span class='flight-stops'>";
+                                if(response['trips']['tripOption'][i]['slice'][j]['segment'].length == 1){
+                                    content += "non-stop";
+                                }
+                                else if (response['trips']['tripOption'][i]['slice'][j]['segment'].length == 2) {
+                                    content += response['trips']['tripOption'][i]['slice'][j]['segment'].length - 1 +
+                                        " stop";
+                                }
+                                else if (response['trips']['tripOption'][i]['slice'][j]['segment'][j].length > 2) {
+                                    content += response['trips']['tripOption'][i]['slice'][j]['segment'].length - 1 +
+                                        " stops";
+                                }
+                                content += "</span>" +  
+                            "</div>" +
+                        "</div>";           
+                            } 
+                        }
+                    }}
+                    
+                    content += "<div class='extra-information'>" +
+                        "<div class='extra-info-header'>" +
+                            "<div class='extra-info-menu on' onclick='show_details()'>" +
+                                "Details" +
+                            "</div>" +
+                            "<div class='extra-info-menu off' onclick='show_fares()'>" +
+                                "Fares" +
+                            "</div>" +
+                        "</div>" +
+                        "<div class='extra-info-details-wrapper on'>";
+                
+                        var m = 0;
+                        for(n=0;n < Object.keys(response['trips']['tripOption'][i]['slice']).length; n++) {
+                            if (m == 0) {
+                            content += "<h2 class='extra-info-title'>" +
+                                            "Depart" +
+                                       "</h2>";
+                            }
+                            else if (m == 1) {
+                                content += "<h2 class='extra-info-title'>" +
+                                                "Return" +
+                                           "</h2>";
+                            }
+                            
+                            for(o=0; o < Object.keys(response['trips']['tripOption'][i]['slice'][n]['segment']).length;o++){
+                                content += "<div class='extra-info-body'>" +
+                                    "<div class='flight-time sb-container'>" +
+                                        "<div class='flight-carrier'>";
+                                        for(k=0; k < Object.keys(response['trips']['data']['carrier']).length; k++) {
+                                            if(response['trips']['data']['carrier'][k]['code'] == response['trips']['tripOption'][i]['slice'][n]['segment'][o]['flight']['carrier']) {
+                                               content += response['trips']['data']['carrier'][k]['name'];
+                                            }
+                                        }
+                                        content += "</div>" +
+                                        "<div class='flight-time flightDepart'>" +
+                                            "<span class='flight-destination'>" +
+                                        response['trips']['tripOption'][i]['slice'][n]['segment'][o]['leg'][0]["departureTime"].substring(11,16) +
+                                        "</span> - " +
+                                        "<span class='flight-destination-iata'>" +
+                                            response['trips']['tripOption'][i]['slice'][n]['segment'][o]['leg'][0]["origin"] +
+                                            "<span class='flight-destination-name'>";
+                                            for(k=0; k < Object.keys(response['trips']['data']['airport']).length; k++) {
+
+                                                if(response['trips']['data']['airport'][k]['code'] == response['trips']['tripOption'][i]['slice'][n]['segment'][o]['leg'][0]["origin"]) {
+                                                   content += response['trips']['data']['airport'][k]['name']
+                                                }
+                                            }
+                                            content += "</span><span class='flight-desc-pointer'></span>" +
+                                        "</span>" +
+                                        "</div>" +
+                                        "<div class='flight-time arrow'>&#8594;</div>" +
+                                        "<div class='flight-time flightDepart'>" +
+                                            "<span class='flight-destination'>" +
+                                                response['trips']['tripOption'][i]['slice'][n]['segment'][o]['leg'][0]["arrivalTime"].substring(11,16) +
+                                            "</span> - " +
+                                            "<span class='flight-destination-iata'>" +
+                                                response['trips']['tripOption'][i]['slice'][n]['segment'][o]['leg'][0]["destination"] +
+                                             "<span class='flight-destination-name'>";
+                                            for(k=0; k < Object.keys(response['trips']['data']['airport']).length; k++) {
+
+                                                if(response['trips']['data']['airport'][k]['code'] == response['trips']['tripOption'][i]['slice'][n]['segment'][o]['leg'][0]["destination"]) {
+                                                   content += response['trips']['data']['airport'][k]['name']
+                                                }
+                                            }
+                                            content += "</span><span class='flight-desc-pointer'></span>" +
+                                            "</span>" +
+                                        "</div>" +
+
+                                        "<div class='flight-time flight-duration'>" +
+                                           "<span class='flight-grey'>" + 
+                                            Math.floor(response['trips']['tripOption'][i]['slice'][n]['segment'][o]["duration"]/60).toString() + 
+                                            "hr" + 
+                                            (response['trips']['tripOption'][i]['slice'][n]['segment'][o]["duration"] % 60 ) +
+                                            "m" +
+                                            "</span>" +
+                                        "</div>" +
+                                        "<div class='flight-time'>" +
+                                            "<span class='flight-grey'>" +
+                                            moment(response['trips']['tripOption'][i]['slice'][n]['segment'][o]['leg'][0]["departureTime"]).format("MMM Do YY") +
+                                            "</span>" +
+                                        "</div>" +
+                                    "</div>" +
+                                "</div>";
+                            }
+                                
+                            m = m + 1;
+                        }
+                        content += "</div>" +
+                        "<div class='extra-info-fares-wrapper off'>" +
+                            "<h2 class='extra-info-title'>" +
+                                "Known fares" +
+                            "</h2>" +
+                            "<div class='flight-fare-row'>" +
+                                "<div class='flight-fare-left-col'>" +
+                                    "<span>Flight Price:</span>" +
+                                "</div>" +
+                                "<div class='flight-fare-right-col'>" +
+                                    "<span>£"+
+                                        response['trips']['tripOption'][i]["pricing"][0]["saleFareTotal"].substring(3,10) +
+                                    "</span>" +
+                                "</div>" +
+                            "</div>" +
+                            "<div class='flight-fare-row'>" +
+                                "<div class='flight-fare-left-col'>" +
+                                    "<span>Tax:</span>" +
+                                "</div>" +
+                                "<div class='flight-fare-right-col'>" +
+                                   " <span>£" +
+                                    response['trips']['tripOption'][i]["pricing"][0]["saleTaxTotal"].substring(3,10) +
+                                "</span>" +
+                                "</div>" +
+                            "</div>" +
+                            "<div class='flight-fare-row'>" +
+                                "<div class='flight-fare-left-col'>" +
+                                    "<span>Ticket Total:</span>" +
+                                "</div>" +
+                                "<div class='flight-fare-right-col'>" +
+                                    "<span>£"+
+                                        response['trips']['tripOption'][i]["pricing"][0]["saleTotal"].substring(3,10) +
+                                    "</span>" +
+                                "</div>" +
+                            "</div>" +
+                            "<div class='flight-fare-row'>" +
+                                "<div class='flight-fare-left-col'>" +
+                                    "<span>Last chance to buy:</span>" +
+                                "</div>" +
+                                "<div class='flight-fare-right-col'>" +
+                                    "<span>" +
+                                    moment(response['trips']['tripOption'][i]["pricing"][0]["latestTicketingTime"]).format("MMM Do YY") +
+                                    " at " + response['trips']['tripOption'][i]["pricing"][0]["latestTicketingTime"].substring(11,16) +
+                                    "</span>" +
+                                "</div>" +
+                            "</div>";
+                            if(response['trips']['tripOption'][i]["pricing"][0]["refundable"] == "TRUE"){
+                            content += "<div class='flight-fare-row'>" +
+                                "<div class='flight-fare-left-col'>" +
+                                "</div>" +
+                                "<div class='flight-fare-right-col'>" +
+                                    "<span>Refundable</span>" +
+                                "</div>" +
+                            "</div>";
+                            }
+                            else {
+                            content += "<div class='flight-fare-row'>" +
+                                "<div class='flight-fare-left-col'>" +
+                                "</div>" +
+                                "<div class='flight-fare-right-col'>" +
+                                    "<span>Non-Refundable</span>" +
+                                "</div>" +
+                            "</div>";
+                            }
+                        content += "</div>" +
+                    "</div>" +
+                "</div>" +
+            "</div>";
+            }
+            document.getElementById("f-results-container").innerHTML = content;
+            $(function() {
+                $(".pagination").customPaginate({
+                    items: Object.keys(response['trips']['tripOption']).length,
+                    itemsToPaginate: ".result-box",
+                    itemsPerPage: 30,
+                });
+            });
+        } 
+        
+        function showSearch(x) {
+            
+            localStorage.search = JSON.stringify(response['trips']['tripOption'][x]);
+            
+            localStorage.data = JSON.stringify(response['trips']['data']);
+            
+            localStorage.currency = response['trips']['tripOption'][0]["saleTotal"].substring(0,3);
+            
+            window.location.href = "/search_show?" + urlParams;
+            
+        }
+        
+        
+                
+        var origin;      
+        var destination;
+        function showNearBy(){
+            var urlT = window.location.href.split("?")[1].split("&");
+            delete urlT[1];
+            delete urlT[2];
+            var content = "";
+           try{ 
+            content += "<h3>Sorry.. but could you narrow down your search?. <br>Pick an Airport you're going to (destination) and an Airport you are coming from (origin), then click 'search' </h3>" +
+                "<h5 class='col-6'> Origin </h5>" +
+                "<h5 class='col-6'> Destination </h5>" +
+                "<ul class='col-6 flight'>";
+            
+            for (i = 0; i < Object.keys(response['origin']).length; i++) { 
+                if(response['origin'][i]['iata'] != null){
+                content += "<li>" +
+                                "<span class='flight-destination-iata'>" +
+                                    "<button class='flight-list origin off' id='origin-"+i+"'>" +
+                                    response['origin'][i]['name'] + " (" + response['origin'][i]['iata'] + ")" +
+                                    "</button>" +
+                                    "<span class='flight-destination-name iata'>" +
+                                     response['origin'][i]['city'] + ", " + response['origin'][i]['name'] + " - " + response['origin'][i]['country'] +
+                                    "</span><span class='flight-desc-pointer iata'></span>" +
+                                "</span>" +
+                                "</li>";
+                }
+            }  
+            
+            content += "</ul>" +
+                "<ul class='col-6 flight'>";
+            
+            for (i = 0; i < Object.keys(response['destination']).length; i++) {
+                if(response['destination'][i]['iata'] != null){
+                content += "<li>" +
+                                "<span class='flight-destination-iata'>" +
+                                    "<button class='flight-list destination off' id='destination-"+i+"'>" +
+                                    response['destination'][i]['name'] + " (" + response['destination'][i]['iata'] + ")"+
+                                    "</button>" +
+                                    "<span class='flight-destination-name iata'>" +
+                                     response['destination'][i]['city'] + ", " + response['destination'][i]['name'] + " - " + response['destination'][i]['country'] +
+                                    "</span><span class='flight-desc-pointer iata'></span>" +
+                                "</span>" +
+                                "</li>";
+                }
+            }  
+            content += "</ul>" +
+                "<div class='submit'>" +
+                "<button class='search' type='search'>Search</button>" +
+                "</div>" +
+                "<p> not finding a suitable airport? <a href='"+homeUrl+"'>click here</a> to go back to the main search engine to try again</p>";
+            }
+            catch(e) {
+                content += "<h3>Sorry.. but there was an error getting your results?. It could be that the origin or destination cities you are flying from or to may not supported by our website yet. Please try again with different cities nearby </h3>"
+                content += "<p><a href='"+homeUrl+"'>click here</a> to do another search</p><p> if you are still getting errors, please contact us at (WIP)";
+            }
+            
+            document.getElementById("f-results-container").innerHTML = content;
+            
+            $( ".flight-list.origin" ).click(function(){
+                var i = event.target.id.split("-")[1];
+                origin = response['origin'][i]['city'] + ", (" + response['origin'][i]['iata'] + "), " + response['origin'][i]['name'] + " - " + response['origin'][i]['country'];
+                urlT[1] = "&query%5Bquery1%5Bquery_1_1%5D%5D=" + encodeURIComponent(origin);
+                var y = event.target.id;
+                var x = document.getElementById(y);
+                if(x.className == "flight-list origin on") {
+                    
+                }
+                else {
+                z = document.getElementsByClassName("flight-list origin on");
+                    for(i=0; z.length; i++) {
+                        if (z[i].className === 'flight-list origin on') {
+                             z[i].className = 'flight-list origin off';
+                        }
+                    }
+                }
+                x.className = "flight-list origin on";
+            });
+            
+            $( ".flight-list.destination" ).click(function(){
+                var i = event.target.id.split("-")[1];
+                destination = response['destination'][i]['city'] + ", (" + response['destination'][i]['iata'] + "), " + response['destination'][i]['name'] + " - " + response['destination'][i]['country'];
+                urlT[2] = "&query%5Bquery1%5Bquery_1_2%5D%5D=" + encodeURIComponent(destination);
+                var y = event.target.id;
+                var x = document.getElementById(y);
+                if(x.className == "flight-list destination on") {
+                    
+                }
+                else {
+                z = document.getElementsByClassName("flight-list destination on");
+                    for(i=0; z.length; i++) {
+                        if (z[i].className === 'flight-list destination on') {
+                             z[i].className = 'flight-list destination off';
+                        }
+                    }
+                }
+                x.className = "flight-list destination on";
+            });
+            
+            $( ".search" ).click(function(){
+                if(destination == null || origin == null) {
+                    $( "body" ).append("<div class='flash alert'>Please select an Origin and Destination</div>");
+                }
+                else {
+                    var urlP = urlT.join("&");
+                    var urlC = window.location.href.split("?")[0] + "?" + urlP;
+                    window.location.href = urlC;
+                }
+            });
+            
+        }
+        
+    </script>
+        <div id='f-results-container'>
+            <div class='loader-image'>
+                <%= image_tag('ajax-loader.gif') %>
+                <p class='loader'>Please wait... <br> we are getting the best results from over 150 pet friendly Airlines</p>
+                <div class='loader'><div class='loader-fill'></div></div>
+            </div>
+        </div>
+        <div class='pagination'></div>
+    </div>
+    <div class='side-right' >
+        <div class='side-ads'>
+            ads go here
+        </div>
+    </div>
+</div>
+
+<%= render 'pages/footer'%>

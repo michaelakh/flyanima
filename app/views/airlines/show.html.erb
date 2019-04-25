@@ -1,0 +1,36 @@
+<div class='container'>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @airline.name %>
+</p>
+
+<p>
+  <strong>Iata:</strong>
+  <%= @airline.iata %>
+</p>
+
+<p>
+  <strong>Phone no:</strong>
+  <%= @airline.phone_no %>
+</p>
+
+<p>
+  <strong>Contact link:</strong>
+  <%= @airline.contact_link %>
+</p>
+
+<p>
+  <strong>Pet info link:</strong>
+  <%= @airline.pet_info_link %>
+</p>
+
+<p>
+  <strong>Comments:</strong>
+  <%= @airline.comments %>
+</p>
+
+<%= link_to 'Edit', edit_airline_path(@airline) %> |
+<%= link_to 'Back', airlines_path %>
+</div>

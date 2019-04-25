@@ -1,0 +1,61 @@
+<div class='container'>
+    <header class='top-header clearfix'>
+        <div class='logo'>
+            <div class='logo-image'>
+                <%= image_tag "FlyAnima Logo.png", alt: "FlyAnima Logo" %>
+                <div class='site-name'>
+                    <span class='site-name'> FlyAnima <sup class='tm'>tm</sup></span>
+                </div>
+            </div>
+            
+        </div>
+        <div class='header-right'>
+            Announcement or advert or slogan or something
+        </div>
+    </header>
+    <nav class='header-nav clearfix'>
+        <div class='top-nav'>
+            <ul class='top-nav'>
+                <li class='top-li'>
+                    <%= link_to 'Home', '/pages/home' %>
+                </li>
+                <li class='nav-list'>
+                    <%= link_to 'Travel', '#' %>
+                </li>
+                <li class='nav-list'>
+                    <%= link_to 'Travel Info', posts_path %>
+                </li>
+                <li class='nav-list'>
+                    <%= link_to 'Contact', contact_path %>
+                </li>
+                
+                <% if user_signed_in? %>
+                <li class='nav-list'>
+                    <%= link_to 'Account', edit_user_registration_path %>
+                </li>
+                <li class='nav-list'>
+                    <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete%>
+                </li>
+                
+                <% else %>
+                <% if params[:add] == "me" %>
+                <li class='nav-list'>
+                    <%= link_to 'Sign in', user_session_path %>
+                </li>
+                <% end %>
+                
+                <% end %>
+                
+                <li class='icon'>
+                    <a href='javascript:void(0)' onclick="responsive_nav()"><!--&#9776--><div class='nav-hamburger-container'><div class='nav-hamburger'></div><div class='nav-hamburger'></div><div class='nav-hamburger'></div></div></a>
+                </li>
+            </ul>
+            <% if user_signed_in? %>
+            <div class='avatar-icon'>
+                <%= image_tag current_user.avatar.url(:thumb) %>
+            </div>
+            <% end %>
+            
+        </div>
+    </nav>
+</div>

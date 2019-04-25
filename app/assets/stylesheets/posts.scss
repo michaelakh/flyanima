@@ -1,0 +1,52 @@
+// Place all the styles related to the Posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+    div.search-post {
+        width:100%;
+        margin: 0 auto;
+        background-color:#444;
+        color:white;
+    }
+
+    div.search-post svg {
+        float:left;
+        padding:15px 0px 10px 10px;
+        top:5px;
+    }
+
+    div.search-post form {
+        float:left;
+        display:inline-block;
+        width:80%;
+        padding:10px;
+    }
+
+    div.search-post input#search {
+        float:left;
+        padding:2px;
+        font-size:1.1em;
+        width:60%;
+    }
+
+    div.search-post input.submit-search {
+        float:left;
+        padding:5px;
+        font-size:1.1em;
+        border-color: #d4a900 #aa8700 #aa8700; 
+        border: 1px solid transparent;
+        border-radius:0.2em;
+        background:#ffbe00;
+        background:linear-gradient(to top,#ffbe00 0,#ffcb00 100%);
+        padding:8px;
+        line-height:1.1;
+        font-size:12px;
+        font-weight:700;
+        cursor:pointer;
+        width:57px;
+        margin-left:10px;
+    }
+div.search-input-box-post {
+    float:left;
+    width:100%;
+}

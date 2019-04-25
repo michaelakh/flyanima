@@ -1,0 +1,236 @@
+<style>
+    div.side-col.info {
+        background-color:white;
+    }
+    div.airline-contact-button {
+        background-color:#45106e;
+        border:groove 2px #45106e;
+        display:inline-block;
+        border-radius:5px;
+        transition:  0.2s;
+    }
+    
+    div.airline-contact-button:hover {
+        background-color:#8828ab;
+        border:groove 2px #8828ab;
+    }
+    
+    button.contact-button-inline {
+        background-color:transparent;
+        border:none;
+        cursor:pointer;
+        font-weight:bold;
+        font-family:"lato";
+        font-size:1.01em;
+        color:#2E58E2;
+        padding:0px;
+    }
+    
+    button.contact-button-inline:hover {
+        color:#3B85F2;
+        text-decoration:underline;
+    }
+    h3#Disclaimer {
+        margin:0px;
+    }
+    p {
+        margin:8px 0px;
+    }
+</style>
+<div class='container clearfix'>
+    <script>
+        
+        
+        var response_pre = localStorage.search;
+        if (isJson(response_pre)) {
+            var response = JSON.parse(response_pre);
+        }
+        else {
+            var obj = '{' 
+                 +'"pricing": ['
+                     +'{'
+                      +'"baseFareTotal": "'+localStorage.currency+'0",'
+                      +'"saleFareTotal": "'+localStorage.currency+'0",'
+                      +'"saleTaxTotal": "'+localStorage.currency+'0",'
+                      +'"saleTotal": "'+localStorage.currency+'0"'
+                      +'}],'
+                      +'"saleTotal": "'+localStorage.currency+'0"'
+                        +'}';
+            
+            var response = JSON.parse(obj);
+        }
+        
+        var data_pre = localStorage.data;
+        if (isJson(data_pre)) {
+            var data = JSON.parse(data_pre);
+        }
+        else {
+            var data = null;
+        }
+
+        function toggleFares(){
+            var x = getElementById("toggle-fares");
+            
+                var tripFares = "<a href='javascript:void(0)' onclick='toggleFares()' id='toggle-fares' class='toggle-fares-on'> Traveller Adult:" +
+                params["adult"];
+                tripFares += "</a>";
+                document.getElementById("trip-fares").innerHTML = tripFares;
+        }
+        
+$(document).on('turbolinks:load', function(){
+            if(localStorage.search != null){
+                removeSearch = setTimeout(function(){ 
+                    localStorage.removeItem("search");
+                    localStorage.removeItem("data");
+                    alert("You're Search has expired. Please make a new search for more accurate results"); 
+
+                }, 600000);
+            }
+            var fmt;
+            fmt = new TwitterCldr.CurrencyFormatter();
+    
+            function prepareContactInfo(){
+            var content = "";
+            content +=  "<p>" +
+            "Prices above reflect Human Travelers. Prices for pets may vary depending on the airline. Prices can range from 0USD to "+
+            "150USD depending on the pet(s), pet(s) weight and Airline" +
+            "</p>"+
+            "<p>"+
+                "Unfortunately, booking a flight ticket for animal(s) cannot be done online."+
+            "</p>"+
+            "<p>"+
+                "Please <button class='contact-button-inline' onclick='getContactLink()'>contact</button> the Airlines to make the booking. and get more information about your travel"+
+            "</p>";
+            return content
+            }
+            
+            document.getElementById("airline-contact-link").innerHTML = "<div class='airline-contact-button'><button class='show-flight-button' type='button' onclick='getContactLink()'>Airline Contact Information</button></div>"
+            
+            //getContactLink("Airline Contact Information");
+            
+            document.getElementById("search-container").innerHTML = getTripSearchData();
+            document.getElementById("airline-contact-info").innerHTML = prepareContactInfo();
+            
+            document.getElementById("trip-price").innerHTML =  fmt.format(response["saleTotal"].substring(3), {currency: response["saleTotal"].substring(0,3)});
+            
+            document.getElementById("total-price").innerHTML = fmt.format(response["saleTotal"].substring(3), {currency: response["saleTotal"].substring(0,3)});
+            
+            document.getElementById("flight-price").innerHTML = fmt.format(response["pricing"][0]["baseFareTotal"].substring(3), {currency: response["pricing"][0]["baseFareTotal"].substring(0,3)});
+            
+            document.getElementById("tax-price").innerHTML = fmt.format(response["pricing"][0]["saleTaxTotal"].substring(3), {currency: response["pricing"][0]["saleTaxTotal"].substring(0,3)});
+            
+            document.getElementById("currency-name").innerHTML = TwitterCldr.Currencies.for_code(response["saleTotal"].substring(0,3))["name"];
+            
+        });
+       
+        
+    </script>
+    <div class='main-content' id='main-content'>
+        <h3 class='trip-sum-title right'>
+            Passengers - <span>
+            <% params[:passenger].each do |x, y| %>
+                <% if y != "0" %>
+                <%= x.capitalize %>: <%= y %>,
+                <% end %>
+            <% end %>
+            </span>
+        </h3>
+        <h3 class='trip-sum-title'> Journey Details</h3>
+        
+        <div id='search-container' class='clearfix'>
+        </div>
+        <div class='pet-info container'>
+            <h3 class='trip-sum-title'>
+                Pets Not Allowed (In most Cases)
+            </h3>
+            
+            <p>Many Flights will not transport the following breeds of dogs as checked baggage or cargo: </p>
+            <ul class='col-6'>
+                <li> Boston Terrier</li>
+                <li> Affenpinscher</li>
+                <li> Boxer (all breeds)</li>
+                <li> Brussels Griffon</li>
+                <li> Bulldog (all breeds)</li>
+                <li>Cane Corso</li>
+                <li>Chow Chow</li>
+                <li>Dogue De Bordeaux</li>
+                <li>English Toy Spaniel</li>
+                <li>Lhasa Apso</li>
+                
+            </ul>
+            <ul class='col-6'>
+            <li>Japanese Spaniel (Chin)</li>
+                
+                <li>Mastiff (all breeds)</li>
+                <li>Pekinese</li>
+                <li>Pit Bull</li>
+                <li>Presa Canario</li>
+                <li>Pug (all breeds)</li>
+                <li>Staffordshire Bull Terrier</li>
+                <li>Shar Pei</li>
+                <li>Shih Tzu and Tibetan Spaniel</li>
+            </ul>
+            <div class='clearfix'></div>
+            <p>The following breeds of cats are not transported:</p>
+            
+            <ul class='col-12 sf'>
+                <li>Burmese</li>
+                <li>Exotic</li>
+                <li>Himalayan</li>
+                <li>Persian</li>
+                <li>English Shorthair and Scottish Fold</li>
+            </ul>
+            
+            <p> for more information <a href='#'>click here</a></p>
+        </div>
+    </div>
+    <div class='side-col'>
+        <h3 class='trip-sum-title'>
+            Trip Details
+        </h3>
+
+        <div class='trip-details-container'>
+            <div id='trip-fares'>
+             <div class='trip-fare-row'><b> Fare Total:</b>
+               <span class='price-info'><span id='total-price'></span></span></div>
+             <div class='trip-fare-row in'><span> Flight </span>
+               <span class='price-info'><span id='flight-price'></span></span></div>
+                <div class='trip-fare-row in'><span> Tax </span>
+               <span class='price-info'><span id='tax-price'></span></span></div>
+            </div>
+            
+            <div class='search-price'>
+            <span class='total-price-main'>Total Price:</span><span id='trip-price'></span>
+            </div>
+            <div class='trip-far-row'><span class='price-info-GPB'>Prices are shown in <span id='currency-name'></span></span></div>
+            <div class='contact-box'>
+                
+            </div>
+        </div>
+    </div>
+    <div class='side-col info'>
+        <div id='airline-contact-info'>
+        <p>
+            Prices above reflect Human Travelers. Prices for pets may vary depending on the airline. Prices can range from 0USD to 150USD depending on the pet(s), pet(s) weight and Airline
+        </p>
+        <p>
+            Unfortunately, booking a flight ticket for animal(s) cannot be done online. 
+        </p>
+        <p>
+            Please <button class='contact-button-inline' onclick='getContactLink()'>contact</button> the Airlines to make the booking. and get more information about your travel
+        </p>
+        </div>
+        <div id='airline-contact-link'></div>
+    </div>
+    <div class='side-col ad-place'>
+        Ad Placement
+    </div>
+    <div class='side-col disclaimer'>
+        <h3 class='disclaimer' id='Disclaimer'>Disclaimer</h3>
+        <p>
+            To the best of our ability, we ensure that recommendations given on our website reflect the current airline regulations. We cannot predict how a given airline may enforce these regulations. Noncompliance may result in the need to deny boarding for your pet. We suggest that you carefully following the rules of the airline you are using.
+        </p>
+    </div>
+</div>
+
+<%= render 'pages/footer'%>

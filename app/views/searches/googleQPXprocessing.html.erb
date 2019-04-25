@@ -1,0 +1,386 @@
+<% if @response == nil %>
+<pre>
+<%= @request.to_json %>
+</pre>
+<%else%>
+    <div class='container clearfix'>
+    <div class='side-left'>
+        <div class='side-content'>
+        </div>
+        <div class='side-ads' style="height:auto;">
+            
+            <button type='button' onclick='myfunction2()'>
+             Click me
+            </button>
+        </div> 
+    </div>
+    <% if @response["trips"]["tripOption"] != nil %>
+    
+    <div class="cover"></div>
+
+    <div class='col-10 middle clearfix paginate'> 
+    <header class='flight-search-header'>
+        <div class='flight-header'>
+            <div class='search-header-cities'>
+                <span><%=@origin%></span>
+                <span>&#8596;</span>
+                <span><%=@destination%></span>
+            </div> 
+
+            <div class='search-header-cities'>
+                <span><%= @departure_first %></span>
+                &#8594;
+                <span><%= @departure_last %></span>
+            </div> 
+
+            <button class='change-flight'>
+                Change
+            </button>
+        </div>
+        <div class='short-form'>
+            <%= form_tag search_path, method: :GET, role: "search"  %>
+                    <div class='short-form-group'>
+                        <div class='form-col-xl-full off' id='flights_title'>
+                            <h3 class='flight-search-title'>Flight 1</h3>
+                        </div>
+                        <div class='form-short-col-3'>
+                            <%= text_field_tag 'city', nil, placeholder: 'city or airport', class: "query", name:"query[query1[query_1_1]]", id: 'query1' %>
+                        </div>
+                        <span>&#8594; </span>
+                        <div class='form-short-col-3'>
+                            <%= text_field_tag 'city', nil, placeholder: 'city or airport', class: "query", name:"query[query1[query_1_2]]", id: 'query2' %>
+                        </div>
+
+                        <div class='form-short-col-3'>
+                            <%= date_field_tag(:query_1_date_l, Date.today) %>
+                        </div>
+                        
+                        <div class='form-short-col-3 on' id='returning'>
+                            <%= label_tag 'returing', 'Returning' %>
+                            <%= date_field_tag(:query_2_date_r, Date.today) %>
+                        </div>
+                        <div class='passengers-container'>
+                            <button type='button' onclick="" class='passengers'>Passengers</button>
+                            <div class='passengers off'>
+                                <div class='form-short-col-2'>
+                                    <%= label_tag 'adult', 'Adult (18+)' %>             
+                                    <%= select_tag "adult", options_for_select([ 1, 2, 3, 4, 5, 6], "1"), class: "passengers" %>
+                                </div>
+
+                                <div class='form-short-col-2'>
+                                    <%= label_tag 'child', 'Child (0-17)' %>             
+                                    <%= select_tag "child", options_for_select([ 0, 1, 2, 3, 4, 5, 6], "0"), class: "passengers" %>
+                                </div>
+
+                                <div class='form-short-col-2'>
+                                    <%= label_tag 'Dogs', 'Dogs' %>             
+                                    <%= select_tag "dogs", options_for_select([ 0, 1, 2, 3], "0"), class: "passengers" %>
+                                </div>
+                                <div class='form-short-col-2'>
+                                    <%= label_tag 'Cats', 'Cats' %>             
+                                    <%= select_tag "cats", options_for_select([ 0, 1, 2, 3], "0"), class: "passengers" %>
+                                </div>
+                                <div class='form-short-col-2'>
+                                    <%= label_tag 'Other', 'Other' %>             
+                                    <%= select_tag "other_pet", options_for_select([ 0, 1, 2, 3], "0"), class: "passengers" %>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id='container'>
+                            <div class='test'>
+                            </div>
+                        </div>
+                        <div class='form-col-xl-full'>
+                            <button type='button' id='button'>Add flight</button>
+                        </div>
+                        <div class='form-col-xl-full'>
+                            <%= label_tag 'advanced_options', 'Advanced Search', class: 'l-small' %>
+                            <%= hidden_field(:type, :pass_confirm, :value => "n") %>
+                            <%= submit_tag 'Search', class: 'change-flight' %>
+                        </div>
+                    </div>
+                </form>
+            <button class='change-flight'>
+                Search
+            </button>
+        </div>
+    </header>
+    <% if @response_p != "" %>
+        <% @response_p.each do |x|%>
+            <div class='result-box clearfix'>
+                <div class="box-header">
+
+                </div>
+                <div class='rb-main-info'>
+                    <div class='rb-price'>
+                        <span class='price'>
+                            £<%= x["saleTotal"][3..8]%>
+                        </span>
+                    </div>
+                    <div class='expensive-flag'>
+                        <% @price_comp = @baseprice.to_i * 2
+                       if @price_comp < x["saleTotal"][3..8].to_i %>
+                        <div class='expensive-flag-text'>
+                            EXPENSIVE
+                        </div>
+                        <% end %>
+                    </div>
+                    
+                    <div class='paw-icon'>
+
+                    </div>
+                    <div class='view-flight-button'>
+                        <a href="/search_show?"> View Flight</a>
+                    </div>
+                </div>
+                <div class='carrier-icon'>
+                </div>
+                <div class='flight-right-col'>
+                    <% x["slice"].each do |s| %>
+                    <% if s["segment"][1] != nil 
+                    j = s["segment"].count - 1 
+                    k = 0 %>
+
+                    <div class='flight-time sb-container'>
+                        <div class='flight-carrier'>
+                            <%= @carrier[s["segment"][0]["flight"]["carrier"]] %>
+                        </div>
+                        <div class='flight-time flightDepart'> 
+                            <span class='flight-destination'><%= s["segment"][0]["leg"][0]["departureTime"][11..15]%></span> - <%=d = s["segment"][0]["leg"][0]["origin"] %>
+                        </div>
+                        <div class='flight-time arrow'>&#8594;</div>
+                        <div class='flight-time flightDepart'>
+                            <span class='flight-destination'><%= s["segment"][j]["leg"][0]["arrivalTime"][11..15]%></span> - <%=g = s["segment"][j]["leg"][0]["destination"]%>
+                        </div>
+                        <div class='flight-time flight-duration'>
+                            <% @total_d =  0
+                                while k < x["slice"].count do 
+                                 @total_d = @total_d + x["slice"][k]["segment"][0]["duration"]
+                                 if s["segment"][0]["connectionDuration"] != nil
+                                      @total_d_c = @total_d + s["segment"][0]["connectionDuration"]
+                                 end  
+                                %>
+                                <% k = k + 1 %>
+                                <% end %>
+                            <span class='flight-grey'><%= (@total_d/60).floor %>hr <%= (@total_d % 60 ) %>m</span>
+                        </div>
+
+                        <div class='flight-time'>
+                            <span class='flight-grey'><% date = Date.parse(s["segment"][0]["leg"][0]["departureTime"][0..9]) %> <%= date.strftime("#{date.day.ordinalize}, %b %Y") %></span> 
+                        </div>
+                        <div class='flight-time stops'>
+                           <span class='flight-stops'>
+                               <% if s["segment"].count == 1 %>
+                               non-stop
+                               <% elsif s["segment"].count == 2 %>
+                               <%= s["segment"].count - 1 %> stop
+                               <% elsif s["segment"].count > 2 %>
+                               <%= s["segment"].count - 1 %> stops
+                               <% end %>
+                            </span>
+                        </div>
+                    </div>  
+
+                    <% else %>
+
+                    <% @total_d =  0
+                        k = 0
+                    while k < x["slice"].count do 
+                     @total_d = @total_d + x["slice"][k]["duration"]
+                     if x["slice"][k]["segment"][0]["connectionDuration"] != nil
+                          @total_d = @total_d + x["slice"][k]["segment"][0]["connectionDuration"]
+                     end 
+                    %>
+                    <% k = k + 1 %>
+                    <% end %>
+                    <% s["segment"].each do |y| %>
+                        <div class='flight-time sb-container'>
+                            <div class='flight-carrier'>
+                                <%= @carrier[y["flight"]["carrier"]] %>
+                            </div>
+                            <div class='flight-time flightDepart'>
+                                <span class='flight-destination'><%= y["leg"][0]["departureTime"][11..15]%></span> - <%=d = y["leg"][0]["origin"] %> 
+                            </div>
+                            <div class='flight-time arrow'>&#8594;</div>
+                            <div class='flight-time flightDepart'>
+                                <span class='flight-destination'><%= y["leg"][0]["arrivalTime"][11..15]%></span> - <%=g = y["leg"][0]["destination"]%>
+                            </div>
+
+                            <div class='flight-time flight-duration'>
+                                <span class='flight-grey'><%= (y["duration"]/60).floor %>hr <%= (y["duration"] % 60 ) %>m</span>
+                            </div>
+
+                            <div class='flight-time'>
+                                <span class='flight-grey'><% date = Date.parse(y["leg"][0]["departureTime"][0..9]) %> <%= date.strftime("#{date.day.ordinalize}, %b %Y") %></span> 
+                            </div>
+
+                            <div class='flight-time stops'>
+                               <span class='flight-stops'>
+                                   <% if s["segment"].count == 1 %>
+                                   non-stop
+                                   <% elsif s["segment"].count == 2 %>
+                                   <%= s["segment"].count - 1 %> stop
+                                   <% elsif s["segment"].count > 2 %>
+                                   <%= s["segment"].count - 1 %> stops
+                                   <% end %>
+                                </span>
+                            </div>
+
+                        </div>  
+                    <% end %> 
+                    <% end %>
+
+                <% end %>
+                    <div class='extra-information'>
+                        <div class='extra-info-header'>
+                            <div class='extra-info-menu on' onclick='show_details()'>
+                                Details  
+                            </div>
+                            <div class='extra-info-menu off' onclick='show_fares()'>
+                                Fares
+                            </div>
+                        </div>
+                        <div class='extra-info-details-wrapper on'>
+                        <% i = 0 %>
+                        <% x["slice"].each do |s| %>
+                        <% if i == 0 %>
+                            <h2 class='extra-info-title'>
+                                Depart
+                            </h2>
+                            <% elsif i == 1 %>
+                            <h2 class='extra-info-title'>
+                                Return
+                            </h2>
+                            <% end %>
+                        <% s["segment"].each do |y| %>
+                        <div class='extra-info-body'>
+                            <div class='flight-time sb-container'>
+                                <div class='flight-carrier'>
+                                    <%= @carrier[y["flight"]["carrier"]] %>
+                                </div>
+                                <div class='flight-time flightDepart'>
+                                    <span class='flight-destination'><%= y["leg"][0]["departureTime"][11..15]%></span> - <%=d = y["leg"][0]["origin"] %> 
+                                </div>
+                                <div class='flight-time arrow'>&#8594;</div>
+                                <div class='flight-time flightDepart'>
+                                    <span class='flight-destination'><%= y["leg"][0]["arrivalTime"][11..15]%></span> - <%=g = y["leg"][0]["destination"]%>
+                                </div>
+
+                                <div class='flight-time flight-duration'>
+                                    <span class='flight-grey'><%= (y["duration"]/60).floor %>hr <%= (y["duration"] % 60 ) %>m</span>
+                                </div>
+
+                                <div class='flight-time'>
+                                    <span class='flight-grey'><% date = Date.parse(y["leg"][0]["departureTime"][0..9]) %> <%= date.strftime("%a, %d %b") %></span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <% end %> 
+
+                        
+                        <% i = i + 1 %>
+                        <% end %>
+                        </div>
+                        <div class='extra-info-fares-wrapper off'>
+                            <h2 class='extra-info-title'>
+                                Known fares
+                            </h2>
+                            <div class='flight-fare-row'>
+                                <div class='flight-fare-left-col'>
+                                    <span>Flight Price:</span>
+                                </div>
+                                <div class='flight-fare-right-col'>
+                                    <span>£<%= x["pricing"][0]["saleFareTotal"][3..10] %></span>
+                                </div>
+                            </div>
+                            <div class='flight-fare-row'>
+                                <div class='flight-fare-left-col'>
+                                    <span>Tax:</span>
+                                </div>
+                                <div class='flight-fare-right-col'>
+                                    <span>£<%= x["pricing"][0]["saleTaxTotal"][3..10] %></span>
+                                </div>
+                            </div>
+                            <div class='flight-fare-row'>
+                                <div class='flight-fare-left-col'>
+                                    <span>Ticket Total:</span>
+                                </div>
+                                <div class='flight-fare-right-col'>
+                                    <span>£<%= x["pricing"][0]["saleTotal"][3..10] %></span>
+                                </div>
+                            </div>
+                            <div class='flight-fare-row'>
+                                <div class='flight-fare-left-col'>
+                                    <span>Last chance to buy:</span>
+                                </div>
+                                <div class='flight-fare-right-col'>
+                                    <span><% lctb = Date.parse(x["pricing"][0]["latestTicketingTime"][0..9]) %> <%= lctb.strftime("%a, %d %b") %> at <%= x["pricing"][0]["latestTicketingTime"][11..15] %></span>
+                                </div>
+                            </div>
+                           
+                            <% if x["pricing"][0]["refundable"] == "TRUE" %>
+                            <div class='flight-fare-row'>
+                                <div class='flight-fare-left-col'>
+                                </div>
+                                <div class='flight-fare-right-col'>
+                                    <span>Refundable</span>
+                                </div>
+                            </div>
+                            <% else %>
+                            <div class='flight-fare-row'>
+                                <div class='flight-fare-left-col'>
+                                </div>
+                                <div class='flight-fare-right-col'>
+                                    <span>Non-Refundable</span>
+                                </div>
+                            </div>
+                            <%end%>
+                        </div>
+                    </div>
+            </div>   
+    </div>
+        <% end %>
+        <div class=''><%=  paginate @response_p %></div>
+    <% end %> 
+    </div>
+    <div class='side-right'>
+        <div class='side-ads'>
+            ads go here
+        </div>
+    </div>
+-->
+    <% else %>
+    <div class='col-10 middle clearfix'>
+        <p>Your search result came up empty, Please try a different search</p>
+        <p>Suggested searches</p>
+        <span>Flying from</span>
+        <ul class='flight-suggestions'>
+            <% @test.each do |x| %>
+            <% if x["iata"] != nil %>
+            <li>
+                <%= x["name"] %>, (<%= x["iata"] %>), <%= x["city"] %>, <%= x["country"] %>
+            </li>
+            <% end %>
+            <% end %>
+        </ul>
+        
+        <span>Going to</span>
+        <ul class='flight-suggestions'>
+            <% @testt.each do |x| %>
+            <% if x["iata"] != nil %>
+            <li>
+                <%= x["name"] %>, (<%= x["iata"] %>), <%= x["city"] %>, <%= x["country"] %>
+            </li>
+            <% end %>
+            <% end %>
+        </ul>
+    </div>
+    <div class='side-right'>
+        <div class='side-ads'>
+            ads go here
+        </div>
+    </div>
+    <% end %>
+</div>

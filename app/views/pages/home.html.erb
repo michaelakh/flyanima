@@ -1,0 +1,236 @@
+<style>
+   
+</style>
+<div class='header-box'>
+    <div class='container clearfix'>
+        <div class='search-box'>
+            <button class='button-col-xs-10 off' id='Flights-button-search' onclick="responsive_travel_search('Flights')">
+                Flights
+            </button>
+            <!--
+            <button class='button-col-xs-10 off' id='Hotels-button-search' onclick="responsive_travel_search('Hotels')">
+                Hotels
+            </button>
+            <button class='button-col-xs-10 off' id='Cars-button-search' onclick="responsive_travel_search('Cars')">
+                Cars
+            </button>
+            <button class='button-col-xs-10 off' id='Trains-button-search' onclick="responsive_travel_search('Trains')">
+                Trains
+            </button>
+            <button class='button-col-xs-10 off' id='Activity-button-search' onclick="responsive_travel_search('Activity')">
+                Activity
+            </button>
+            <button class='button-col-xs-10 off' id='All-button-search' onclick="responsive_travel_search('All')">
+                All
+            </button>
+-->
+            <div id='Flights-search' class='active-search on'>
+               <%= form_tag search_path, method: :GET, role: "search"  %>
+                    <div class='form-group-home'>
+                        <div class='form-col-xl-full off' id='flights_title'>
+                            <h3 class='flight-search-title'>Flight 1</h3>
+                        </div>
+                        <div class='form-col-6'>
+                            <%= label_tag 'coming_from', 'Coming From' %>
+                            <%= text_field_tag 'city', nil, placeholder: 'city or airport', class: "query", name:"query[query1[query_1_1]]", id: 'query1' %>
+                        </div>
+
+                        <div class='form-col-6'>
+                            <%= label_tag 'going_to', 'Going To' %>
+                            <%= text_field_tag 'city', nil, placeholder: 'city or airport', class: "query", name:"query[query1[query_1_2]]", id: 'query2' %>
+                        </div>
+
+                        <div class='form-col-3'>
+                            <%= label_tag 'leaving', 'Leaving' %>
+                            <%= date_field_tag(:query_1_date_l, Date.today) %>
+                        </div>
+                        
+                        <div class='form-col-3 on' id='returning'>
+                            <%= label_tag 'returing', 'Returning' %>
+                            <%= date_field_tag(:query_2_date_r, Date.tomorrow) %>
+                        </div>
+                        <div class='form-col-f'>
+                        
+                        </div>
+                        <div class='form-col-1'>
+                            <%= label_tag 'adult', 'Adult (18+)' %>             
+                            <%= select_tag "passenger[adult]", options_for_select([ 1, 2, 3, 4, 5, 6], "1") %>
+                        </div>
+                        
+                        <div class='form-col-1'>
+                            <%= label_tag 'child', 'Child (0-17)' %>             
+                            <%= select_tag "passenger[child]", options_for_select([ 0, 1, 2, 3, 4, 5, 6], "0") %>
+                        </div>
+                        
+                        <div class='form-col-1'>
+                            <%= label_tag 'Dogs', 'Dogs' %>             
+                            <%= select_tag "passenger[dogs]", options_for_select([ 0, 1, 2], "0") %>
+                        </div>
+                        <div class='form-col-1'>
+                            <%= label_tag 'Cats', 'Cats' %>             
+                            <%= select_tag "passenger[cats]", options_for_select([ 0, 1, 2], "0") %>
+                        </div>
+                        <div class='form-col-1'>
+                            <%= label_tag 'Other', 'Other' %>             
+                            <%= select_tag "passenger[other_pet]", options_for_select([ 0, 1, 2], "0") %>
+                        </div>
+                        
+                        <div id='container'>
+                            <div class='test'>
+                            </div>
+                        </div>
+                        <div class='form-col-xl-full'>
+                            <button type='button' id='button-add'>Add Flight</button>
+                        </div>
+                        <div class='form-col-xl-full'>
+                            <button type='button' id='button-remove' class='br-off'>Remove Flight</button>
+                        </div>
+                        <div class='form-col-xl-full'>
+                            <%= label_tag 'advanced_options', 'Advanced Search', class: 'l-small' %>
+                            <%= hidden_field(:type, :pass_confirm, :value => "n") %>
+                            <%= submit_tag 'Search', class: 'submit' %>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id='Hotels-search' class='active-search off'>
+                Hotel Search is Underconstruction
+            </div>
+            <div id='Cars-search' class='active-search off'>
+                Car search is under-construction
+            </div>
+            <div id='Trains-search' class='active-search off'>
+                Train search is under-construction
+            </div>
+            <div id='Activity-search' class='active-search off'>
+                Activity search is under-construction
+            </div>
+            <div id='All-search' class='active-search off'>
+                All search is under-construction
+            </div>
+        </div>
+        <div class='search-box-ad'>
+            ad content
+        </div>
+    </div>
+</div>
+
+<div class='section-container'>
+    <section>
+         <div class='container-no-bg'>
+            <div class='col-12'>
+                <ul class='col-12 review'>
+                    <li class='col-4'>
+                        <span class='col-4'>
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="38px"
+                                 height="38px" viewBox="0 0 29 29" enable-background="new 0 0 38 38" xml:space="preserve">
+                            <g id="Layer_3">
+                                <path fill="#45106e" d="M14.5,0.286C6.648,0.286,0.285,6.651,0.285,14.5c0,7.851,6.363,14.214,14.215,14.214
+                                    c7.851,0,14.215-6.363,14.215-14.214C28.715,6.651,22.351,0.286,14.5,0.286z M12.891,21.434l-6.154-6.155l3.131-3.131l3.023,3.023
+                                    l6.347-6.347l3.131,3.132L12.891,21.434z"/>
+                            </g>
+                            </svg>
+                        </span>
+                        <span class='col-8'>
+                            Search over a million flights, hotels, packages, and more
+                        </span>
+                    </li>
+                    <li class='col-4'>
+                        <span class='col-4'>
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="38px"
+                                 height="38px" viewBox="0 0 29 29" enable-background="new 0 0 38 38" xml:space="preserve">
+                            <g id="Layer_3">
+                                <path fill="#45106e" d="M14.5,0.286C6.648,0.286,0.285,6.651,0.285,14.5c0,7.851,6.363,14.214,14.215,14.214
+                                    c7.851,0,14.215-6.363,14.215-14.214C28.715,6.651,22.351,0.286,14.5,0.286z M12.891,21.434l-6.154-6.155l3.131-3.131l3.023,3.023
+                                    l6.347-6.347l3.131,3.132L12.891,21.434z"/>
+                            </g>
+                            </svg>
+                        </span>
+                        <span class='col-8'>
+                            Secure incredible value with <strong>FlyAnima's Price Guarantee</strong>
+                        </span>
+                    </li>
+                    <li class='col-4'>
+                        <span class='col-4'>
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="38px"
+                                 height="38px" viewBox="0 0 29 29" enable-background="new 0 0 38 38" xml:space="preserve">
+                            <g id="Layer_3">
+                                <path fill="#45106e" d="M14.5,0.286C6.648,0.286,0.285,6.651,0.285,14.5c0,7.851,6.363,14.214,14.215,14.214
+                                    c7.851,0,14.215-6.363,14.215-14.214C28.715,6.651,22.351,0.286,14.5,0.286z M12.891,21.434l-6.154-6.155l3.131-3.131l3.023,3.023
+                                    l6.347-6.347l3.131,3.132L12.891,21.434z"/>
+                            </g>
+                            </svg>
+                        </span>
+                        <span class='col-8'>
+                            <strong>No cancellation fee</strong> to change or cancel almost any hotel reservation
+                        </span>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+             <h3 class='col-m-3'>
+                Today's News
+             </h3>
+              <ul class='col-m-3'>
+                <li class='col-m-3'>
+                    <%= link_to(top_deals_path, class:'overlay-m') do %>
+                        <div class='overlay-m-3-l'>
+                        </div>
+                        <div class='cust-image-container'>
+                            <%= image_tag("spring-savin.jpg", class: "cust-img", alt: "Top Deals") %>
+                        </div>
+                        <div class='overlay-m-3'>
+                                <h4>FlyAnima's Top Deals</h4>
+                                <p> Today's Sales</p>
+                        </div>
+                    
+                    <% end %>
+                </li>
+                <li class='col-m-3'>
+                    <%= link_to(pet_selfie_challenge_path, class:'overlay-m') do %>
+                        <div class='overlay-m-3-l'>
+                        </div>
+                        <%= image_tag("Annonymous_1.jpg", class: "cust-img", alt: "Annonymous") %>
+                        <div class='overlay-m-3'>
+                            <h4>Pet Selfie Competition</h4>
+                            <p> Get a chance to win a £10 Amazon GiftCard</p>
+                        </div>
+                    <% end %>
+                </li>
+                <li class='col-m-3'>
+                    
+                    <%= link_to(posts_path, class:'overlay-m') do %>
+                        <div class='overlay-m-3-l'>
+                            </div>
+                     <%= image_tag("dog-reading.jpg", class: "cust-img", alt: "Learn More about Travelling with your pet") %> 
+                        <div class='overlay-m-3'>
+                            <h4>Pet Travel Information</h4>
+                            <p> Learn more about travelling with your pet</p>
+                        </div>
+                    <% end %>
+                </li>
+             </ul>
+             <div class='section-ad'>
+                ads go here
+            </div>
+        </div>
+        
+        <h3 class='col-m-2'>
+            Why Choose FlyAnima?
+        </h3>
+        <div class='section-content-2'>
+        <p>
+            At FlyAnima we know that there are people who love to travel. and that there are people who love their pets. We wanted to create a way for pet owners to travel and not leave thier pets behind. We are dedicated to making this dream come true. 
+        </p><br>
+        <p>
+        Follow FlyAnima on <a href='#'>Facebook</a>, <a href='#'>Twitter</a>, <a href='#'>Instagram</a>, and get travel tips & advice through the FlyAnima Travel Blog.
+        </p>
+        </div>
+        <div class='section-ad'>
+            Ads go here
+        </div>
+    </section>
+</div>
+
+<%= render 'pages/footer'%>
