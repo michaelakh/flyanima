@@ -4,7 +4,6 @@ class Airport < ApplicationRecord
 
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
-
       airport_hash = row.to_hash 
       airport = Airport.where(id: airport_hash["id"])
 
@@ -16,6 +15,6 @@ class Airport < ApplicationRecord
     end # end CSV.foreach
   end # end self.import(file)
     
-  geocoded_by :iata
-  after_validation :geocode
+  # geocoded_by :iata
+  # after_validation :geocode
 end

@@ -19,10 +19,13 @@
   </head>
   <body>
    <%= render 'layouts/header'%>
+    <div class='container-fluid'>
    <% flash.each do |key, value| %>
    <%= content_tag :div, value, class: "flash #{key}" %>
    <% end %>
     <%= yield %>
+    </div>
+    <%= render 'pages/footer'%>
   </body>
  
 
