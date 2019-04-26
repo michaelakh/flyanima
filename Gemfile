@@ -23,7 +23,7 @@ gem 'twitter-typeahead-rails'
 gem "http", require:['http']
 
 # Use paperclip to manange user uploaded images
-gem "paperclip", "~> 5.0.0"
+gem "paperclip"
 
 # Use for searching the website database for results
 gem 'searchkick'

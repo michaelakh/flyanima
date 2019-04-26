@@ -1,5 +1,5 @@
 class CityAirportItaCode < ApplicationRecord
-  searchkick word_start: [:city, :country]
+  searchkick word_start: [:city, :country, :airport, :code]
   require 'csv'
 
   def self.import(file)

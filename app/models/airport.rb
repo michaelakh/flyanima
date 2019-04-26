@@ -1,5 +1,5 @@
 class Airport < ApplicationRecord
-  searchkick word_start: [:city, :country, :name]
+  searchkick word_start: [:city, :country, :name,:iata,:icao]
   require 'csv'
 
   def self.import(file)
@@ -15,6 +15,6 @@ class Airport < ApplicationRecord
     end # end CSV.foreach
   end # end self.import(file)
     
-  # geocoded_by :iata
-  # after_validation :geocode
+  geocoded_by :iata
+  after_validation :geocode
 end
