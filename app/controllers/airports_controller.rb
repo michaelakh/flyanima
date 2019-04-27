@@ -3,10 +3,10 @@ class AirportsController < ApplicationController
   before_action :authenticate_user!, except: [:autocomplete]
     
   def autocomplete
-    render json: Airport.search(params[:term], {
-      fields: ["name","city","country"],
+    render json: Airport.search(params[:query], {
+      fields: ["name","city","country","iata","icao"],
       where: {iata:{not: nil}, DST:["E","A","S","O","Z","U","N"] },
-      boost_where: {name: "All Airports"},
+      boost_where: {name: "All Airports"}, 
       match: :word_start,
       limit: 11,
       load: false,

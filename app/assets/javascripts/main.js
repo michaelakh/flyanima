@@ -21,15 +21,14 @@ function typeahead_initialize() {
     queryTokenizer: Bloodhound.tokenizers.whitespace,
    
     remote: {
-      url: '/airports/autocomplete?term=%QUERY',
+      url: '/airports/autocomplete?query=%QUERY',
       wildcard: '%QUERY',
     }
   });
     
     $('.query').typeahead(null, {
     source: cityAirports,
-       limit: 10
-  });
+    limit: 10
 }
 
 //Jquery ui autocomplete 

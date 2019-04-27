@@ -4,8 +4,8 @@ class CityAirportItaCodesController < ApplicationController
   
   def autocomplete
     render json: CityAirportItaCode.search(params[:query], {
-      fields: ["city", "code"],
-      match: :word_start,
+      fields: [:code, :city, :airport, :country],
+      order: {_score: :desc},
       limit: 11,
       load: false,
       misspellings: {below: 2}
