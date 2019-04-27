@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby "~> 2.6.0"
+ruby "2.6.0"
 # decrease puma workers to free up ram for heroku
 gem "puma_worker_killer"
 

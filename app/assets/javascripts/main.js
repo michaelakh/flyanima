@@ -29,7 +29,7 @@ function typeahead_initialize() {
     $('.query').typeahead(null, {
     source: cityAirports,
     limit: 10
-}
+});
 
 //Jquery ui autocomplete 
 //$(document ).on('turbolinks:load', function() {
@@ -38,7 +38,7 @@ function typeahead_initialize() {
 //     icons: { submenu: "ui-icon-circle-triangle-e" }
 //   });
 // } );
-
+}
 // test to see if data is json object
 
 function isJson(str) {
