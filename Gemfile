@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
+
 ruby "2.6.0"
+
 # decrease puma workers to free up ram for heroku
 gem "puma_worker_killer"
 
@@ -23,7 +25,7 @@ gem 'twitter-typeahead-rails'
 gem "http", require:['http']
 
 # Use paperclip to manange user uploaded images
-gem "paperclip", "~> 5.0.0"
+gem "paperclip"
 
 # Use for searching the website database for results
 gem 'searchkick'
